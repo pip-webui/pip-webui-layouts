@@ -1,0 +1,11 @@
+<div class="pip-menu w50-stretch pip-split-left" layout="column" flex
+     ng-include="'item_details_panel.html'">
+</div >
+<div class="pip-menu w50-stretch pip-split-right" style="position: absolute; left: 50%; height: 100%;">
+    <div ng-if="selected.showPanel == 'sub1'"  layout="column" flex style="height: 100%"
+        ng-include="'item_sub1_panel.html'">
+    </div>
+    <div ng-if="selected.showPanel == 'sub2'" layout="column" flex style="height: 100%"
+        ng-include="'item_sub2_panel.html'">
+    </div>    
+</div>

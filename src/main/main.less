@@ -1,0 +1,68 @@
+// @file CSS styles for main layout container
+// @copyright Digital Living Software Corp. 2014-2015
+
+.pip-main {
+    .flex-container;
+    .flex-direction-column;
+    .position-fill;
+    background-color: @color-window; 
+    //font-family: @font-family;
+    font-size: 14px;
+
+    .pip-body-nav {
+        .flex-fixed;
+        min-height: 0px;
+        
+        .md-paginator{
+          margin-right: 0px !important;
+        }
+    }
+        
+    .pip-main-body {
+        position: relative;
+        .flex-container;
+        .flex-direction-column;
+        .flex-var;
+        .flex-vertical-center;
+        //.flex-horizontal-start;
+        overflow: hidden;
+    }
+
+    &.black, &.dark {
+        md-content {
+            color: @color-primary-dark !important;
+        }
+    }
+}
+
+
+// Borders
+//------------
+
+.pip-no-border {
+    .border-radius(0px);
+    box-shadow: none!important;
+    background: none!important;
+}
+
+.pip-border {
+    background-color: @color-content; 
+    box-shadow: @box-shadow; 
+    .border-radius(@border-radius);
+    .shadow-card();    
+}
+
+.pip-border-no-top {
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+    .border-radius-top(0px);
+    .border-radius-bottom(@border-radius);
+    .shadow-card();    
+}
+
+// On tablet
+@media (max-width: 1200px) {
+    .pip-border, .pip-border-no-top {
+        .border-radius(0px);
+        box-shadow: none!important;        
+    }
+}

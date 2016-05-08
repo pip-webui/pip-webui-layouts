@@ -1,0 +1,63 @@
+// @file CSS styles for dialog layout
+// @copyright Digital Living Software Corp. 2014-2015
+
+@dialog-desktop-width:     400px;
+
+
+/*
+ * <md-dialog class="pip-dialog" width="600">
+ *     <div class="pip-header">
+ *         <h3 class="m0">This is a Header</h3>
+ *     </div>
+ *     <div class="pip-body">
+ *         <div class="pip-content">
+ *         </div>
+ *     </div>
+ *     <div class="pip-footer">
+ *         <div>
+ *             <md-button ng-click="cancel()">Cancel</md-button>
+ *             <md-button class="md-accent" ng-click="answer('ok')">Ok</md-button>
+ *         </div>
+ *     </div>
+ * </md-dialog>
+ */
+
+.pip-dialog {
+  .flex-container;
+  .flex-direction-column;
+  //!!z-index: 500;
+
+  min-width: @dialog-desktop-width;
+  width: @dialog-desktop-width;
+  //font-family: @font-family;
+  font-size: 14px;
+
+  background-color: @color-content !important;
+
+  // On phone
+  @media (max-width: 768px) {
+    min-width: 300px;
+  }
+}
+
+.pip-dialog .pip-header {
+  .pip-dialog-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    padding: 2px;
+
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 50%;
+
+    * {
+      vertical-align: middle;
+      font-size: 24px;
+    }
+  }
+}

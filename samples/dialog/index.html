@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Dialog Layout</title>
+
+    <link rel="stylesheet" href="../../lib/pip-webui-lib.css"/>
+    <link rel="stylesheet" href="../../lib/pip-webui-css.css"/>
+    <link rel="stylesheet" href="../../dist/pip-webui-layouts.css"/>
+    <link rel="stylesheet" href="styles.css"/>
+
+    <script src="../../lib/pip-webui-lib.js"></script>
+    <script src="../../dist/pip-webui-layouts.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="AppController" md-theme="{{ $theme || 'blue' }}" class="{{ $theme }} pip-main layout-column">
+    <pip-main md-theme="blue">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2><span>Dialog Layout</span></h2>
+            </div>
+        </md-toolbar>
+
+        <pip-main-body layout-align="center center">
+            <div class="pip-card-container">
+                <pip-card>
+                    <div class="pip-body">
+                        <md-button class="md-accent md-raised m20" ng-click="openDialog($event)">Open Dialog</md-button>
+                    </div>    
+                </pip-card>
+            </div>
+        </pip-main-body>
+    </pip-main>
+</body>
+</html>

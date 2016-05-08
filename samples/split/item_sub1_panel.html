@@ -1,0 +1,6 @@
+<md-list-item ng-repeat="item in selected.itemCollection" layout="row" layout-align="start center"
+              class="pip-ref-list-item divider-bottom pip-selectable"
+              ng-class="{'selected': selectedItem.id === item.id}"
+              ng-click="onItemSelect($index)">
+    <p> {{ item.title}} </p>
+</md-list-item>

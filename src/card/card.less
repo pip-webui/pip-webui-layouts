@@ -1,0 +1,78 @@
+// @file CSS styles for card layout
+// @copyright Digital Living Software Corp. 2014-2015
+
+/*
+ * @example - Card layout
+ *  <div class="pip-card-container">
+ *      <pip-card width="400" min-height="400">
+ *          <div class="pip-header">
+ *              <h3 >This is a Header</h3>
+ *          </div>
+ *          <div class="pip-body">
+ *              <div class="pip-content">
+ *              </div>
+ *          </div>
+ *          <div class="pip-footer">
+ *              <md-button>Cancel</md-button>
+ *              <md-button class="md-accent">Ok</md-button>
+ *          </div>
+ *      </pip-card>
+ *  </div>
+ */
+
+.pip-card {
+    z-index: 10;
+    position: relative;
+    .flex-shrink;
+    .flex-container;
+    .flex-direction-column;
+    background-color: @color-content; 
+    box-shadow: @box-shadow; 
+    .border-radius();
+
+    margin: 24px;
+    .shadow-card();
+    
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+}
+
+.pip-card-container {
+    /*min-height: 100%;*/
+    width: 100%;
+    .flex-var;
+    .flex-container;
+    .flex-direction-column;
+    .flex-vertical-center;
+    .flex-vertical-center;
+    max-height: 100%;
+
+    .flex-horizontal-center;
+
+    &.pip-outer-scroll {
+        display: block !important;
+        overflow-y: auto;
+        .pip-card {
+            display: none;
+        }
+    }
+}
+
+// On tablet
+@media (max-width: 1200px) {
+    .pip-card {
+        margin: 16px;
+    }
+}
+
+// On phone
+@media (max-width: 768px) {
+    .pip-card {
+        .position-fill;
+        margin: 0px;
+        border: none;
+        border-radius: 0;
+    }
+}

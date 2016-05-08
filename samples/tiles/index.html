@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Tiles Layout</title>
+
+    <link rel="stylesheet" href="../../lib/pip-webui-lib.css"/>
+    <link rel="stylesheet" href="../../lib/pip-webui-css.css"/>
+    <link rel="stylesheet" href="../../dist/pip-webui-layouts.css"/>
+    <link rel="stylesheet" href="styles.css"/>
+
+    <script src="../../lib/pip-webui-lib.js"></script>
+    <script src="../../dist/pip-webui-layouts.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="AppController">
+    <pip-main md-theme="{{ $theme || 'blue' }}" class="{{ $theme }} pip-main layout-column">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2><span>Tiles Layout</span></h2>
+            </div>
+        </md-toolbar>
+
+        <pip-main-body>
+            <md-toolbar class=" md-primary pip-body-nav">
+                <md-tabs md-selected="0" xmd-stretch-tabs="auto">
+                    <md-tab label="One"></md-tab>
+                    <md-tab label="Two"></md-tab>
+                    <md-tab label="Three"></md-tab>
+                    <md-tab label="Four"></md-tab>
+                </md-tabs>
+            </md-toolbar>
+
+
+            <pip-tiles layout-fill column-width="440">
+                <div class="masonry-brick pip-tile bg-grey  w440-flex">
+                    <div class="tile-sm">This is a special tile</div>
+                </div>
+
+                <div class="masonry-brick pip-tile {{tile.color}}  w440-flex" ng-repeat="tile in tiles">
+                    <div class="{{tile.size}}">{{tile.name}}</div>
+                </div>
+            </pip-tiles>
+        </pip-main-body>
+
+    </pip-main>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+// @file CSS styles for tile layout
+// @copyright Digital Living Software Corp. 2014-2015
+
+/*
+ * @example - ����������� ��������
+ *  <pip-tiles column-width="440">
+ *      <div ng-repeat="item in itemCollection"
+ *           class="masonry-brick pip-tile  w440-flex pointer">
+ *          <div class="pip-tile-body pip-entity-content"></div>
+ *      </div>
+ *  </pip-tiles>
+ */
+
+.pip-tiles {
+    position: fixed; // todo
+                     // для скрола в Ie и Moz это было сделано - Kate
+    max-height: 100%;
+    box-sizing: border-box;
+
+    max-height: ~"calc(100% - 64px - 48px)";// 64px - toolbar 48px - tabs - Kate   // todo
+    min-height: ~"calc(100% - 64px - 48px)";// todo
+
+    @media (max-width: 766px) {
+
+        max-height: ~"calc(100% - 48px - 48px)";//48px - toolbar 48px - dropdown - Kate   // todo
+        min-height: ~"calc(100% - 48px - 48px)";// todo
+    }
+
+    left: 0;
+
+    overflow: auto;
+    margin: 0;
+    width: 100%;
+    .flex-var;
+    .scroll;
+    padding: 16px 0px 0px 0px;
+
+    font-size: @font-size-body2;
+    color: @color-primary;
+    //font-family: @font-family;
+    letter-spacing: @font-letter-spacing-title;
+
+    .pip-tiles-container {
+       margin: 0 auto;
+       //height: initial !important;
+    }
+    
+    @media(min-width: 1400px){
+      .pip-tiles-container {
+        width:  1350px !important;
+        min-width: 1350px !important;
+        max-width: 1350px !important;
+      }
+    }
+    
+    .pip-tile {
+        box-shadow: @box-shadow;
+        .border-radius();
+        .shadow-card();
+        padding: 1px;
+        min-height: 100px; // Use variable
+        margin-bottom: 7px; //@tile-desktop-padding; // Replace with variable
+        
+        .pip-tile-body {
+          background-color: @color-content;
+        }
+        
+    }
+}
+
+.pip-tile-body {
+    .pip-submenu-details-button > div pip-location{
+        max-width: ~"calc(100% - 56px)" !important;
+    }
+}
+
+/*
+ * @example - �������� �������� ��������
+ *  <pip-simple ng-class="$sizeSmall ? 'bg-content' : 'bg-window'" ng-hide="selected.itemCollection.length < 1">
+ *      <!-- ng-repeat �� ������� -->
+ *      <div class="pip-flex-content-list">
+ *          <!-- �������� ������ -->
+ *          <div class=" pip-tiles-group-name" layout="row" layout-align="start center">
+ *              <p class="w56 w56-max">
+ *                  �������� </p>
+ *
+ *              <div flex></div>
+ *          </div>
+ *          <!--������ ������-->
+ *          <pip-tiles column-width="180" ng-if="$sizeGtSmall">
+ *              <!--������� �����-->
+ *              <div class="masonry-brick pip-tile pointer">
+
+ *              </div>
+ *          </pip-tiles>
+ *      </div>
+ *  </pip-simple>
+ */
+
+// For multi-group tile layout
+.pip-simple {
+    .pip-tiles {
+        display: block;
+        min-height: 0px;
+        overflow: hidden;
+        position: relative;
+
+        .pip-tiles-container {
+           margin: auto;
+        }
+    }
+}
+
+// On tablet and desktop
+@media (min-width: 766px) {
+    .pip-tiles {
+        .pip-tile {
+            min-width: 180px;
+        }
+    }
+}        
+
+// On phone
+@media (max-width: 766px) {
+    .pip-tiles {
+        //padding: 16px 16px 8px 16px;
+        padding:  8px 0px 0px 0px;
+        overflow-x: hidden;
+
+        .pip-tile {
+            width: 100%;
+            margin-bottom: 8px; 
+        }
+    }
+}

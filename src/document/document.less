@@ -1,0 +1,83 @@
+// @file CSS styles for document layout
+// @copyright Digital Living Software Corp. 2014-2015
+
+/*
+
+*/
+
+pip-document {
+    z-index: 10;
+    position: relative;
+    .flex-shrink;
+    .flex-container;
+    .flex-direction-column;
+    background-color: @color-content; 
+    box-shadow: @box-shadow; 
+    .border-radius(@border-radius);
+    .shadow-card();
+
+    margin: 24px;
+    padding-bottom: 1px;
+
+    .flex-element(1, 0, 100%);
+
+    position: absolute;
+    height: ~"calc(100% - 24px)";
+    left: ~"calc(50% - 550px)";
+    margin: 0 auto;
+    width: 1100px;
+
+    @media( max-width: 1200px){
+        width: 100%;
+        height: 100%;
+        left: 0px;
+    }
+
+    &.pip-document-small {
+        left: ~"calc(50% - 450px)";
+        width: 900px;
+
+        @media(max-width: 1200px) {
+            width: 100%;
+            height: 100%;
+            left: 0px;
+        }
+    }
+}
+
+.pip-document-container {
+    /*min-height: 100%;*/
+    width: 100%;
+    max-height: 100%;
+
+    .flex-var;
+    .flex-container;
+    .flex-direction-column;
+    .flex-vertical-center;
+    .flex-horizontal-start;
+}
+
+.pip-appbar-ext {
+  .position-top;
+  height: 95px;
+  //!!z-index: -1;
+  box-shadow: @box-shadow;
+}
+
+// On tablet
+@media (max-width: 1200px) {
+    .pip-document {
+        .position-fill;
+        margin: 0px;
+        border: none;
+        border-radius: 0;
+    }
+}
+
+// On phone
+@media (max-width: 768px) {
+    .pip-document {
+        // To show up menu
+        //!!z-index: 10;
+    }
+}

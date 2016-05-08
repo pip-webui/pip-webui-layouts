@@ -1,0 +1,23 @@
+<pip-tabs pip-tabs="navCollection" ng-show="$state.name == 'tool.view.tiles'"></pip-tabs>
+
+<pip-tiles column-width="440">
+    
+    <div class="masonry-brick pip-tile w440-flex" ng-repeat="item in selected.itemCollection"
+         ng-click="onTileClick(item)"
+         layout="column" layout-align="center center" >
+        <div class="pip-tile-body w-stretch">
+            <div class="p24-flex">
+                <p class="w-stretch bm16 tm0 tile-text-title">{{ item.title }}</p>
+                <div layout="row" layout-align="space-between center" class="bm16">
+                    <p class="text-primary tile-incoming-div bp16 lm24" flex>{{::item.id}}</p>
+                </div>
+                <div layout="row" layout-align="start center" class="w-stretch">
+                    <md-button aria-label="learn more" class="md-accent rm8">
+                        {{::'Yes'}}</md-button>
+                    <md-button aria-label="hide">{{::'No'}}</md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</pip-tiles>
