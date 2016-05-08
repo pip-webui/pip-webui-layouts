@@ -1,4 +1,4 @@
-# Pip.WebUI Layouts http://git.pipdevs.com/pip-webui/pip-webui-layouts
+# Pip.WebUI Layouts http://github.com/pip-webui/pip-webui-layouts
 
 Responsive layouts to organize page content
 
@@ -88,9 +88,9 @@ Change to your project's root directory.
 
 ```bash
 # To install only core services with dependencies.
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-lib.git
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui-layouts.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-lib.git
+npm install git+ssh://git@github.com:pip-core/pip-webui-layouts.git
 
 # To install the entire pip-webui library
-npm install git+ssh://git@git.pipdevs.com:pip-core/pip-webui.git
+npm install git+ssh://git@github.com:pip-core/pip-webui.git
 ```
