@@ -14,11 +14,7 @@
     ]);
 
     thisModule.config(
-        function ($urlRouterProvider, $mdThemingProvider) {
-            // Configure theme
-            $mdThemingProvider.theme('blue')
-                .primaryPalette('blue')
-                .accentPalette('green');
+        function ($urlRouterProvider) {
 
             $urlRouterProvider.otherwise('/tool');
         }
