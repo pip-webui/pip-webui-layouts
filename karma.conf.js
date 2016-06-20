@@ -20,7 +20,7 @@ module.exports = function(config) {
       '**/*.js',
       '**/*.html',
       '../test/test_config.js',
-      '../test/**/sidenav.test.js'
+      '../test/**/*.js'
     ],
 
     // list of files to exclude
