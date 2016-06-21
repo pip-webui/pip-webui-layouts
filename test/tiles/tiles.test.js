@@ -1,8 +1,8 @@
 'use strict';
 
-suite('pipTiles', function () {
+describe('pipTiles', function () {
 
-    suite('directive', function () {
+    describe('directive', function () {
         var $compile,
             $rootScope,
             scope,
@@ -31,18 +31,18 @@ suite('pipTiles', function () {
             return result;
         }
 
-        setup(function() {
+        beforeEach(function() {
             module('pipLayout.Tiles');
         });
 
-        setup(function() {
+        beforeEach(function() {
             inject(function (_$compile_, _$rootScope_) {
                 $compile = _$compile_;
                 $rootScope = _$rootScope_;
             })
         });
 
-        setup(function () {
+        beforeEach(function () {
             scope   = $rootScope.$new();
             element = $compile(template)(scope);
 
@@ -53,13 +53,13 @@ suite('pipTiles', function () {
             sizer = tilesContainer.find('.pip-tile-sizer')
         });
 
-        test('insert template from url', function (done) {
+        it('insert template from url', function (done) {
             assert.equal(tilesContainer.length, 1);
 
             done();
         });
 
-        test('transclude proper count of tiles', function (done) {
+        it('transclude proper count of tiles', function (done) {
             var transcludedElements = tilesContainer.find('.pip-tile');
 
             assert.equal(transcludedElements.length, 16);
@@ -67,26 +67,26 @@ suite('pipTiles', function () {
             done();
         });
 
-        test('add class to element to container', function (done) {
+        it('add class to element to container', function (done) {
             assert.isTrue(element.hasClass('pip-tiles'));
 
             done();
         });
 
-        test('add sizer block to container', function (done) {
+        it('add sizer block to container', function (done) {
             assert.equal(sizer.length, 1);
 
             done();
         });
 
-        test('set proper widths for small window', function (done) {
+        it('set proper widths for small window', function (done) {
             assert.equal(tilesContainer.css('width'), '441px');
             assert.equal(sizer.css('width'), '440px');
 
             done();
         });
 
-        test('change css width property on sizer and container depending on column or window width', function (done) {
+        it('change css width property on sizer and container depending on column or window width', function (done) {
             scope   = $rootScope.$new();
             element = $compile(tightTemplate)(scope);
             scope.tiles = getRandomTiles(1, 16);
