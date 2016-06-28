@@ -9,7 +9,7 @@
     var thisModule = angular.module('pipTool.Split.List', []);
 
     thisModule.controller('ToolSplitListController',
-        function ($scope, $rootScope, $state, pipAppBar, $location, pipCollections) {
+        function ($scope, $rootScope, $state, pipAppBar, $location, pipCollections, $mdMedia) {
             // Configure application header
             pipAppBar.showMenuNavIcon();
             pipAppBar.showTitleText('Tool Name');
@@ -41,7 +41,7 @@
 
             function onItemSelect(index) {
                 $scope.selectItem($scope.selected.itemCollection[index].id, $scope.itemCollection);
-                if ($rootScope.$sizeSmall) {
+                if ($mdMedia('xs')) {
                     $scope.transition('tool.view.split.details', {id: $scope.selected.itemCollection[index].id});
                 } else {
                     $rootScope.$state.params.id = $scope.selected.itemCollection[index].id;

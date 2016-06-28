@@ -12,7 +12,7 @@
     ]);
 
     thisModule.controller('ToolSplitController',
-        function ($scope, $mdMedia, $rootScope, $state, $location, $controller) {
+        function ($scope, $mdMedia) {
             $scope.$mdMedia = $mdMedia;
         });
 

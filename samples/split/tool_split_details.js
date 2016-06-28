@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('pipTool.Split.Details', []);
 
-    thisModule.controller('ToolSplitDetailsController', function ($scope, $rootScope, $state, pipAppBar) {
+    thisModule.controller('ToolSplitDetailsController', function ($scope, $rootScope, $state, pipAppBar, $mdMedia) {
 
         $scope.selectItem($state.params.id, $scope.itemCollection);
         $scope.selected.showPanel = $state.params.show || 'sub1';
@@ -32,7 +32,7 @@
             if (!item.sub2) {
                 return;
             }
-            if ($rootScope.$sizeSmall) {
+            if ($mdMedia('xs')) {
                 $scope.transition('tool.view.split.sub1', {id: item.id});
             } else {
                 $scope.selected.showPanel = 'sub1';
@@ -41,7 +41,7 @@
         }
 
         function onSub2Click(item) {
-            if ($rootScope.$sizeSmall) {
+            if ($mdMedia('xs')) {
                 $scope.transition('tool.view.split.sub2', {id: item.id});
             } else {
                 $scope.selected.showPanel = 'sub2';

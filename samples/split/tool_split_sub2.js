@@ -8,8 +8,8 @@
 
     var thisModule = angular.module('pipTool.Split.Sub2', []);
 
-    thisModule.controller('ToolSplitSub2Controller', function ($scope, $rootScope, $state, pipAppBar) {
-        if (!$rootScope.$sizeSmall) {
+    thisModule.controller('ToolSplitSub2Controller', function ($scope, $rootScope, $state, pipAppBar, $mdMedia) {
+        if (!$mdMedia('xs')) {
             $scope.transition('tool.view.split.details');
         }
         $scope.parentItem = $scope.getItem($state.params.id, $scope.itemCollection);
@@ -42,7 +42,7 @@
         // --------------------------------------------------------------------------------------------------------
 
         function onWindowResized() {
-            if (!$rootScope.$sizeSmall) {
+            if (!$mdMedia('xs')) {
                 $scope.transition('tool.view.split.details', {id: $scope.parentItem.id});
             }
         }

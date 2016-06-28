@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('pipTool.Split.Sub1', []);
 
-    thisModule.controller('ToolSplitSub1Controller', function ($scope, $rootScope, $state, pipAppBar) {
+    thisModule.controller('ToolSplitSub1Controller', function ($scope, $rootScope, $state, pipAppBar, $mdMedia) {
 
         $scope.selectItem($state.params.id, $scope.itemCollection);
         $scope.parentItem = $scope.selectedItem || {};
@@ -38,7 +38,7 @@
         // --------------------------------------------------------------------------------------------------------
 
         function onItemSelect(index) {
-            if ($rootScope.$sizeSmall) {
+            if ($mdMedia('xs')) {
                 $state.go('tool.view.split.sub1_details', {
                     id: $scope.parentItem.id,
                     sub1_id: $scope.selected.itemCollection[index].id
@@ -55,7 +55,7 @@
         }
 
         function onSwipeLeft() {
-            if ($rootScope.$sizeSmall) {
+            if ($mdMedia('xs')) {
                 $state.go('tool.view.split.sub1_details', {
                     id: $scope.parentItem.id// ,
                     // sub1_id: $scope.selected.itemCollection[index].id
