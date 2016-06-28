@@ -13,7 +13,8 @@
             $mdDialog.show({
                 controller: 'DialogController',
                 templateUrl: 'dialog.tmpl.html',
-                targetEvent: event
+                targetEvent: event,
+                clickOutsideToClose: true
             });
         };
     });

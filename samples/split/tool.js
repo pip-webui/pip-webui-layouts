@@ -85,10 +85,10 @@
 
     thisModule.controller('ToolController', function ($scope, $rootScope, $state, $location) {
         $scope.navCollection = [
-            {id: 1, title: '[0;6]'},
-            {id: 2, title: '[7;11]'},
-            {id: 3, title: '[12;21]'},
-            {id: 4, title: '[22;25]'}
+            {id: 1, title: 'Tab 1'},
+            {id: 2, title: 'Tab 2'},
+            {id: 3, title: 'Tab 3'},
+            {id: 4, title: 'Tab 4'}
         ];
 
         $scope.selected = {};
