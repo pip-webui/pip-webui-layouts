@@ -3,11 +3,9 @@
  * @copyright Digital Living Software Corp. 2014-2015
  */
 
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
-        
+
     var thisModule = angular.module('pipTool', ['pipTool.View']);
 
     thisModule.config(
@@ -23,12 +21,12 @@
                     abstract: true
                 })
                 .state('tool.edit', {
-                    url:'/edit/:id',
+                    url: '/edit/:id',
                     controller: 'ToolEditController',
                     templateUrl: 'tool_edit.html'
                 })
                 .state('tool.new', {
-                    url:'/new',
+                    url: '/new',
                     controller: 'ToolNewController',
                     templateUrl: 'tool_new.html'
                 })
@@ -79,9 +77,9 @@
                 });
 
             pipSplitProvider.addTransitionSequence([
-				'tool.view.split.list', 'tool.view.split.details', 'tool.view.split.sub1',
+                'tool.view.split.list', 'tool.view.split.details', 'tool.view.split.sub1',
                 'tool.view.split.sub1_details', 'tool.view.split.sub2'
-			]);
+            ]);
         }
     );
 
@@ -106,75 +104,84 @@
 
         function createItem(id) {
             var item = {
-                title: (id + 1),
-                id: id,
-                sub1: [],
-                sub2: []
-            };
+                    title: id + 1,
+                    id: id,
+                    sub1: [],
+                    sub2: []
+                },
+                i;
 
-            for (var i = 0 ; i < 10; i++) {
+            for (i = 0; i < 10; i++) {
                 item.sub1.push({
-                    title: (i + 1) + (id + 1),
+                    title: i + 1 + (id + 1),
                     id: String(id) + '-' + String(i)
                 });
 
                 item.sub2.push({
-                    title: (i + 1) + (id + 1),
+                    title: i + 1 + (id + 1),
                     id: 'a-' + String(id) + '-' + String(i)
                 });
             }
 
             return item;
-        };
+        }
 
         function createItems() {
-            var items = [];
+            var items = [],
+                i;
 
-            for (var i = 0 ; i < 40; i++) {
+            for (i = 0; i < 40; i++) {
                 items.push(createItem(i));
             }
-            
+
             return items;
-        };
+        }
 
         function findItemById(id, collection) {
-            for (var i = 0 ; i < collection.length; i++) {
-                var item = collection[i];
-                if (String(item.id) === String(id)) return item;
-                if (item.sub1)
-                    for (var j = 0 ; j < item.sub1.length; j++) {
-                        var sub_item = item.sub1[j];
-                        var sub_action = item.sub2[j];
-                        if (sub_item.id === id) {
-                            return sub_item;
+            var i, j, item, subItem, subAction;
+
+            for (i = 0; i < collection.length; i++) {
+                item = collection[i];
+                if (String(item.id) === String(id)) {
+                    return item;
+                }
+                if (item.sub1) {
+                    for (j = 0; j < item.sub1.length; j++) {
+                        subItem = item.sub1[j];
+                        subAction = item.sub2[j];
+                        if (subItem.id === id) {
+                            return subItem;
                         }
-                        if (sub_action.id === id) {
-                            return sub_action;
+                        if (subAction.id === id) {
+                            return subAction;
                         }
                     }
-            };
+                }
+            }
+
             return collection[0];
-        };
+        }
 
         function getItem(id, collection, search) {
-            var search = search || false;
-
             return findItemById(id, collection || $scope.itemCollection);
-        };
+        }
 
         function selectItem(id, collection, search) {
-            var search = search || false;
-            $scope.selectedItem = $scope.getItem(id, collection, search);
-            if($scope.selectedItem) $rootScope.$state.params.id = $scope.selectedItem.id;
-        };
+            var s = search || false;
+
+            $scope.selectedItem = $scope.getItem(id, collection, s);
+            if ($scope.selectedItem) {
+                $rootScope.$state.params.id = $scope.selectedItem.id;
+            }
+        }
 
         function updateStateUrl(stateName, stateParams) {
             $location.replace().search(stateParams);
-        };
+        }
 
         function transition(stateName, stateParams) {
             $state.transitionTo(stateName, stateParams);
-        };
+        }
     });
 
-})();
+})(window.angular);

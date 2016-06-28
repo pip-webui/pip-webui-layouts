@@ -3,11 +3,9 @@
  * @copyright Digital Living Software Corp. 2014-2015
  */
 
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
-        
+
     var thisModule = angular.module('pipTool.Split.Details', []);
 
     thisModule.controller('ToolSplitDetailsController', function ($scope, $rootScope, $state, pipAppBar) {
@@ -17,7 +15,7 @@
         $scope.selected.itemCollection = $scope.selectedItem.sub2;
 
         // Configure application header
-        pipAppBar.showTitleBreadcrumb([{ title: 'Tool name', click: toList}, { title: $scope.selectedItem.title}]);
+        pipAppBar.showTitleBreadcrumb([{title: 'Tool name', click: toList}, {title: $scope.selectedItem.title}]);
         pipAppBar.showMenuNavIcon();
         pipAppBar.showLocalActions([], []);
 
@@ -27,50 +25,51 @@
         $scope.onSwipeLeft = onSwipeLeft;
         $scope.onSwipeRight = onSwipeRight;
 
-		return;		
-		//-----------------
+        return;
+        // --------------------------------------------------------------------------------------------------------
 
-        function onSub1Click (item) {
-            if (!item.sub2) return;
-            if ($rootScope.$sizeSmall)
+        function onSub1Click(item) {
+            if (!item.sub2) {
+                return;
+            }
+            if ($rootScope.$sizeSmall) {
                 $scope.transition('tool.view.split.sub1', {id: item.id});
-            else {
-                    if ($scope.selected.showPanel != 'sub1') {
-                        $scope.selected.showPanel = 'sub1';
-                        $scope.updateStateUrl('tool.view.split.details', {id: item.id, show: 'sub1'});
-                    }
-                }
-        };
+            } else {
+                $scope.selected.showPanel = 'sub1';
+                $scope.updateStateUrl('tool.view.split.details', {id: item.id, show: 'sub1'});
+            }
+        }
 
         function onSub2Click(item) {
-            if ($rootScope.$sizeSmall)
+            if ($rootScope.$sizeSmall) {
                 $scope.transition('tool.view.split.sub2', {id: item.id});
-            else {
-                    if ($scope.selected.showPanel != 'sub2') {
-                        $scope.selected.showPanel = 'sub2';
-                        $scope.updateStateUrl('tool.view.split.details', {id: item.id, show: 'sub2'});
-                    }
-                }
-        };
+            } else {
+                $scope.selected.showPanel = 'sub2';
+                $scope.updateStateUrl('tool.view.split.details', {id: item.id, show: 'sub2'});
+            }
+        }
 
         function onItemSelect(index) {
-            $state.go('tool.view.split.sub1', { id: $scope.selectedItem.id, sub1_id: $scope.selected.itemCollection[index].id });
-        };
+            $state.go('tool.view.split.sub1', {
+                id: $scope.selectedItem.id,
+                sub1_id: $scope.selected.itemCollection[index].id
+            });
+        }
 
         function onSwipeLeft() {
             $scope.transition('tool.view.split.' + $scope.selected.showPanel, {id: $scope.selectedItem.id});
-        };
+        }
 
         function onSwipeRight() {
             $scope.transition('tool.view.split.list', {id: $scope.selectedItem.id});
-        };
+        }
 
         function toList() {
-            //if ($scope.selected.viewType == 'split')
-                $scope.transition('tool.view.split.list', {id: $scope.selectedItem.id});
-            //else
-            //    $scope.transition('tool.view.tiles');
+            // if ($scope.selected.viewType == 'split')
+            $scope.transition('tool.view.split.list', {id: $scope.selectedItem.id});
+            // else
+            // $scope.transition('tool.view.tiles');
         }
     });
 
-})();
+})(window.angular);
