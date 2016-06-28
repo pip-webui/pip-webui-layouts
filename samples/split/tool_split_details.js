@@ -65,10 +65,11 @@
         }
 
         function toList() {
-            // if ($scope.selected.viewType == 'split')
-            $scope.transition('tool.view.split.list', {id: $scope.selectedItem.id});
-            // else
-            // $scope.transition('tool.view.tiles');
+            if ($scope.selected.viewType === 'split') {
+                $scope.transition('tool.view.split.list', {id: $scope.selectedItem.id});
+            } else {
+                $scope.transition('tool.view.tiles');
+            }
         }
     });
 
