@@ -1,5 +1,5 @@
 <div class="pip-menu w50-stretch pip-split-left pip-ref-list" layout="column" flex>
-     <div ng-include="'item_sub1_panel.html'"></div>
+     <div pip-selected="selectedIndex" pip-select="onItemSelect($event.index)" ng-include="'item_sub1_panel.html'"></div>
 </div >
 
 <div class="pip-menu w50-stretch pip-split-right pip-ref-list" layout="column" flex style="position: absolute; left: 50%; height: 100%"
