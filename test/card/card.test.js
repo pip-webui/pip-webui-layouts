@@ -1,6 +1,6 @@
-'use strict';
 
 describe('pipCard', function () {
+    'use strict';
 
     describe('directive', function () {
         var $compile,
@@ -11,7 +11,7 @@ describe('pipCard', function () {
 
         beforeEach(module('pipLayout.Card'));
 
-        beforeEach(inject(function(_$compile_, _$rootScope_) {
+        beforeEach(inject(function (_$compile_, _$rootScope_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
         }));
@@ -22,14 +22,9 @@ describe('pipCard', function () {
             scope.$digest();
         });
 
-        it('should add class to element', function (done) {
-
-            assert.isTrue(element.hasClass('pip-card'));
-
-            done();
+        it('should add class to element', function () {
+            expect(element.hasClass('pip-card')).to.equal(true);
         });
-
-
     });
 
 });
