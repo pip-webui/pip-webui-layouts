@@ -74,8 +74,8 @@ describe('pipTiles', function () {
         });
 
         it('set proper widths for small window', function () {
-            expect(tilesContainer.css('width')).to.equal('441px');
-            expect(sizer.css('width')).to.equal('440px');
+            expect(tilesContainer.css('width')).to.equal('369px');
+            expect(sizer.css('width')).to.equal('368px');
         });
 
         it('change css width property on sizer and container depending on column or window width', function () {
@@ -87,8 +87,8 @@ describe('pipTiles', function () {
             tilesContainer = element.find('.pip-tiles-container');
             sizer = tilesContainer.find('.pip-tile-sizer');
 
-            expect(tilesContainer.css('width')).to.equal('849px');
-            expect(sizer.css('width')).to.equal('200px');
+            expect(tilesContainer.css('width')).to.equal('369px');
+            expect(sizer.css('width')).to.equal('368px');
         });
 
     });
