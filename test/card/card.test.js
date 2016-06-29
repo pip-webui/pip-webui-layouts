@@ -23,7 +23,7 @@ describe('pipCard', function () {
         });
 
         it('should add class to element', function () {
-            expect(element.hasClass('pip-card')).to.equal(true);
+            expect(element.hasClass('pip-card')).to.be.true;
         });
     });
 
