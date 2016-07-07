@@ -1,8 +1,7 @@
 <pip-tabs pip-tabs="navCollection" pip-active-index="activeIndex"
-          ng-show="$state.name == 'tool.view.tiles'"></pip-tabs>
+          pip-show-tabs="$state.name == 'tool.view.tiles'"></pip-tabs>
 
 <pip-tiles column-width="440">
-    
     <div class="masonry-brick pip-tile w440-flex" ng-repeat="item in selected.itemCollection"
          ng-click="onTileClick(item)"
          layout="column" layout-align="center center" >
