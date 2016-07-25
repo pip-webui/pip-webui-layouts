@@ -1,7 +1,14 @@
-var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
+/**
+ * @file Sample document layout
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
 
-thisModule.controller('AppController', function($scope) {
-	//$rootScope.$on('pipWindowResized', function (event, size) {
-	//    console.log('Window width: ' + size.window.width + ' height: ' + size.window.height);
-	//});
-});
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
+
+    thisModule.controller('AppController', function ($scope) {
+        // Controller code here...
+    });
+})(window.angular);

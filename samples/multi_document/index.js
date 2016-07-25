@@ -1,7 +1,15 @@
-var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
+/**
+ * @file Sample multi document layout
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
 
-thisModule.controller('AppController', function($scope, $rootScope, $mdMedia) {
+(function (angular) {
+    'use strict';
 
-    $scope.$mdMedia = $mdMedia;
+    var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
 
-});
+    thisModule.controller('AppController', function ($scope, $rootScope, $mdMedia) {
+        $scope.$mdMedia = $mdMedia;
+
+    });
+})(window.angular);

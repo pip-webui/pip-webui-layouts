@@ -1,9 +1,18 @@
-var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
+/**
+ * @file Sample simple layout
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
 
-thisModule.controller('AppController', function ($scope, $rootScope) {
+(function (angular) {
+    'use strict';
 
-	//$rootScope.$on('pipWindowResized', function (event, size) {
-	//    console.log('Window width: ' + size.window.width + ' height: ' + size.window.height);
-	//});
+    var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
 
-});
+    thisModule.controller('AppController', function ($scope, $rootScope) {
+
+        // $rootScope.$on('pipWindowResized', function (event, size) {
+        //    console.log('Window width: ' + size.window.width + ' height: ' + size.window.height);
+        // });
+
+    });
+})(window.angular);

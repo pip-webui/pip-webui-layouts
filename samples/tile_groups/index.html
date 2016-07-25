@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../dist/pip-webui-layouts.css"/>
     <link rel="stylesheet" href="styles.css"/>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    
     <script src="../../lib/pip-webui-lib.js"></script>
     <script src="../../dist/pip-webui-layouts.js"></script>
     <script src="index.js"></script>
@@ -36,27 +38,27 @@
 
             <pip-simple>
 
-                <div class="bg-red p16">Group #1</div>
+                <div class="bg-red p16 fg-white">Group #1</div>
 
                 <pip-tiles column-width="440">
                     <div class="masonry-brick pip-tile bg-grey w440-flex">
-                        <div class="tile-sm">This is a special tile</div>
+                        <h3 class="tile-sm">This is a special tile</h3>
                     </div>
 
                     <div class="masonry-brick pip-tile {{tile.color}} w440-flex" ng-repeat="tile in tiles">
-                        <div class="{{tile.size}}">{{tile.name}}</div>
+                        <h3 class="{{tile.size}}">{{tile.name}}</h3>
                     </div>
                 </pip-tiles>
 
-                <div class="bg-green p16">Group #2</div>
+                <div class="bg-green p16 fg-white">Group #2 with small tiles</div>
 
                 <pip-tiles column-width="180">
                     <div class="masonry-brick pip-tile bg-grey">
-                        <div class="tile-sm">This is a special tile</div>
+                        <h3 class="tile-sm">This is a special tile</h3>
                     </div>
 
                     <div class="masonry-brick pip-tile {{tile.color}}" ng-repeat="tile in tiles">
-                        <div class="{{tile.size}}">{{tile.name}}</div>
+                        <h3 class="{{tile.size}}">{{tile.name}}</h3>
                     </div>
                 </pip-tiles>
 
@@ -64,11 +66,11 @@
 
                 <pip-tiles column-width="440">
                     <div class="masonry-brick pip-tile bg-grey w440-flex">
-                        <div class="tile-sm">This is a special tile</div>
+                        <h3 class="tile-sm">This is a special tile</h3>
                     </div>
 
                     <div class="masonry-brick pip-tile {{tile.color}} w440-flex" ng-repeat="tile in tiles">
-                        <div class="{{tile.size}}">{{tile.name}}</div>
+                        <h3 class="{{tile.size}}">{{tile.name}}</h3>
                     </div>
                 </pip-tiles>
 

@@ -1,35 +1,30 @@
-'use strict';
 
-suite('pipCard', function () {
+describe('pipCard', function () {
+    'use strict';
 
-    suite('directive', function () {
+    describe('directive', function () {
         var $compile,
             $rootScope,
             scope,
             element,
             template = '<pip-card></pip-card>';
 
-        setup(module('pipLayout.Card'));
+        beforeEach(module('pipLayout.Card'));
 
-        setup(inject(function(_$compile_, _$rootScope_) {
+        beforeEach(inject(function (_$compile_, _$rootScope_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
         }));
 
-        setup(function () {
+        beforeEach(function () {
             scope = $rootScope.$new();
             element = $compile(template)(scope);
             scope.$digest();
         });
 
-        test('should add class to element', function (done) {
-
-            assert.isTrue(element.hasClass('pip-card'));
-
-            done();
+        it('should add class to element', function () {
+            expect(element.hasClass('pip-card')).to.be.true;
         });
-
-
     });
 
 });
