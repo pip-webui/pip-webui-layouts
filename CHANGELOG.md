@@ -2,6 +2,8 @@
 
 ## <a name="1.0.0"></a> 1.0.0 (2016-07-30)
 
+Initial release with few standard layouts: simple, card, document, dialog, tiles and split
+
 ### Features
 * **simple**: simple layout that takes the whole page
 * **card**: card layout that shows content in a card in the center of page
