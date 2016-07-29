@@ -20,10 +20,20 @@
     max-height: ~"calc(100% - 64px - 48px)";// 64px - toolbar 48px - tabs - Kate   // todo
     min-height: ~"calc(100% - 64px - 48px)";// todo
 
+    &.pip-no-tabs {
+        max-height: ~"calc(100% - 64px)";
+        min-height: ~"calc(100% - 64px)";
+    }
+
     @media (max-width: 766px) {
 
         max-height: ~"calc(100% - 48px - 48px)";//48px - toolbar 48px - dropdown - Kate   // todo
         min-height: ~"calc(100% - 48px - 48px)";// todo
+
+        &.pip-no-tabs {
+            max-height: ~"calc(100% - 48px)";
+            min-height: ~"calc(100% - 48px)";
+        }
     }
 
     left: 0;
