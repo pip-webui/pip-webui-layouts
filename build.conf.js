@@ -1,7 +1,7 @@
 module.exports = {
     module: {
         name: 'pipLayouts',
-        index: 'layouts'
+        styles: 'layouts'
     },
     build: {
         js: true,
@@ -9,10 +9,11 @@ module.exports = {
         html: false,
         css: true,
         lib: true,
-        images: true
+        images: true,
+        dist: false
     },
     file: {
-        import: [
+        lib: [
             '../pip-webui-test/dist/**/*',
             '../pip-webui-lib/dist/**/*',
             '../pip-webui-css/dist/**/*',
@@ -34,12 +35,9 @@ module.exports = {
         ]
     },
     samples: {
-        port: 8003,
-        publish: {
-            bucket: 'webui.pipdevs.com',
-            accessKeyId: 'AKIAIEXTTAEEHYPHS3OQ',
-            secretAccessKey: 'otMg2vQLZjF4Nkb90j1prtugoUCNm3XqLS/KkHyc',
-            region: 'us-west-1'
-        }
+        port: 8080,
+    },
+    api: {
+        port: 8081,
     }
 };
