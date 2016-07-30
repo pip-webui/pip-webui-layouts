@@ -4,119 +4,69 @@
 
 Development responsible applications requires to organization content the way that can fit available screen from small phones to large desktops. In Line-of-Business applications with tens screens and dialogs implementaing responsive layouts can be time consuming and error prone task. To make it more productive Pip.WebUI.Layouts module provides a set of universal responsible layouts that can help to organize content in number of different ways: as full-screen content, documents, tiles, dialogs and more.
 
-### <a name="simple_layout"></a>Simple/Plain layout
+**Simple layout** is the simple layout type. It simply provides to content the entire screen, full width and full height 
+
 <a href="doc/images/img-simple-layout.png" style="border: 3px ridge #c8d2df; display: block">
     <img src="doc/images/img-simple-layout.png"/>
 </a>
 
-This layout is flexible and fills on the full available width.
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/simple/index.html)
 
-Simple/Plain layout [API reference](http://link.com)
+**Single document layout** places content as a document with fixed width and full height centered on the screen. On tables and phones the content occupies the whole screen line it **Simple layout**.
 
-[Online Example](http://webui.pipdevs.com/pip-webui-layouts/simple/index.html)
-
-<br/>
-
-### <a name="single_document_layout"></a>Single document layout
 <a href="doc/images/img-single-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-single-document-layout.png"/>
 </a>
 
-This layout type provides a two states flexible layout. The main container is responsive up to 1200px screen size. After
-this breakpoint it has fixed width (1200px) independently of screen size.
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/document/index.html)
 
-Single document layout [API reference](http://link.com)
+**Multi-documents layout** is an extention to **Document layout** that adds a list on the left hand side to switch between documents. On phones the list occupies the entire screen and user switches between list and document back and forth.
 
-[Online Example](http://webui.pipdevs.com/pip-webui-layouts/document/index.html)
-
-<br/>
-
-### <a name="multi_document_layout"></a>Multi documents layout
 <a href="doc/images/img-multi-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-multi-document-layout.png"/>
 </a>
 
-This layout provides container to perform more than one document into single container. On the left side it performs
-navigation. On the right (bigger part) there is located a container for documents.
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/multi_document/index.html)
 
-Component is also responsible up to 1200px. Higher 1200px this component has fixed width and is centered by
-horizontally.
+**Card layout** places small content at the center of the screen in a card. On phones the content is extended to the whole screen.
 
-Multi document layout [API reference](http://link.com)
-
-[Online Example](http://webui.pipdevs.com/pip-webui-layouts/multi_document/index.html)
-
-<br/>
-
-### <a name="card_layout"></a>Card layout
 <a href="doc/images/img-card-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-card-layout.png"/>
 </a>
 
-This component is provide a block aligned on the middle of wrapper block. One of the use cases is dialog panels.
-On the mobile screens (less than 768px) content is stretch out the whole available width.
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/card/index.html)
 
-Card layout [API reference](http://link.com)
+**Tiles layout** is used to present multiple items in tiles that arranged on the screen in one or several columns.
 
-[Online Example](http://webui.pipdevs.com/pip-webui-layouts/card/index.html)
-
-<br/>
-
-### <a name="tiles_layout"></a>Tiles layout
 <a href="doc/images/img-tiles-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-tiles-layout.png"/>
 </a>
 
-Renders tiles in specified arrange (such passed via directive attributes). Tiles are filled one by one to fill all
-available space optimal. Tiles have fixed width. Height is specified into entity item.
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tiles/index.html)
 
-Tiles layout [API reference](http://link.com)
+**Tiles groups layout** is an extension to **Tiles layout** that breaks items into groups.
 
-[Online Example](http://webui.pipdevs.com/pip-webui-layouts/tiles/index.html)
-
-<br/>
-
-### <a name="tiles_groups_layout"></a>Tiles Groups layout
 <a href="doc/images/img-tiles-groups-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-tiles-groups-layout.png"/>
 </a>
 
-This component provides several tiles layout are separated into groups.
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tile_groups/index.html)
 
+**Dialog layout** places content in a modal dialog. On phones the dialog is resized to occupy the entire screen.
 
-Tiles Groups layout [API reference](http://link.com)
-
-[Online Example](http://webui.pipdevs.com/pip-webui-layouts/tile_groups/index.html)
-
-<br/>
-
-### <a name="dialog_layout"></a>Dialog layout
 <a href="doc/images/img-dialog-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-dialog-layout.png"/>
 </a>
 
-Dialog layout has the similar behaviour as card layout. But it is located over another content and show semi-transparent
- backdrop.
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/dialog/index.html)
 
-Dialog layout [API reference](http://link.com)
+**Split View layout** is the most complex layout type. It can be helpful to organize complex hierarchical content. As user drills down the content, it slides to the right. Going to the top of the hierarchy slides the content to the left. To simplify navigation this content integrates with breadcrumb in **Appbar**
 
-[Online Example](http://webui.pipdevs.com/pip-webui-layouts/dialog/index.html)
-
-<br/>
-
-### <a name="split_view_layout"></a>Split View layout
 <a href="doc/images/img-split-view-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
     <img src="doc/images/img-split-view-layout.png"/>
 </a>
 
-This layout is contains two content sections. Each sections has half of full block width. In the left panel there is located higher
-level content. In the right panel there is located nested content (related to higher level one).
-
-Size of the component is flexible. It is responsive up to 1200px. And it has fixed width on screens more than 1200px.
-
-Split View layout [API reference](http://link.com)
-
-[Online Example](http://webui.pipdevs.com/pip-webui-layouts/split/index.html)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/split/index.html)
 
 
 ## Learn more about the module
@@ -136,7 +86,7 @@ Split View layout [API reference](http://link.com)
 * [pip-webui-lib](https://github.com/pip-webui/pip-webui-lib): angular, angular material and other 3rd party libraries
 * [pip-webui-css](https://github.com/pip-webui/pip-webui-css): CSS styles and web components
 * [pip-webui-core](https://github.com/pip-webui/pip-webui-core): core services
-* [pip-webui-layouts](https://github.com/pip-webui/pip-webui-layouts): document layout
+* [pip-webui-nav](https://github.com/pip-webui/pip-webui-nav): appbar for split layout integration
 
 ## <a name="license"></a>License
 
