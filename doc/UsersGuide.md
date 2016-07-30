@@ -47,70 +47,147 @@ Register **pipLayouts** module in angular module dependencies.
 angular.module('myApp',[..., 'pipLayouts']);
 ```
 
-**Simple layout** is the simple layout type. It simply provides to content the entire screen, full width and full height 
 
-<a href="doc/images/img-simple-layout.png" style="border: 3px ridge #c8d2df; display: block">
-    <img src="doc/images/img-simple-layout.png"/>
-</a>
+## <a name="main"></a> pip-main directive
+
+**pip-main** directive shall be placed at the top of DOM hierarchy right below **body** tag. It serves as container for entire application content and broadcasts **pipWindowResize** event every time when application window is resized to adjust content.
+
+## Usage
+```html
+<body>
+  <pip-main>
+    <pip-appbar>...</pip-appbar>
+    <pip-main-body>
+       ...
+    </pip-main-body>
+  </pip-main-body>
+</body>
+```
+
+
+## <a name="main_body"></a> pip-main-body directive
+
+**pip-main-body** directive designate the center part of the screen where content is placed excluding appbar, footer and sidebars. All layouts shall be placed under **pip-main-body**
+
+## Usage
+```html
+<body>
+  <pip-main>
+    <pip-appbar>...</pip-appbar>
+    <pip-main-body>
+       ...
+    </pip-main-body>
+  </pip-main-body>
+</body>
+```
+
+
+## <a name="simple"></a> pip-simple directive
+
+**pip-simple** directive resizes content to the entire screen, full width and full height.
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
+
+<img src="images/img-simple-layout.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/simple/index.html)
 
-**Single document layout** places content as a document with fixed width and full height centered on the screen. On tables and phones the content occupies the whole screen line it **Simple layout**.
 
-<a href="doc/images/img-single-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="doc/images/img-single-document-layout.png"/>
-</a>
+## <a name="document"></a> pip-document directive
+
+**pip-document** places content as a document with fixed width and full height centered on the screen. On tables and phones the content occupies the whole screen. Using additional classes the directive can be extended to old multi-document (master-detail) layout.
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
+
+<img src="images/img-single-document-layout.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/document/index.html)
 
-**Multi-documents layout** is an extention to **Document layout** that adds a list on the left hand side to switch between documents. On phones the list occupies the entire screen and user switches between list and document back and forth.
-
-<a href="doc/images/img-multi-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="doc/images/img-multi-document-layout.png"/>
-</a>
+<img src="images/img-multi-document-layout.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/multi_document/index.html)
 
-**Card layout** places small content at the center of the screen in a card. On phones the content is extended to the whole screen.
+### Attributes
+Todo: Describe all attributes in this directive
 
-<a href="doc/images/img-card-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="doc/images/img-card-layout.png"/>
-</a>
+### Classes
+Todo: Describe additional classes used for this layout
+
+
+## <a name="card"></a> pip-card directive
+
+**pip-card** directive places small content at the center of the screen in a card. On phones the content is extended to the whole screen.
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
+
+<img src="images/img-card-layout.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/card/index.html)
 
-**Tiles layout** is used to present multiple items in tiles that arranged on the screen in one or several columns.
+### Attributes
+Todo: Describe all attributes in this directive
 
-<a href="doc/images/img-tiles-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="doc/images/img-tiles-layout.png"/>
-</a>
+### Classes
+Todo: Describe additional classes used for this layout
+
+
+## <a name="tiles"></a> pip-tiles directive
+
+**pip-tiles** directive is used to present multiple items in tiles that arranged on the screen in one or several columns.
+Using additional classes this directive can be modified to show tile groups (see below).
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
+
+<img src="images/img-tiles-layout.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tiles/index.html)
 
-**Tiles groups layout** is an extension to **Tiles layout** that breaks items into groups.
-
-<a href="doc/images/img-tiles-groups-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="doc/images/img-tiles-groups-layout.png"/>
-</a>
+<img src="images/img-tiles-groups-layout.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tile_groups/index.html)
 
-**Dialog layout** places content in a modal dialog. On phones the dialog is resized to occupy the entire screen.
+### Attributes
+Todo: Describe all attributes in this directive
 
-<a href="doc/images/img-dialog-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="doc/images/img-dialog-layout.png"/>
-</a>
+### Classes
+Todo: Describe additional classes used for this layout
+
+
+## <a name="dialog"></a> pip-dialog directive
+
+**pip-dialog** directive places content in a modal dialog. On phones the dialog is resized to occupy the entire screen.
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
+
+<img src="images/img-dialog-layout.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/dialog/index.html)
 
-**Split View layout** is the most complex layout type. It can be helpful to organize complex hierarchical content. As user drills down the content, it slides to the right. Going to the top of the hierarchy slides the content to the left. To simplify navigation this content integrates with breadcrumb in **Appbar**
+### Attributes
+Todo: Describe all attributes in this directive
 
-<a href="doc/images/img-split-view-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="doc/images/img-split-view-layout.png"/>
-</a>
+### Classes
+Todo: Describe additional classes used for this layout
+
+
+## <a name="split_service"></a> pipSplit service
+
+**pipSplitService** helps to create split layout. That layout can be helpful to organize complex hierarchical content. As user drills down the content, it slides to the right. Going to the top of the hierarchy slides the content to the left. To simplify navigation this content integrates with breadcrumb in **Appbar**
+
+### Usage
+Todo: Add code snipper that shows calls to pipSplit service
+
+<img src="images/img-split-view-layout.png"/>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/split/index.html)
 
+### Methods
+Todo: Descript pipSplit service methods here
 
 
 ## <a name="issues"></a> Questions and bugs
