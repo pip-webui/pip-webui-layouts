@@ -51,8 +51,7 @@
             container = $element.children('.pip-tiles-container'),
             prevContainerWidth = null,
             masonry = Masonry.data(container[0]);
-
-
+        
         // Add class to the element
         $element.addClass('pip-tiles');
 
