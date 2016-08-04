@@ -164,9 +164,9 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/card/inde
 * **pip-card** - main class of layout, it contains all the basic styles
 * **pip-card-container** - class for container, which contains card
 * **pip-outer-scroll** - set scroll to card container, remove scroll from card. By default card has scroll, card container hasn't.
-* **pip-header** - class, which located in card, it contains titles of card
-* **pip-body** - class, which located in card, it contains main part of card
-* **pip-footer** - class, which located in card, it contains action buttons of card
+* **pip-header** - class, which located in card, it contains styles of card's titles
+* **pip-body** - class, which located in card, it contains styles of card's main part
+* **pip-footer** - class, which located in card, it contains styles of card's action buttons
 
 ## <a name="tiles"></a> pip-tiles directive
 
@@ -191,11 +191,11 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tiles/ind
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tile_groups/index.html)
 
 ### Attributes
-* **column-width** - width of column, which contains tiles, count of column calculated according to the width of window
+* **column-width** - set width of column, which contains tiles, count of column calculated according to the width of window
 * **pip-infinite** - set on infinite scroll for tiles container
 
 ### Classes
-* **pip-tiles-container** - class, which contains tiles
+* **pip-tiles-container** - class for container, in which tiles located
 * **pip-tile** - main class, it contains all the basic styles for tile
 * **masonry-brick** - means that this dom-element involved in the construction of tiles list
 
@@ -223,16 +223,16 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tile_grou
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/dialog/index.html)
 
 ### Attributes
-* **width** - width of dialog window
-* **height** - height of dialog window
-* **min-width** - minimum width of dialog window
-* **min-width** - minimum width of dialog window
+* **width** - set width of dialog window
+* **height** - set height of dialog window
+* **min-width** - set minimum width of dialog window
+* **min-width** - set minimum width of dialog window
 
 ### Classes
-* **pip-dialog** - main class of layout, it contains all basic styles
-* **pip-header** - class, which located in dialog, it contains titles of card
-* **pip-body** - class, which located in dialog, it contains main part of card
-* **pip-footer** - class, which located in dialog, it contains action buttons of card
+* **pip-dialog** - main class of layout, it contains all basic styles of dialog window
+* **pip-header** - class, which located in dialog, it contains styles of card's titles
+* **pip-body** - class, which located in dialog, it contains styles of card's main part
+* **pip-footer** - class, which located in dialog, it contains styles of card's action buttons
 
 ## <a name="split_service"></a> pipSplit service
 
@@ -254,7 +254,7 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/dialog/in
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/split/index.html)
 
 ### Methods
-* **addTransitionSequence** - creates order states to animate pages
+* **addTransitionSequence** - creates order of states to animate pages in right direction
 * **forwardTransition** - returns the direction of animation
 
 ## <a name="issues"></a> Questions and bugs
