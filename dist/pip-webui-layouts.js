@@ -246,143 +246,6 @@
 })();
 
 /**
- * @file Top-level application container
- * @copyright Digital Living Software Corp. 2014-2015
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipLayout.Main', []);
-
-    thisModule.directive('pipMain', function() {
-        return {
-           restrict: 'EA',
-           controller: 'pipMainController' 
-        }
-    });
-
-    thisModule.directive('pipMainBody', function() {
-       return {
-           restrict: 'EA',
-           link: function($scope, $element) {
-                $element.addClass('pip-main-body');
-           }
-       };
-    });
-
-    thisModule.controller('pipMainController',
-        ['$scope', '$element', '$rootScope', function($scope, $element, $rootScope) {
-            var $window = $(window);
-
-            // Add CSS class
-            $element.addClass('pip-main');
-
-            // Handle window resize events
-            $window.bind('resize', resize);
-
-            // Unbind when scope is removed
-            $scope.$on('$destroy', function() {
-                $rootScope.$size = undefined;
-                $window.unbind('resize', resize);
-            });
-
-            // Resize window from request
-            $rootScope.$on('pipResizeWindow', function(event) {
-                // Trigger a bit latter t allow full initialization
-                // Do not remove! Otherwise, sizes in layouts calculated incorrectly
-                setTimeout(resize, 0);
-            });
-
-            // Allow to finish initialization of all controllers
-            setTimeout(resize, 0);
-
-            return;
-            
-            //---------------
-
-            function resize() {
-                $rootScope.$broadcast('pipWindowResized');
-            }
-        }]
-    );
-
-})();
-
-/**
- * @file Split layout
- * @copyright Digital Living Software Corp. 2014-2015
- */
-
-/* global $, angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipLayout.Split', []);
-
-    thisModule.run( ['$rootScope', 'pipSplit', function($rootScope, pipSplit) {
-        // Intercept routes
-        $rootScope.$on('$stateChangeStart',
-            function(event, toState, toParams, fromState, fromParams) {
-                // Split animation
-                var splitElements = $('.pip-split');
-                if (splitElements.length > 0) {
-                    splitElements.removeClass('pip-transition-forward');
-                    splitElements.removeClass('pip-transition-back');
-                    if (toState.name != fromState.name) {
-                        if (pipSplit.forwardTransition(toState, fromState))
-                            splitElements.addClass('pip-transition-forward');
-                        else
-                            splitElements.addClass('pip-transition-back');
-                    }
-                }
-
-            }
-        );
-
-    }]);
-
-    thisModule.provider('pipSplit', function() {
-        var transitionSequences = [];
-
-        this.addTransitionSequence = addTransitionSequence;
-
-        this.$get = function () {
-            return {
-                forwardTransition: forwardTransition
-            };
-        };
-
-        return;
-
-        //----------------------------
-
-        function addTransitionSequence(sequence) {
-            if (!_.isArray(sequence) || sequence.length == 0)
-                throw new Error('Transition sequence must be an array of state names');
-
-            transitionSequences.push(sequence);
-        }
-
-        function forwardTransition(toState, fromState) {
-            for (var i = 0; i < transitionSequences.length; i++) {
-                var toIndex = transitionSequences[i].indexOf(toState.name);
-                var fromIndex = transitionSequences[i].indexOf(fromState.name);
-
-                if (toIndex > -1)
-                    return toIndex > fromIndex;
-            }
-            return false
-        }
-
-    });
-
-})();
-
-/**
  * @file Simple layout
  * @copyright Digital Living Software Corp. 2014-2015
  */
@@ -535,6 +398,143 @@
         value = value.toString().toLowerCase();
         return value == '1' || value == 'true';
     };
+
+})();
+
+/**
+ * @file Top-level application container
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipLayout.Main', []);
+
+    thisModule.directive('pipMain', function() {
+        return {
+           restrict: 'EA',
+           controller: 'pipMainController' 
+        }
+    });
+
+    thisModule.directive('pipMainBody', function() {
+       return {
+           restrict: 'EA',
+           link: function($scope, $element) {
+                $element.addClass('pip-main-body');
+           }
+       };
+    });
+
+    thisModule.controller('pipMainController',
+        ['$scope', '$element', '$rootScope', function($scope, $element, $rootScope) {
+            var $window = $(window);
+
+            // Add CSS class
+            $element.addClass('pip-main');
+
+            // Handle window resize events
+            $window.bind('resize', resize);
+
+            // Unbind when scope is removed
+            $scope.$on('$destroy', function() {
+                $rootScope.$size = undefined;
+                $window.unbind('resize', resize);
+            });
+
+            // Resize window from request
+            $rootScope.$on('pipResizeWindow', function(event) {
+                // Trigger a bit latter t allow full initialization
+                // Do not remove! Otherwise, sizes in layouts calculated incorrectly
+                setTimeout(resize, 0);
+            });
+
+            // Allow to finish initialization of all controllers
+            setTimeout(resize, 0);
+
+            return;
+            
+            //---------------
+
+            function resize() {
+                $rootScope.$broadcast('pipWindowResized');
+            }
+        }]
+    );
+
+})();
+
+/**
+ * @file Split layout
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
+
+/* global $, angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipLayout.Split', []);
+
+    thisModule.run( ['$rootScope', 'pipSplit', function($rootScope, pipSplit) {
+        // Intercept routes
+        $rootScope.$on('$stateChangeStart',
+            function(event, toState, toParams, fromState, fromParams) {
+                // Split animation
+                var splitElements = $('.pip-split');
+                if (splitElements.length > 0) {
+                    splitElements.removeClass('pip-transition-forward');
+                    splitElements.removeClass('pip-transition-back');
+                    if (toState.name != fromState.name) {
+                        if (pipSplit.forwardTransition(toState, fromState))
+                            splitElements.addClass('pip-transition-forward');
+                        else
+                            splitElements.addClass('pip-transition-back');
+                    }
+                }
+
+            }
+        );
+
+    }]);
+
+    thisModule.provider('pipSplit', function() {
+        var transitionSequences = [];
+
+        this.addTransitionSequence = addTransitionSequence;
+
+        this.$get = function () {
+            return {
+                forwardTransition: forwardTransition
+            };
+        };
+
+        return;
+
+        //----------------------------
+
+        function addTransitionSequence(sequence) {
+            if (!_.isArray(sequence) || sequence.length == 0)
+                throw new Error('Transition sequence must be an array of state names');
+
+            transitionSequences.push(sequence);
+        }
+
+        function forwardTransition(toState, fromState) {
+            for (var i = 0; i < transitionSequences.length; i++) {
+                var toIndex = transitionSequences[i].indexOf(toState.name);
+                var fromIndex = transitionSequences[i].indexOf(fromState.name);
+
+                if (toIndex > -1)
+                    return toIndex > fromIndex;
+            }
+            return false
+        }
+
+    });
 
 })();
 
