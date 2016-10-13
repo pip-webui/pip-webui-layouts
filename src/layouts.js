@@ -10,7 +10,7 @@
 
     angular.module('pipLayout', [
         'pipLayout.Main', 'pipLayout.Simple', 'pipLayout.Card', 'pipLayout.Document',
-        'pipLayout.Tiles', 'pipLayout.Dialog', 'pipLayout.Split'
+        'pipLayout.Tiles', 'pipLayout.Dialog'
     ]);
 
 })();
