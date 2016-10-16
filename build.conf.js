@@ -5,8 +5,8 @@ module.exports = {
     },
     build: {
         js: true,
-        ts: true,
-        html: false,
+        ts: false,
+        html: true,
         css: true,
         lib: true,
         images: true,
