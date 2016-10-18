@@ -21,18 +21,17 @@
  */
 
 .pip-card {
+    .flex();
+    .flex-direction(column);
+    .flex-shrink();
+    .border-radius();    
+    .shadow-card();
+
     z-index: 10;
     position: relative;
-    .flex-shrink;
-    .flex-container;
-    .flex-direction-column;
     background-color: @color-content; 
     box-shadow: @box-shadow; 
-    .border-radius();
-
     margin: 24px;
-    .shadow-card();
-    
     padding-bottom: 1px;
     padding-left: 1px;
     padding-right: 1px;
@@ -43,13 +42,11 @@
     /*min-height: 100%;*/
     width: 100%;
     .flex-var;
-    .flex-container;
-    .flex-direction-column;
-    .flex-vertical-center;
-    .flex-vertical-center;
+    .flex();
+    .flex-direction(column);
+    .flex-vertical-content(center);
     max-height: 100%;
-
-    .flex-horizontal-center;
+    .flex-justify-content(center, center);
 
     &.pip-outer-scroll {
         display: block !important;
@@ -70,7 +67,7 @@
 // On phone
 @media (max-width: 768px) {
     .pip-card {
-        .position-fill;
+        .position-absolute(0, 0, 0, 0);
         margin: 0px;
         border: none;
         border-radius: 0;

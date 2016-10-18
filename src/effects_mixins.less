@@ -1,0 +1,154 @@
+// @file Visual effects mixins
+// @copyright Digital Living Software Corp. 2014-2015
+
+// Drop shadows
+//
+// Note: Deprecated `.box-shadow()` as of v3.1.0 since all of Bootstrap's
+// supported browsers that have box shadow capabilities now support it.
+
+.shadow-card() {
+  background: rgb(250, 250, 250) !important;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0NWQ3ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMTM1NWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+) !important;
+  background: -moz-linear-gradient(top,  rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%,  rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%,  rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%) !important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0,rgba(254, 254, 254, 1)), color-stop(18%,rgba(250, 250, 250, 1)), color-stop(19%,rgba(250, 250, 250, 1)), color-stop(81%,rgba(250, 250, 250, 1)), color-stop(82%,rgba(250, 250, 250, 1)), color-stop(100%,rgba(242, 241, 241, 1))) !important;
+  background: -webkit-linear-gradient(top,  rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%,  rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%,  rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%) !important;
+  background: -o-linear-gradient(top,  rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%,  rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%,  rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%)!important;
+  background: -ms-linear-gradient(top,  rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%,  rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%,  rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%)!important;
+  background: linear-gradient(to bottom,  rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%,  rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%,  rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%)!important;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.26) !important;
+}
+
+.shadow-text (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+	text-shadow: @string;
+}
+
+.shadow-box (@string: @box-shadow) {  //Kate добавила значение по умолчанию
+	-webkit-box-shadow: @string; // iOS <4.3 & Android <4.1
+	-moz-box-shadow:    @string;
+	box-shadow:         @string;
+}
+
+.shadow-drop (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+	-webkit-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+	-moz-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+	box-shadow:		@x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.shadow-inner (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+	-webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+	-moz-box-shadow:    inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+	box-shadow:         inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+
+// Opacity
+//-------------
+
+.opacity (@opacity: 0.5) {
+	-webkit-opacity: 	@opacity;
+	-moz-opacity: 		@opacity;
+	opacity: 		    @opacity;
+}
+
+
+// Gradients
+//-------------
+
+.gradient (@startColor: #eee, @endColor: white) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+.gradient-horizontal (@startColor: #eee, @endColor: white) {
+ 	background-color: @startColor;
+	background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+	background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+	background-image: -moz-linear-gradient(left, @startColor, @endColor);
+	background-image: -ms-linear-gradient(left, @startColor, @endColor);
+	background-image: -o-linear-gradient(left, @startColor, @endColor);
+}
+
+.gradient-border() {
+  border-radius: @border-radius;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0NWQ3ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMTM1NWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%, rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%, rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(254, 254, 254, 1)), color-stop(18%, rgba(250, 250, 250, 1)), color-stop(19%, rgba(250, 250, 250, 1)), color-stop(81%, rgba(250, 250, 250, 1)), color-stop(82%, rgba(250, 250, 250, 1)), color-stop(100%, rgba(242, 241, 241, 1)));
+  background: -webkit-linear-gradient(top, rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%, rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%, rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%);
+  background: -o-linear-gradient(top, rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%, rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%, rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%, rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%, rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%);
+  background: linear-gradient(to bottom, rgba(254, 254, 254, 1) 0, rgba(250, 250, 250, 1) 18%, rgba(250, 250, 250, 1) 19%, rgba(250, 250, 250, 1) 81%, rgba(250, 250, 250, 1) 82%, rgba(242, 241, 241, 1) 100%);
+
+  position: relative;
+  z-index: 2;
+  box-shadow: @z-depth-1; //0px 1px 5px 0px rgba(0, 0, 0, 0.26);
+
+  &:before {
+    z-index: 1;
+    position: absolute;
+    border-radius: 1px;
+    left: 1px;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    .box-sizing(border-box);
+  }
+}
+
+// Border radiuses
+//-------------------
+
+.border-radius-top(@radius) {
+    border-top-right-radius: @radius;
+    border-top-left-radius: @radius;
+}
+
+.border-radius-right(@radius) {
+    border-bottom-right-radius: @radius;
+    border-top-right-radius: @radius;
+}
+
+.border-radius-bottom(@radius) {
+    border-bottom-right-radius: @radius;
+    border-bottom-left-radius: @radius;
+}
+
+.border-radius-left(@radius) {
+  border-bottom-left-radius: @radius;
+  border-top-left-radius: @radius;
+}
+
+.border-radius(@radius: @border-radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+.border-radiuses(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+	-webkit-border-top-right-radius:    @topright;
+	-webkit-border-bottom-right-radius: @bottomright;
+	-webkit-border-bottom-left-radius:  @bottomleft;
+	-webkit-border-top-left-radius:     @topleft;
+
+	-moz-border-radius-topright:        @topright;
+	-moz-border-radius-bottomright:     @bottomright;
+	-moz-border-radius-bottomleft:      @bottomleft;
+	-moz-border-radius-topleft:         @topleft;
+
+	border-top-right-radius:            @topright;
+	border-bottom-right-radius:         @bottomright;
+	border-bottom-left-radius:          @bottomleft;
+	border-top-left-radius:             @topleft;
+
+	-moz-background-clip:    padding; 
+	-webkit-background-clip: padding-box; 
+	background-clip:         padding-box; 
+}
+

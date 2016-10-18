@@ -1,0 +1,23 @@
+
+.bg-red { background-color: red !important; }
+.bg-blue { background-color: blue !important; }
+.bg-green { background-color: green !important; }
+.bg-yellow { background-color: #ffff00 !important; }
+.bg-grey { background-color: lightgrey !important; }
+.bg-white { background-color: white !important; }
+
+
+.tile_width  {
+    width: 440px!important;
+}
+
+@media (max-width: 768px) {
+  .tile_width {
+    width: 100% !important;
+  }
+}
+
+/*
+pip-border-no-top
+pip-menu-list
+*/

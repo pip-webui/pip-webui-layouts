@@ -1,3 +1,7 @@
 .md-dialog-container{
 	height: inherit !important;
 }
+
+.pip-body md-button {
+		margin: 20px;
+}

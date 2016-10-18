@@ -8,9 +8,9 @@
 pip-document {
     z-index: 10;
     position: relative;
-    .flex-shrink;
-    .flex-container;
-    .flex-direction-column;
+    .flex-shrink();
+    .flex();
+    .flex-direction(column);
     background-color: @color-content; 
     box-shadow: @box-shadow; 
     .border-radius(@border-radius);
@@ -51,10 +51,10 @@ pip-document {
     max-height: 100%;
 
     .flex-var;
-    .flex-container;
-    .flex-direction-column;
-    .flex-vertical-center;
-    .flex-horizontal-start;
+    .flex();
+    .flex-direction(column);
+    .flex-vertical-content(center);
+    .flex-justify-content(start, flex-start);
 }
 
 .pip-appbar-ext {
@@ -67,7 +67,7 @@ pip-document {
 // On tablet
 @media (max-width: 1200px) {
     .pip-document {
-        .position-fill;
+        .position-absolute(0, 0, 0, 0);
         margin: 0px;
         border: none;
         border-radius: 0;

@@ -2,6 +2,8 @@
 // @copyright Digital Living Software Corp. 2014-2015
 
 @import "css_light/css_light";
+@import "effects_mixins";
+@import "positions_mixins";
 
 @font-letter-spacing-title:        0.005em;
 @font-letter-spacing-primary:      0.01em;
@@ -10,6 +12,34 @@
 @padding-mobile:                   16px;
 @divider-border:                   1px solid @color-divider;
 @border-radius:                    2px;
+
+.scroll() {
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.scroll-x() {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.scroll-y() {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.flex-order(@index) {
+    -webkit-box-ordinal-group: @index;
+    -moz-box-ordinal-group:    @index;
+    -webkit-order:             @index;
+    -ms-flex-order:            @index;
+    order:                     @index;
+}
 
 @import "main/main";
 @import "content";

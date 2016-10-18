@@ -6,8 +6,9 @@
     <title>Multi Document Layout</title>
 
     <link rel="stylesheet" href="../../lib/pip-webui-lib.css"/>
-    <link rel="stylesheet" href="../../lib/pip-webui-css.css"/>
+    <!--<link rel="stylesheet" href="../../lib/pip-webui-css.css"/>-->
     <!--<link rel="stylesheet" href="../../lib/pip-webui-csscomponents.css"/>-->
+    <link rel="stylesheet" href="../styles.css"/>    
     <link rel="stylesheet" href="../../dist/pip-webui-layouts.css"/>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
@@ -17,7 +18,7 @@
     <script src="index.js"></script>
 </head>
 
-<body ng-app="app" ng-controller="AppController" md-theme="{{ $theme || 'blue' }}" class="{{ $theme }} pip-main layout-column">
+<body ng-app="app" ng-controller="AppController"  class="pip-main layout-column">
     <pip-main >
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -26,12 +27,12 @@
         </md-toolbar>
 
         <pip-main-body>
-            <md-toolbar class="pip-appbar-ext">
+            <md-toolbar >
             </md-toolbar>
 
             <pip-document width="900" xheight="600" class="pip-no-border">
 
-                <md-toolbar class="pip-nav">
+                <md-toolbar>
                     <md-tabs md-stretch-tabs="never" class="md-primary">
                         <md-tab label="One"></md-tab>
                         <md-tab label="Two"></md-tab>
@@ -41,10 +42,10 @@
                 </md-toolbar>
 
 
-                <div class="pip-menu-container pip-border-no-top">
+                <div class="pip-menu-container xxxpip-border-no-top">
 
                     <div class="pip-menu">
-                        <div class="pip-menu-list">
+                        <div class="xxxxpip-menu-list">
                             <div class="bg-red" style="height:100px"></div>
                             <div class="bg-green" style="height:100px"></div>
                             <div class="bg-yellow" style="height:100px"></div>

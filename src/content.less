@@ -5,10 +5,10 @@
     /*min-height: 100%;*/
     width: 100%;
     .flex-var;
-    .flex-container;
-    .flex-direction-column;
-    .flex-vertical-center;
-    .flex-vertical-center;
+    .flex();
+    .flex-direction(column);
+    .flex-vertical-content(center);
+    .flex-vertical-content(center);
     max-height: 100%;
 }
 
@@ -36,7 +36,7 @@
 .pip-card, 
 .pip-document{
     .pip-header{
-        .flex-direction-row;
+        .flex-direction(row);
     }
 }
 
@@ -63,15 +63,15 @@
     .pip-menu-container {
         position: relative;
         //!!z-index: 200;
-        .flex-container;
-        .flex-direction-row;
+        .flex();
+        .flex-direction(row);
         .flex-var;
     }
 
     .pip-content-container {
         position: relative;
-        .flex-container;
-        .flex-direction-column;
+        .flex();
+        .flex-direction(column);
         .flex-var;
     }
     
@@ -93,9 +93,9 @@
        // .flex-order(1);
         .flex-fixed;
 
-        .flex-container;
-        .flex-vertical-center;
-        .flex-horizontal-start;
+        .flex();
+        .flex-vertical-content(center);
+        .flex-justify-content(start, flex-start);
 
         //!!border-top-left-radius: @border-radius;
         //!!border-top-right-radius: @border-radius;
@@ -114,10 +114,10 @@
         .flex-order(4);
         .flex-fixed;
 
-        .flex-container;
-        .flex-vertical-center;
-        .flex-horizontal-end;
-        .flex-direction-row;
+        .flex();
+        .flex-vertical-content(center);
+        .flex-justify-content(end, flex-end);
+        .flex-direction(row);
 
         //!!border-bottom-left-radius: @border-radius;
         //!!border-bottom-right-radius: @border-radius;
@@ -129,7 +129,7 @@
     }
 
     .pip-footer-for-composite {
-        .flex-direction-column;
+        .flex-direction(column);
         .flex-order(3);
         .flex-fixed;
     }
@@ -206,7 +206,7 @@
 
     .pip-document {
         .pip-menu {
-            .position-fill;
+            .position-absolute(0, 0, 0, 0);
             //!!z-index: 300;
         }
     }
