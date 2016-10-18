@@ -9,7 +9,6 @@
 - [pip-card directive](#card)
 - [pip-tiles directive](#tiles)
 - [pip-dialog directive](#dialog)
-- [pipSplit service](#split_service)
 - [Questions and bugs](#issues)
 
 
@@ -233,29 +232,6 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/dialog/in
 * **pip-header** - class, which located in dialog, it contains styles of card's titles
 * **pip-body** - class, which located in dialog, it contains styles of card's main part
 * **pip-footer** - class, which located in dialog, it contains styles of card's action buttons
-
-## <a name="split_service"></a> pipSplit service
-
-**pipSplitService** helps to create split layout. That layout can be helpful to organize complex hierarchical content. As user drills down the content, it slides to the right. Going to the top of the hierarchy slides the content to the left. To simplify navigation this content integrates with breadcrumb in **Appbar**
-
-### Usage
-```html
-<pip-document class="pip-split pip-no-border"
-              md-swipe-right="onSwipeRight()" md-swipe-left="onSwipeLeft()">
-
-    <div class="pip-menu-container pip-border-no-top">
-        ...
-    </div>
-</pip-document>
-```
-
-<img src="images/img-split-view-layout.png"/>
-
-See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/split/index.html)
-
-### Methods
-* **addTransitionSequence** - creates order of states to animate pages in right direction
-* **forwardTransition** - returns the direction of animation
 
 ## <a name="issues"></a> Questions and bugs
 
