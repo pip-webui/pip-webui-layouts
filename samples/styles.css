@@ -1,27 +1,10 @@
 
-.bg-red {
-    background-color: red !important;
-}
-
-.bg-blue {
-    background-color: blue !important;
-}
-
-.bg-green {
-    background-color: green !important;
-}
-
-.bg-yellow {
-    background-color: #ffff00 !important;
-}
-
-.bg-grey {
-    background-color: lightgrey !important;
-}
-
-.bg-white {
-    background-color: white !important;
-}
+.bg-red {  background-color: rgba(188, 86, 121, 1); !important;  }
+.bg-blue {  background-color: rgba(33, 150, 243, 1) !important;  }
+.bg-green {  background-color: rgba(76, 175, 80, 1) !important;  }
+.bg-yellow {  background-color: rgba(255, 152, 0, 1) !important;  }
+.bg-grey {  background-color: lightgrey !important;  }
+.bg-white {  background-color: white !important;  }
 
 .tile_width {
     width: 440px !important;
