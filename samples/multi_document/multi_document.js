@@ -6,9 +6,9 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
+    var thisModule = angular.module('appMultiDocument', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('AppController', function ($scope, $rootScope, $mdMedia) {
+    thisModule.controller('MultiDocumentController', function ($scope, $rootScope, $mdMedia) {
         $scope.$mdMedia = $mdMedia;
 
     });

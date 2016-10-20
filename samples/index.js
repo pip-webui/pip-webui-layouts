@@ -6,8 +6,10 @@
     var content = [
         { title: 'Card', state: 'card', url: '/card', controller: 'CardController', templateUrl: 'card/card.html' },
         { title: 'Dialogs', state: 'dialogs', url: '/dialogs', controller: 'DialogMainController', templateUrl: 'dialog/dialog.html' },
-        //{ title: 'Unsaved changes', state: 'unsaved_changes', url: '/unsaved_changes', controller: 'UnsavedChangesController', templateUrl: 'unsaved_changes.html' },
-        //{ title: 'Fab\'s tooltip visibility', state: 'fab_tooltip', url: '/fab_tooltip', controller: 'FabTooltipVisibilityController', templateUrl: 'fab_tooltip_visibility.html' }
+        { title: 'Simple', state: 'simple', url: '/simple', controller: 'SimpleController', templateUrl: 'simple/simple.html' },
+        { title: 'Document', state: 'document', url: '/document', controller: 'DocumentController', templateUrl: 'document/document.html' },
+        { title: 'Multi Document', state: 'multi_document', url: '/multi_document', controller: 'MultiDocumentController', templateUrl: 'multi_document/multi_document.html' }
+
     ];
 
     var thisModule = angular.module('app',
@@ -16,32 +18,12 @@
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
 			
-            'appCard', 'appDialog'
+            'appCard', 'appDialog', 'appSimple', 'appDocument', 'appMultiDocument'
         ]
     );
 
     thisModule.config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider) {
             $mdIconProvider.iconSet('icons', '../../lib/images/icons.svg', 512);
-
-        /*
-            // String translations
-            pipTranslateProvider.translations('en', {
-                'APPLICATION_TITLE': 'WebUI Sampler',
-
-                'blue': 'Blue Theme',
-                'green': 'Green Theme',
-                'pink': 'Pink Theme',
-                'grey': 'Grey Theme'
-            });
-
-            pipTranslateProvider.translations('ru', {
-                'APPLICATION_TITLE': 'WebUI Демонстратор',
-
-                'blue': 'Голубая тема',
-                'green': 'Зеленая тема',
-                'pink': 'Розовая тема',
-                'grey': 'Серая тема'
-            });*/
 
             for (var i = 0; i < content.length; i++) {
                 var contentItem = content[i];
