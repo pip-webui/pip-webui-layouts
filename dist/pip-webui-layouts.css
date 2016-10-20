@@ -89,6 +89,18 @@
 .divider {
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
+input:focus,
+p:focus,
+div:focus,
+li:focus,
+md-list-item:focus,
+md-list:focus,
+a:focus,
+md-autocomplete:focus,
+span:focus,
+button:focus {
+  outline-width: 0 !important;
+}
 body.pip-windows .pip-menu::-webkit-scrollbar,
 body.pip-windows md-content::-webkit-scrollbar,
 body.pip-windows md-sidenav::-webkit-scrollbar,
@@ -730,6 +742,7 @@ pip-document {
   left: calc(50% - 550px);
   margin: 0 auto;
   width: 1100px;
+  max-width: 100%;
 }
 @media (max-width: 1200px) {
   pip-document {
@@ -863,11 +876,14 @@ pip-document.pip-document-small {
  *      </div>
  *  </pip-tiles>
  */
-.pip-tiles {
+.pip-tiles-fixed {
   position: fixed;
+  max-height: calc(100% - 64px - 48px);
+}
+.pip-tiles {
   max-height: 100%;
   box-sizing: border-box;
-  max-height: calc(100% - 64px - 48px);
+  max-height: inherit;
   min-height: calc(100% - 64px - 48px);
   left: 0;
   overflow: auto;
@@ -902,12 +918,13 @@ pip-document.pip-document-small {
 }
 .pip-tiles .pip-tiles-container {
   margin: 0 auto;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 @media (min-width: 1400px) {
   .pip-tiles .pip-tiles-container {
     width: 1350px !important;
-    min-width: 1350px !important;
-    max-width: 1350px !important;
+    max-width: 100%;
   }
 }
 .pip-tiles .pip-tile {
@@ -941,28 +958,6 @@ pip-document.pip-document-small {
   width: 100%;
   height: 200px;
 }
-/*
- * @example - �������� �������� ��������
- *  <pip-simple ng-class="$sizeSmall ? 'bg-content' : 'bg-window'" ng-hide="selected.itemCollection.length < 1">
- *      <!-- ng-repeat �� ������� -->
- *      <div class="pip-flex-content-list">
- *          <!-- �������� ������ -->
- *          <div class=" pip-tiles-group-name" layout="row" layout-align="start center">
- *              <p class="w56 w56-max">
- *                  �������� </p>
- *
- *              <div flex></div>
- *          </div>
- *          <!--������ ������-->
- *          <pip-tiles column-width="180" ng-if="$sizeGtSmall">
- *              <!--������� �����-->
- *              <div class="masonry-brick pip-tile pointer">
-
- *              </div>
- *          </pip-tiles>
- *      </div>
- *  </pip-simple>
- */
 .pip-simple .pip-tiles {
   display: block;
   min-height: 0px;
