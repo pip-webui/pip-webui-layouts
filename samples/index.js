@@ -5,7 +5,7 @@
 
     var content = [
         { title: 'Card', state: 'card', url: '/card', controller: 'CardController', templateUrl: 'card/card.html' },
-        //{ title: 'Reference item', state: 'ref_item', url: '/ref_item', controller: 'RefItemController', templateUrl: 'ref_list/ref_item.html' },
+        { title: 'Dialogs', state: 'dialogs', url: '/dialogs', controller: 'DialogMainController', templateUrl: 'dialog/dialog.html' },
         //{ title: 'Unsaved changes', state: 'unsaved_changes', url: '/unsaved_changes', controller: 'UnsavedChangesController', templateUrl: 'unsaved_changes.html' },
         //{ title: 'Fab\'s tooltip visibility', state: 'fab_tooltip', url: '/fab_tooltip', controller: 'FabTooltipVisibilityController', templateUrl: 'fab_tooltip_visibility.html' }
     ];
@@ -16,7 +16,7 @@
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
 			
-            'appCard'
+            'appCard', 'appDialog'
         ]
     );
 

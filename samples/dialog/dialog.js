@@ -6,13 +6,13 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
+    var thisModule = angular.module('appDialog', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('AppController', function ($scope, $rootScope, $mdDialog) {
+    thisModule.controller('DialogMainController', function ($scope, $rootScope, $mdDialog) {
         $scope.openDialog = function (event) {
             $mdDialog.show({
                 controller: 'DialogController',
-                templateUrl: 'dialog.tmpl.html',
+                templateUrl: 'dialog/dialog.tmpl.html',
                 targetEvent: event,
                 clickOutsideToClose: true
             });
