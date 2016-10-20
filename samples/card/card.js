@@ -6,9 +6,9 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
+    var thisModule = angular.module('appCard', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('AppController', function ($scope, $rootScope) {
+    thisModule.controller('CardController', function ($scope, $rootScope) {
         // Controller code here...
     });
 })(window.angular);

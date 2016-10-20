@@ -6,6 +6,7 @@
     <title>WebUI Framework. PipDevs Team</title>
 
     <link rel="stylesheet" href="../lib/pip-webui-lib.css"/>
+    <link rel="stylesheet" href="../dist/pip-webui-layouts.css"/>
   
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 
@@ -25,40 +26,32 @@
     </style>
 
     <script src="../lib/pip-webui-lib.js"></script>
-
-    <script>
-        app = angular.module('app', ['ngMaterial']);
-    </script>
+    <script src="../dist/pip-webui-layouts.js"></script>
+    <script src="card/card.js"></script>
+    <script src="index.js"></script>
 </head>
-<body ng-app="app" class="layout-column layout-align-start-center">
-    <section>
-        <div class="pip-title">
-            <h1>WebUI Framework. PipDevs Team</h1>
-            <div>(c) Digital Living Software Corp.</div>
-        </div>
+<body ng-app="app" class="layout-column layout-align-start-center" ng-controller="AppController">
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <div class="flex-var text-overflow">Lists</div>
+    </div>
+</md-toolbar>
 
-        <section class="pip-section">
-            <h2>Layouts</h2>
-            <ul>
-                <li><a href="simple/index.html">Simple / Plain</a></li>
-                <li><a href="document/index.html">Single Document</a></li>
-                <li><a href="multi_document/index.html">Multi Document</a></li>
-                <li><a href="card/index.html">Card</a></li>
-                <li><a href="tiles/index.html">Tiles</a></li>
-                <li><a href="tile_groups/index.html">Tile Groups</a></li>
-                <li><a href="dialog/index.html">Dialog</a></li>
-            </ul>
-        </section>
+<div class="layout-row flex" style="width: 100%">
+    <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"
+                class="md-whiteframe-z2 md-sidenav-left layout-column">
+        <md-list>
+            <md-list-item ng-repeat="contentItem in content"
+                          ng-click="onSwitchPage(contentItem.state)"
+                          ng-class="{ 'selected-state': isActiveState(contentItem.state) }">
+                <p ui-sref="{{contentItem.state}}">{{contentItem.title}}</p>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
 
-        <section class="pip-section">
-            <h2>References</h2>
-            <ul>
-                <li><a href="https://material.angularjs.org/latest/#/">Angular Material Intro</a></li>
-                <li><a href="https://github.com/angular/material">Angular Material GitHub</a></li>
-                <li><a href="https://www.google.com/design/spec/material-design/introduction.html">Material Design Guidelines</a></li>
-                <li><a href="http://design.google.com">Google Design References</a></li>
-            </ul>
-        </section>
-    </section>
+    <md-content id="content" class="flex" style="padding: 24px">
+        <div ui-view></div>
+    </md-content>
+</div>
 </body>
 </html>
