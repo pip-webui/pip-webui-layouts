@@ -1,0 +1,57 @@
+<pip-main>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2><span>Tile Groups Layout</span></h2>
+        </div>
+    </md-toolbar>
+    <md-toolbar class="md-primary pip-body-nav">
+        <md-tabs md-selected="0" xmd-stretch-tabs="auto">
+            <md-tab label="One"></md-tab>
+            <md-tab label="Two"></md-tab>
+            <md-tab label="Three"></md-tab>
+            <md-tab label="Four"></md-tab>
+        </md-tabs>
+    </md-toolbar>
+    <pip-main-body>
+        <pip-simple>
+
+            <div class="bg-red fg-white" style="padding: 16px">Group #1</div>
+
+            <pip-tiles column-width="440">
+                <div class="masonry-brick pip-tile bg-grey tile_width">
+                    <h3 class="tile-sm">This is a special tile</h3>
+                </div>
+
+                <div class="masonry-brick pip-tile {{tile.color}} tile_width" ng-repeat="tile in tiles">
+                    <h3 class="{{tile.size}}">{{tile.name}}</h3>
+                </div>
+            </pip-tiles>
+
+            <div class="bg-green fg-white" style="padding: 16px;">Group #2 with small tiles</div>
+
+            <pip-tiles column-width="180">
+                <div class="masonry-brick pip-tile bg-grey">
+                    <h3 class="tile-sm">This is a special tile</h3>
+                </div>
+
+                <div class="masonry-brick pip-tile {{tile.color}}" ng-repeat="tile in tiles">
+                    <h3 class="{{tile.size}}">{{tile.name}}</h3>
+                </div>
+            </pip-tiles>
+
+            <div class="bg-yellow" style="padding: 16px;">Group #3</div>
+
+            <pip-tiles column-width="440">
+                <div class="masonry-brick pip-tile bg-grey tile_width">
+                    <h3 class="tile-sm">This is a special tile</h3>
+                </div>
+
+                <div class="masonry-brick pip-tile {{tile.color}} tile_width" ng-repeat="tile in tiles">
+                    <h3 class="{{tile.size}}">{{tile.name}}</h3>
+                </div>
+            </pip-tiles>
+
+        </pip-simple>
+    </pip-main-body>
+
+</pip-main>

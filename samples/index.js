@@ -8,8 +8,9 @@
         { title: 'Dialogs', state: 'dialogs', url: '/dialogs', controller: 'DialogMainController', templateUrl: 'dialog/dialog.html' },
         { title: 'Simple', state: 'simple', url: '/simple', controller: 'SimpleController', templateUrl: 'simple/simple.html' },
         { title: 'Document', state: 'document', url: '/document', controller: 'DocumentController', templateUrl: 'document/document.html' },
-        { title: 'Multi Document', state: 'multi_document', url: '/multi_document', controller: 'MultiDocumentController', templateUrl: 'multi_document/multi_document.html' }
-
+        { title: 'Multi Document', state: 'multi_document', url: '/multi_document', controller: 'MultiDocumentController', templateUrl: 'multi_document/multi_document.html' },
+        { title: 'Tiles', state: 'tiles', url: '/tiles', controller: 'TilesController', templateUrl: 'tiles/tiles.html' },
+        { title: 'Tile groups', state: 'tile_groups', url: '/tile_groups', controller: 'TileGroupsController', templateUrl: 'tile_groups/tile_groups.html' }
     ];
 
     var thisModule = angular.module('app',
@@ -18,7 +19,8 @@
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
 			
-            'appCard', 'appDialog', 'appSimple', 'appDocument', 'appMultiDocument'
+            'appCard', 'appDialog', 'appSimple', 'appDocument', 'appMultiDocument', 'appTileGroups',
+            'appTiles'
         ]
     );
 

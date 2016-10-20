@@ -5,9 +5,9 @@
 
 (function (angular) {
     'use strict';
-    var thisModule = angular.module('app', ['ngMaterial', 'pipLayout']);
+    var thisModule = angular.module('appTileGroups', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('AppController', function ($scope) {
+    thisModule.controller('TileGroupsController', function ($scope) {
         $scope.tiles = [
             {name: 'Tile #1', size: 'tile-lg', color: 'bg-red'},
             {name: 'Tile #2', size: 'tile-md', color: 'bg-green'},
