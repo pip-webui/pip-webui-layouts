@@ -8,8 +8,12 @@
 
     var thisModule = angular.module('appMedia', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('MediaController', function ($scope, $rootScope, $pipMedia) {
-        $scope.$pipMedia = $pipMedia;
-        
+    thisModule.controller('MediaController', function ($scope, $rootScope, pipMedia) {
+        $scope.pipMedia = pipMedia;
+
+        $scope.trigRightPanel = function () {
+            $rootScope.rightPanel = !$rootScope.rightPanel;
+        }
+
     });
 })(window.angular);

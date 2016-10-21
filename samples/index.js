@@ -42,6 +42,7 @@
             $scope.languages = ['en', 'ru'];
             $scope.themes = _.keys(_.omit($mdTheming.THEMES, 'default'));
             $rootScope.$theme = localStorageService.get('theme');
+            $rootScope.rightPanel = false;
 
             $scope.selected = {
                 theme: 'blue',
@@ -81,6 +82,10 @@
             $scope.isActiveState = function(state) {
                 return $state.current.name == state;  
             };
+            
+            $scope.lockRightPanel = function () {
+                return $rootScope.rightPanel;
+            }
         }
     );
 

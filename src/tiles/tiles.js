@@ -61,13 +61,14 @@
 
         // Resize every time window is resized
         $scope.$on('pipWindowResized', function () {
+            console.log('resize tiles');
             resize(false);
         });
 
         // Force layout by request
-        $scope.$on('pipResizeLayout', function () {
-            resize(true);
-        });
+        //$scope.$on('pipResizeLayout', function () {
+        //    resize(true);
+        //});
 
         // Resize the element right away
         resize();

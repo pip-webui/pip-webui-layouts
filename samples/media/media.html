@@ -1,3 +1,4 @@
+
 <pip-main>
     <md-toolbar>
         <div class="md-toolbar-tools">
@@ -19,7 +20,10 @@
                         result
                     </th>
                     <th>
-                        Show / hide
+                        Show / hide by media
+                    </th>
+                    <th>
+                        Show / hide by classes
                     </th>
                 </tr>
             </thead>
@@ -27,59 +31,70 @@
                 <tr>
                     <td style="font-weight: 500">xs</td>
                     <td>(max-width: 599px)</td>
-                    <td>{{ $pipMedia('xs') }}</td>
-                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('xs')"></td>
+                    <td>{{ pipMedia('xs') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('xs')"></td>
+                    <td style="background-color: rgb(63, 81, 181)" class="pip-show-xs"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: 500">gt-xs</td>
                     <td>(min-width: 600px)</td>
-                    <td>{{ $pipMedia('gt-xs') }}</td>
-                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('gt-xs')"></td>
+                    <td>{{ pipMedia('gt-xs') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('gt-xs')"></td>
+                    <td style="background-color: rgb(63, 81, 181)" class="pip-show-gt-xs"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: 500">sm</td>
                     <td>(min-width: 600px) and (max-width: 959px)</td>
-                    <td>{{ $pipMedia('sm') }}</td>
-                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('sm')"></td>
+                    <td>{{ pipMedia('sm') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('sm')"></td>
+                    <td style="background-color: rgb(63, 81, 181)" class="pip-show-sm"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: 500">gt-sm</td>
                     <td>(min-width: 960px)</td>
-                    <td>{{ $pipMedia('gt-sm') }}</td>
-                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('gt-sm')"></td>
+                    <td>{{ pipMedia('gt-sm') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('gt-sm')"></td>
+                    <td style="background-color: rgb(63, 81, 181)" class="pip-show-gt-sm"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: 500">md</td>
                     <td>(min-width: 960px) and (max-width: 1279px)</td>
-                    <td>{{ $pipMedia('md') }}</td>
-                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('md')"></td>
+                    <td>{{ pipMedia('md') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('md')"></td>
+                    <td style="background-color: rgb(63, 81, 181)" class="pip-show-md"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: 500">gt-md</td>
                     <td>(min-width: 1280px)</td>
-                    <td>{{ $pipMedia('gt-md') }}</td>
-                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('gt-md')"></td>
+                    <td>{{ pipMedia('gt-md') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('gt-md')"></td>
+                    <td style="background-color: rgb(63, 81, 181)" class="pip-show-gt-md"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: 500">lg</td>
                     <td>(min-width: 1280px) and (max-width: 1919px)</td>
-                    <td>{{ $pipMedia('lg') }}</td>
-                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('lg')"></td>
+                    <td>{{ pipMedia('lg') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('lg')"></td>
+                    <td style="background-color: rgb(63, 81, 181)" class="pip-show-lg"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: 500">gt-lg</td>
                     <td>(min-width: 1920px)</td>
-                    <td>{{ $pipMedia('gt-lg') }}</td>
-                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('gt-lg')"></td>
+                    <td>{{ pipMedia('gt-lg') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('gt-lg')"></td>
+                    <td style="background-color: rgb(63, 81, 181)" class="pip-show-gt-lg"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: 500">xl</td>
                     <td>(min-width: 1920px)</td>
-                    <td>{{ $pipMedia('xl') }}</td>
-                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('xl')"></td>
+                    <td >{{ pipMedia('xl') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('xl')"></td>
+                    <td style="background-color: rgb(63, 81, 181)" class="pip-show-xl"></td>
                 </tr>
             </tbody>
         </table>
+
+        <md-button ng-click="trigRightPanel()">Show/hide right panel</md-button>
 
     </pip-main-body>
 </pip-main>
