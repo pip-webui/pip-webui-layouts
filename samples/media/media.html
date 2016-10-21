@@ -1,0 +1,85 @@
+<pip-main>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2><span>Media</span></h2>
+        </div>
+    </md-toolbar>
+
+    <pip-main-body style="padding: 20px">
+        <table style="width: 100%; font-size: 16px">
+            <thead style="text-align: left;">
+                <tr>
+                    <th>
+                        Breakpoint
+                    </th>
+                    <th>
+                        mediaQuery
+                    </th>
+                    <th>
+                        result
+                    </th>
+                    <th>
+                        Show / hide
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight: 500">xs</td>
+                    <td>(max-width: 599px)</td>
+                    <td>{{ $pipMedia('xs') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('xs')"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 500">gt-xs</td>
+                    <td>(min-width: 600px)</td>
+                    <td>{{ $pipMedia('gt-xs') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('gt-xs')"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 500">sm</td>
+                    <td>(min-width: 600px) and (max-width: 959px)</td>
+                    <td>{{ $pipMedia('sm') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('sm')"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 500">gt-sm</td>
+                    <td>(min-width: 960px)</td>
+                    <td>{{ $pipMedia('gt-sm') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('gt-sm')"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 500">md</td>
+                    <td>(min-width: 960px) and (max-width: 1279px)</td>
+                    <td>{{ $pipMedia('md') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('md')"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 500">gt-md</td>
+                    <td>(min-width: 1280px)</td>
+                    <td>{{ $pipMedia('gt-md') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('gt-md')"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 500">lg</td>
+                    <td>(min-width: 1280px) and (max-width: 1919px)</td>
+                    <td>{{ $pipMedia('lg') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('lg')"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 500">gt-lg</td>
+                    <td>(min-width: 1920px)</td>
+                    <td>{{ $pipMedia('gt-lg') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('gt-lg')"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 500">xl</td>
+                    <td>(min-width: 1920px)</td>
+                    <td>{{ $pipMedia('xl') }}</td>
+                    <td style="background-color: rgb(63, 81, 181)" ng-show="$pipMedia('xl')"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </pip-main-body>
+</pip-main>

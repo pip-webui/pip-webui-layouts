@@ -27,18 +27,20 @@
     });
 
     thisModule.controller('pipMainController',
-        function($scope, $element, $rootScope) {
+        function($scope, $element, $rootScope, $pipMedia) {
             var $window = $(window);
 
             // Add CSS class
             $element.addClass('pip-main');
+
+            $pipMedia().addResizeListener($element[0]);
 
             // Handle window resize events
             $window.bind('resize', resize);
 
             // Unbind when scope is removed
             $scope.$on('$destroy', function() {
-                $rootScope.$size = undefined;
+                $pipMedia().removeResizeListener($element[0]);
                 $window.unbind('resize', resize);
             });
 
