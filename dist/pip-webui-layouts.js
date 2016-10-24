@@ -274,32 +274,32 @@
     });
 
     thisModule.controller('pipMainController',
-        ['$scope', '$element', '$rootScope', '$pipMedia', function($scope, $element, $rootScope, $pipMedia) {
+        ['$scope', '$element', '$rootScope', 'pipMedia', function($scope, $element, $rootScope, pipMedia) {
             var $window = $(window);
 
             // Add CSS class
             $element.addClass('pip-main');
 
-            $pipMedia().addResizeListener($element[0]);
+            pipMedia().addResizeListener($element[0], resize);
 
             // Handle window resize events
-            $window.bind('resize', resize);
+            //$window.bind('resize', resize);
 
             // Unbind when scope is removed
             $scope.$on('$destroy', function() {
-                $pipMedia().removeResizeListener($element[0]);
-                $window.unbind('resize', resize);
+                pipMedia().removeResizeListener($element[0]);
+                //$window.unbind('resize', resize);
             });
 
             // Resize window from request
-            $rootScope.$on('pipResizeWindow', function(event) {
-                // Trigger a bit latter t allow full initialization
-                // Do not remove! Otherwise, sizes in layouts calculated incorrectly
-                setTimeout(resize, 0);
-            });
+            //$rootScope.$on('pipResizeWindow', function(event) {
+            //    // Trigger a bit latter t allow full initialization
+            //    // Do not remove! Otherwise, sizes in layouts calculated incorrectly
+            //    setTimeout(resize, 0);
+            //});
 
             // Allow to finish initialization of all controllers
-            setTimeout(resize, 0);
+            //setTimeout(resize, 0);
 
             return;
             
@@ -323,10 +323,10 @@
 
     var thisModule = angular.module('pipLayout.Media', []);
 
-    thisModule.service('$pipMedia',
+    thisModule.service('pipMedia',
         ['$rootScope', '$timeout', function ($rootScope, $timeout) {
 
-            var windowWidth = null,
+            var elementWidth = null,
                 sizes = {
                     'xs': false,
                     'gt-xs': false,
@@ -337,7 +337,9 @@
                     'lg': false,
                     'gt-lg': false,
                     'xl': false
-                };
+                },
+                attachEvent = document.attachEvent,
+                isIE = navigator.userAgent.match(/Trident/);
             
             return function (size) {
                 if (size) {
@@ -350,24 +352,20 @@
                 }
             };
 
-            var attachEvent = document.attachEvent;
-            var isIE = navigator.userAgent.match(/Trident/);
-            console.log(isIE);
-            function requestFrame(fn){
+            function requestFrame(fn) {
                 var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame ||
                     function(fn){ return window.setTimeout(fn, 20); };
 
                 return raf(fn);
             }
 
-            function cancelFrame(){
+            function cancelFrame() {
                 var cancel = window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame ||
                     window.clearTimeout;
                 return function(id){ return cancel(id); };
             }
 
-            function resizeListener(e){
-                
+            function resizeListener(e) {
                 var win = e.target || e.srcElement;
                 if (win.__resizeRAF__) cancelFrame(win.__resizeRAF__);
                 win.__resizeRAF__ = requestFrame(function(){
@@ -378,12 +376,12 @@
                 });
             }
 
-            function objectLoad(e){
+            function objectLoad(e) {
                 this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__;
                 this.contentDocument.defaultView.addEventListener('resize', resizeListener);
             }
 
-            function addResizeListener(element, fn){
+            function addResizeListener(element, fn) {
                 if (!element.__resizeListeners__) {
                     element.__resizeListeners__ = [];
                     if (attachEvent) {
@@ -407,7 +405,7 @@
                 element.__resizeListeners__.push(setSizes);
             }
 
-            function removeResizeListener(element, fn){
+            function removeResizeListener(element, fn) {
                 if (fn) element.__resizeListeners__.splice(element.__resizeListeners__.indexOf(fn), 1);
                 if (!element.__resizeListeners__.length) {
                     if (attachEvent) element.detachEvent('onresize', resizeListener);
@@ -418,17 +416,25 @@
                 }
             }
 
+            function updateClasses() {
+                $.each(sizes, function (name, size) {
+                    $('body')[size ? 'addClass': 'removeClass']('pip-' + name);
+                });
+            }
+
             function setSizes() {
-                windowWidth = window.innerWidth;
-                sizes['xs'] = windowWidth <= 599;
-                sizes['gt-xs'] = windowWidth >= 600;
-                sizes['sm'] = windowWidth >= 600 && windowWidth <= 959;
-                sizes['gt-sm'] = windowWidth >= 960;
-                sizes['md'] = windowWidth >= 960 && windowWidth <= 1279;
-                sizes['gt-md'] = windowWidth >= 1280;
-                sizes['lg'] = windowWidth >= 1280 && windowWidth <= 1919;
-                sizes['gt-lg'] = windowWidth >= 1920;
+                elementWidth = $('.pip-main').innerWidth();
+                sizes['xs'] = elementWidth <= 599;
+                sizes['gt-xs'] = elementWidth >= 600;
+                sizes['sm'] = elementWidth >= 600 && elementWidth <= 959;
+                sizes['gt-sm'] = elementWidth >= 960;
+                sizes['md'] = elementWidth >= 960 && elementWidth <= 1279;
+                sizes['gt-md'] = elementWidth >= 1280;
+                sizes['lg'] = elementWidth >= 1280 && elementWidth <= 1919;
+                sizes['gt-lg'] = elementWidth >= 1920;
                 sizes['xl'] = sizes['gt-lg'];
+
+                updateClasses();
 
                 $timeout(function () {
                     $rootScope.$apply();
@@ -526,13 +532,14 @@
 
         // Resize every time window is resized
         $scope.$on('pipWindowResized', function () {
+            console.log('resize tiles');
             resize(false);
         });
 
         // Force layout by request
-        $scope.$on('pipResizeLayout', function () {
-            resize(true);
-        });
+        //$scope.$on('pipResizeLayout', function () {
+        //    resize(true);
+        //});
 
         // Resize the element right away
         resize();
