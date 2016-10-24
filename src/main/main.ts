@@ -28,7 +28,7 @@
 
     thisModule.controller('pipMainController',
         function($scope, $element, $rootScope, pipMedia) {
-            var $window = $(window);
+            var $window: any = $(window);
 
             // Add CSS class
             $element.addClass('pip-main');

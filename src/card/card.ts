@@ -14,7 +14,7 @@
         return {
            restrict: 'EA',
            //controller: 'pipCardController'
-            link: function($scope, $element, $attrs) {
+            link: function($scope: any, $element, $attrs: any) {
                 var $window = $(window);
 
                 // Add class to the element

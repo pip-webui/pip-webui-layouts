@@ -5,6 +5,8 @@
 
 /* global $, angular, Masonry */
 
+declare var Masonry: any;
+
 (function () {
     'use strict';
 
@@ -16,7 +18,7 @@
            scope: false,
            transclude: true,
            template:
-               function($element, $attrs) {
+               function($element, $attrs: any) {
                    if (convertToBoolean($attrs.pipInfinite)) {
                        return  String()
                        + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
@@ -32,7 +34,7 @@
                            + '</div>';
                    }
                },
-           controller: function($scope) {
+           controller: function($scope: any) {
                 $scope.tilesOptions = {
                     gutter: 8,//16
                     isFitWidth: false,
@@ -44,7 +46,7 @@
         };
     });
 
-    function pipTilesController($scope, $element, $attrs) {
+    function pipTilesController($scope: any, $element, $attrs: any) {
         var
             $window = $(window),
             columnWidth = $attrs.columnWidth ? Math.floor($attrs.columnWidth) : 440,
@@ -71,7 +73,7 @@
         //});
 
         // Resize the element right away
-        resize();
+        resize(true);
 
         return;
 

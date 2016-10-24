@@ -3,7 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-(function (angular, _, $) {
+(function () {
     'use strict';
 
     var thisModule = angular.module('pipLayout.Media', []);
@@ -23,7 +23,7 @@
                     'gt-lg': false,
                     'xl': false
                 },
-                attachEvent = document.attachEvent,
+                attachEvent = (<any>document).attachEvent,
                 isIE = navigator.userAgent.match(/Trident/);
             
             return function (size) {
@@ -38,21 +38,21 @@
             };
 
             function requestFrame(fn) {
-                var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame ||
+                var raf = window.requestAnimationFrame || (<any>window).mozRequestAnimationFrame || window.webkitRequestAnimationFrame ||
                     function(fn){ return window.setTimeout(fn, 20); };
 
                 return raf(fn);
             }
 
             function cancelFrame() {
-                var cancel = window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame ||
+                var cancel = window.cancelAnimationFrame || (<any>window).mozCancelAnimationFrame || window.webkitCancelAnimationFrame ||
                     window.clearTimeout;
                 return function(id){ return cancel(id); };
             }
 
             function resizeListener(e) {
                 var win = e.target || e.srcElement;
-                if (win.__resizeRAF__) cancelFrame(win.__resizeRAF__);
+                if (win.__resizeRAF__) cancelFrame(/*win.__resizeRAF__*/);
                 win.__resizeRAF__ = requestFrame(function(){
                     var trigger = win.__resizeTrigger__;
                     trigger.__resizeListeners__.forEach(function(fn){
@@ -75,7 +75,7 @@
                     }
                     else {
                         if (getComputedStyle(element).position == 'static') element.style.position = 'relative';
-                        var obj = element.__resizeTrigger__ = document.createElement('object');
+                        var obj: any = element.__resizeTrigger__ = document.createElement('object');
                         obj.setAttribute('style', 'display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;');
                         obj.__resizeElement__ = element;
                         obj.onload = objectLoad;
@@ -129,4 +129,4 @@
         }
     );
 
-})(window.angular, window._, window.jQuery);
+})();
