@@ -38,14 +38,14 @@
             };
 
             function requestFrame(fn) {
-                var raf = window.requestAnimationFrame || (<any>window).mozRequestAnimationFrame || window.webkitRequestAnimationFrame ||
+                var raf = window.requestAnimationFrame || (<any>window).mozRequestAnimationFrame || (<any>window).webkitRequestAnimationFrame ||
                     function(fn){ return window.setTimeout(fn, 20); };
 
                 return raf(fn);
             }
 
             function cancelFrame() {
-                var cancel = window.cancelAnimationFrame || (<any>window).mozCancelAnimationFrame || window.webkitCancelAnimationFrame ||
+                var cancel = window.cancelAnimationFrame || (<any>window).mozCancelAnimationFrame || (<any>window).webkitCancelAnimationFrame ||
                     window.clearTimeout;
                 return function(id){ return cancel(id); };
             }

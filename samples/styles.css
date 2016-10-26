@@ -6,16 +6,6 @@
 .bg-grey {  background-color: lightgrey !important;  }
 .bg-white {  background-color: white !important;  }
 
-.tile_width {
-    width: 430px !important;
-}
-
-@media (max-width: 768px) {
-    .tile_width {
-        width: 100% !important;
-    }
-}
-
 h2 {  margin: 0;  }
 
 .tile-sm {

@@ -25,21 +25,9 @@ pip-document {
     width: 1100px;
     max-width: 100%;
 
-    @media( max-width: 1200px){
-        width: 100%;
-        height: 100%;
-        left: 0px;
-    }
-
     &.pip-document-small {
         left: ~"calc(50% - 450px)";
         width: 900px;
-
-        @media(max-width: 1200px) {
-            width: 100%;
-            height: 100%;
-            left: 0px;
-        }
     }
 }
 
@@ -62,20 +50,26 @@ pip-document {
   box-shadow: @box-shadow;
 }
 
-// On tablet
-@media (max-width: 1200px) {
-    .pip-document {
+
+.pip-md, .pip-sm, .pip-xs {
+    .pip-document:not(.pip-document-small) {
         .position-absolute(0, 0, 0, 0);
         margin: 0px;
         border: none;
         border-radius: 0;
+        width: 100%;
+        height: 100%;
     }
 }
 
-// On phone
-@media (max-width: 768px) {
-    .pip-document {
-        // To show up menu
-        //!!z-index: 10;
+.pip-sm, .pip-xs {
+    .pip-document.pip-document-small {
+        .position-absolute(0, 0, 0, 0);
+        margin: 0px;
+        border: none;
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        left: 0px;
     }
 }

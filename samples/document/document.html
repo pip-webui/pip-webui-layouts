@@ -11,13 +11,14 @@
             <md-toolbar>
             </md-toolbar>
 
-            <pip-document width="600" xheight="600">
+            <pip-document width="600" xheight="600" ng-class="{'pip-document-small': small}">
 
                 <div class="pip-header">
                     <h3>This is a Header</h3>
                 </div>
 
                 <div class="pip-body">
+                    <md-switch ng-model="small">Small document layout (900px width)</md-switch>
                     <div class="pip-content">
                         <div class="bg-yellow" style="height:100px"></div>
                         <div class="bg-blue" style="height:100px"></div>

@@ -2,7 +2,7 @@
 // @copyright Digital Living Software Corp. 2014-2015
 
 /*
- * @example - ����������� ��������
+ * @example
  *  <pip-tiles column-width="440">
  *      <div ng-repeat="item in itemCollection"
  *           class="masonry-brick pip-tile  w440-flex pointer">
@@ -14,7 +14,7 @@
 .pip-tiles-fixed {
 
   position: fixed; // todo
-  max-height: ~"calc(100% - 64px - 48px)"; // 64px - toolbar 48px - tabs - Kate   // todo
+  max-height: ~"calc(100% - 64px - 48px)";
 }
 
 .pip-tiles {
@@ -22,7 +22,7 @@
   max-height: 100%;
   box-sizing: border-box;
   max-height: inherit;
-  min-height: ~"calc(100% - 64px - 48px)"; // todo
+  min-height: ~"calc(100% - 64px - 48px)";
 
   &.pip-no-tabs {
     max-height: ~"calc(100% - 64px)";
@@ -31,8 +31,8 @@
 
   @media (max-width: 766px) {
 
-    max-height: ~"calc(100% - 48px - 48px)";//48px - toolbar 48px - dropdown - Kate   // todo
-    min-height: ~"calc(100% - 48px - 48px)";// todo
+    max-height: ~"calc(100% - 48px - 48px)";
+    min-height: ~"calc(100% - 48px - 48px)";
     &.pip-no-tabs {
       max-height: ~"calc(100% - 48px)";
       min-height: ~"calc(100% - 48px)";
@@ -58,17 +58,11 @@
     overflow-x: hidden;
   }
 
-  @media (min-width: 1400px) {
-    .pip-tiles-container {
-      width: 1350px !important;
-      max-width: 100%;
-    }
-  }
-
   .pip-tile {
     box-shadow: @box-shadow;
     .border-radius();
     .shadow-card();
+    width: 430px;
     padding: 1px;
     min-height: 100px; // Use variable
     margin-bottom: 7px; //@tile-desktop-padding; // Replace with variable
@@ -77,6 +71,13 @@
       background-color: @color-content;
     }
 
+  }
+
+  .pip-mobile {
+    .pip-tile {
+      width: ~"calc(100% - 16px)";
+      margin-left: 8px;
+    }
   }
 }
 
@@ -105,8 +106,7 @@
   }
 }
 
-// On tablet and desktop
-@media (min-width: 766px) {
+.pip-xs, .pip-sm, .pip-md {
   .pip-tiles {
     .pip-tile {
       min-width: 180px;
@@ -114,15 +114,13 @@
   }
 }
 
-// On phone
-@media (max-width: 766px) {
+
+.pip-xs, .pip-sm {
   .pip-tiles {
-    //padding: 16px 16px 8px 16px;
     padding: 8px 0px 0px 0px;
     overflow-x: hidden !important;
 
     .pip-tile {
-      width: 100%;
       margin-bottom: 8px;
     }
   }

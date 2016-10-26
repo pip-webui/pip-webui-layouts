@@ -48,7 +48,6 @@ declare var Masonry: any;
 
     function pipTilesController($scope: any, $element, $attrs: any) {
         var
-            $window = $(window),
             columnWidth = $attrs.columnWidth ? Math.floor($attrs.columnWidth) : 440,
             container = $element.children('.pip-tiles-container'),
             prevContainerWidth = null,
@@ -63,26 +62,22 @@ declare var Masonry: any;
 
         // Resize every time window is resized
         $scope.$on('pipWindowResized', function () {
-            console.log('resize tiles');
             resize(false);
         });
-
-        // Force layout by request
-        //$scope.$on('pipResizeLayout', function () {
-        //    resize(true);
-        //});
 
         // Resize the element right away
         resize(true);
 
         return;
 
-        //--------------------
+        //---------------------
 
         function resize(force) {
             var
-                width = $window.width(),
+                width = $('.pip-main').width(),
                 containerWidth;
+            
+            console.log('width', width);
 
             if (width > 767) {
                 width = width - 24 * 2;
@@ -102,15 +97,17 @@ declare var Masonry: any;
                     sizer.css('width', columnWidth + 'px');
                 }
 
-                // +1 to avoid precision related error
-                container.css('width', (containerWidth + 1) + 'px');
+                // +10 to avoid precision related error
+                container.css('width', (containerWidth + 10) + 'px');
+                container.removeClass('pip-mobile');
             } else {
                 width = width - 16 * 2;
                 containerWidth = width;
 
                 sizer.css('width', containerWidth + 'px');
-                // +1 to avoid precision related error
-                container.css('width', (containerWidth + 1) + 'px');
+                // +10 to avoid precision related error
+                container.css('width', (containerWidth + 10) + 'px');
+                container.addClass('pip-mobile');
             }
 
             // Manually call layout on tile container

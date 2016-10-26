@@ -15,8 +15,6 @@
            restrict: 'EA',
            //controller: 'pipCardController'
             link: function($scope: any, $element, $attrs: any) {
-                var $window = $(window);
-
                 // Add class to the element
                 $element.addClass('pip-card');
 
@@ -37,7 +35,7 @@
                     var
                         $mainBody = $('.pip-main-body'),
                         cardContainer = $('.pip-card-container'),
-                        windowWidth = $window.width(),
+                        windowWidth = $('pip-main').width(),
                         maxWidth = $mainBody.width(),
                         maxHeight = $mainBody.height(),
                         minWidth = $attrs.minWidth ? Math.floor($attrs.minWidth) : null,
@@ -112,7 +110,7 @@
 
                     // Notify child controls that layout was resized
                     $scope.$broadcast('pipLayoutResized');
-                };
+                }
             }
         }
     });
