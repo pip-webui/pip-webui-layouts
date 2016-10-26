@@ -13,23 +13,11 @@
         </md-tabs>
     </md-toolbar>
     <pip-main-body>
-        <pip-simple>
+        <pip-simple style="background-color: inherit">
 
             <div class="bg-red fg-white" style="padding: 16px">Group #1</div>
 
             <pip-tiles column-width="440">
-                <div class="masonry-brick pip-tile bg-grey tile_width">
-                    <h3 class="tile-sm">This is a special tile</h3>
-                </div>
-
-                <div class="masonry-brick pip-tile {{tile.color}} tile_width" ng-repeat="tile in tiles">
-                    <h3 class="{{tile.size}}">{{tile.name}}</h3>
-                </div>
-            </pip-tiles>
-
-            <div class="bg-green fg-white" style="padding: 16px;">Group #2 with small tiles</div>
-
-            <pip-tiles column-width="180">
                 <div class="masonry-brick pip-tile bg-grey">
                     <h3 class="tile-sm">This is a special tile</h3>
                 </div>
@@ -39,14 +27,26 @@
                 </div>
             </pip-tiles>
 
-            <div class="bg-yellow" style="padding: 16px;">Group #3</div>
+            <div class="bg-green fg-white" style="padding: 16px;">Group #2 with small tiles</div>
 
-            <pip-tiles column-width="440">
-                <div class="masonry-brick pip-tile bg-grey tile_width">
+            <pip-tiles column-width="180">
+                <div class="masonry-brick pip-tile bg-grey small-tile">
                     <h3 class="tile-sm">This is a special tile</h3>
                 </div>
 
-                <div class="masonry-brick pip-tile {{tile.color}} tile_width" ng-repeat="tile in tiles">
+                <div class="masonry-brick pip-tile {{tile.color}} small-tile" ng-repeat="tile in tiles">
+                    <h3 class="{{tile.size}}">{{tile.name}}</h3>
+                </div>
+            </pip-tiles>
+
+            <div class="bg-yellow" style="padding: 16px;">Group #3</div>
+
+            <pip-tiles column-width="440">
+                <div class="masonry-brick pip-tile bg-grey ">
+                    <h3 class="tile-sm">This is a special tile</h3>
+                </div>
+
+                <div class="masonry-brick pip-tile {{tile.color}}" ng-repeat="tile in tiles">
                     <h3 class="{{tile.size}}">{{tile.name}}</h3>
                 </div>
             </pip-tiles>

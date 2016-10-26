@@ -744,23 +744,9 @@ pip-document {
   width: 1100px;
   max-width: 100%;
 }
-@media (max-width: 1200px) {
-  pip-document {
-    width: 100%;
-    height: 100%;
-    left: 0px;
-  }
-}
 pip-document.pip-document-small {
   left: calc(50% - 450px);
   width: 900px;
-}
-@media (max-width: 1200px) {
-  pip-document.pip-document-small {
-    width: 100%;
-    height: 100%;
-    left: 0px;
-  }
 }
 .pip-document-container {
   /*min-height: 100%;*/
@@ -801,17 +787,33 @@ pip-document.pip-document-small {
   height: 95px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
-@media (max-width: 1200px) {
-  .pip-document {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0px;
-    border: none;
-    border-radius: 0;
-  }
+.pip-md .pip-document:not(.pip-document-small),
+.pip-sm .pip-document:not(.pip-document-small),
+.pip-xs .pip-document:not(.pip-document-small) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0px;
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+}
+.pip-sm .pip-document.pip-document-small,
+.pip-xs .pip-document.pip-document-small {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0px;
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  left: 0px;
 }
 /*
  * <md-dialog class="pip-dialog" width="600">
@@ -846,9 +848,9 @@ pip-document.pip-document-small {
   font: normal 400 14px Roboto, 'Helvetica Neue', sans-serif;
   background-color: #fafafa !important;
 }
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .pip-dialog {
-    min-width: 300px;
+    min-width: calc(100% - 32px);
   }
 }
 .pip-dialog .pip-header .pip-dialog-close {
@@ -868,7 +870,7 @@ pip-document.pip-document-small {
   font-size: 24px;
 }
 /*
- * @example - ����������� ��������
+ * @example
  *  <pip-tiles column-width="440">
  *      <div ng-repeat="item in itemCollection"
  *           class="masonry-brick pip-tile  w440-flex pointer">
@@ -921,12 +923,6 @@ pip-document.pip-document-small {
   max-width: 100%;
   overflow-x: hidden;
 }
-@media (min-width: 1400px) {
-  .pip-tiles .pip-tiles-container {
-    width: 1350px !important;
-    max-width: 100%;
-  }
-}
 .pip-tiles .pip-tile {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   -webkit-border-radius: 2px;
@@ -944,12 +940,18 @@ pip-document.pip-document-small {
   background: -ms-linear-gradient(top, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
   background: linear-gradient(to bottom, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.26) !important;
+  width: 430px;
   padding: 1px;
+  margin-left: 2px;
   min-height: 100px;
   margin-bottom: 7px;
 }
 .pip-tiles .pip-tile .pip-tile-body {
   background-color: #fafafa;
+}
+.pip-tiles .pip-mobile .pip-tile {
+  width: calc(100% - 16px);
+  margin-left: 8px;
 }
 .pip-tile-body .pip-submenu-details-button > div pip-location {
   max-width: calc(100% - 56px) !important;
@@ -967,20 +969,19 @@ pip-document.pip-document-small {
 .pip-simple .pip-tiles .pip-tiles-container {
   margin: auto;
 }
-@media (min-width: 766px) {
-  .pip-tiles .pip-tile {
-    min-width: 180px;
-  }
+.pip-xs .pip-tiles .pip-tile,
+.pip-sm .pip-tiles .pip-tile,
+.pip-md .pip-tiles .pip-tile {
+  min-width: 180px;
 }
-@media (max-width: 766px) {
-  .pip-tiles {
-    padding: 8px 0px 0px 0px;
-    overflow-x: hidden !important;
-  }
-  .pip-tiles .pip-tile {
-    width: 100%;
-    margin-bottom: 8px;
-  }
+.pip-xs .pip-tiles,
+.pip-sm .pip-tiles {
+  padding: 8px 0px 0px 0px;
+  overflow-x: hidden !important;
+}
+.pip-xs .pip-tiles .pip-tile,
+.pip-sm .pip-tiles .pip-tile {
+  margin-bottom: 8px;
 }
 .pip-xs .pip-hide-xs {
   display: none;

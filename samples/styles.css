@@ -8,6 +8,10 @@
 
 h2 {  margin: 0;  }
 
+.small-tile {
+    width: 170px !important;
+}
+
 .tile-sm {
     margin: 8px;
     height: 200px;

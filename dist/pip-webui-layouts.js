@@ -24,7 +24,6 @@
             restrict: 'EA',
             //controller: 'pipCardController'
             link: function ($scope, $element, $attrs) {
-                var $window = $(window);
                 // Add class to the element
                 $element.addClass('pip-card');
                 // Resize every time window is resized
@@ -36,7 +35,7 @@
                 return;
                 //---------------
                 function resize() {
-                    var $mainBody = $('.pip-main-body'), cardContainer = $('.pip-card-container'), windowWidth = $window.width(), maxWidth = $mainBody.width(), maxHeight = $mainBody.height(), minWidth = $attrs.minWidth ? Math.floor($attrs.minWidth) : null, minHeight = $attrs.minHeight ? Math.floor($attrs.minHeight) : null, width = $attrs.width ? Math.floor($attrs.width) : null, height = $attrs.height ? Math.floor($attrs.height) : null, left, top;
+                    var $mainBody = $('.pip-main-body'), cardContainer = $('.pip-card-container'), windowWidth = $('pip-main').width(), maxWidth = $mainBody.width(), maxHeight = $mainBody.height(), minWidth = $attrs.minWidth ? Math.floor($attrs.minWidth) : null, minHeight = $attrs.minHeight ? Math.floor($attrs.minHeight) : null, width = $attrs.width ? Math.floor($attrs.width) : null, height = $attrs.height ? Math.floor($attrs.height) : null, left, top;
                     // Full-screen on phone
                     if (windowWidth <= 768) {
                         minWidth = null;
@@ -92,7 +91,6 @@
                     // Notify child controls that layout was resized
                     $scope.$broadcast('pipLayoutResized');
                 }
-                ;
             }
         };
     });
@@ -108,97 +106,16 @@
     var thisModule = angular.module('pipLayout.Dialog', []);
     thisModule.directive('pipDialog', function () {
         return {
-            restrict: 'EA',
+            restrict: 'EAC',
             controller: 'pipDialogController'
         };
     });
-    thisModule.controller('pipDialogController', ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
-        var $window = $(window);
+    thisModule.controller('pipDialogController', ['$element', '$attrs', function ($element, $attrs) {
         // Add class to the element
         $element.addClass('pip-dialog');
-        // Resize every time window is resized
-        $scope.$on('pipWindowResized', resize);
-        $scope.$on('pipResizeLayout', resize);
-        // Resize right away to avoid flicking
-        resize();
-        // Resize the element right away
-        //setTimeout(resize, 0);
-        $window.trigger('resize');
+        // Set width
+        $element.css('width', $attrs.width);
         return;
-        //-----------------------
-        function resize() {
-            var maxWidth = $window.width(), maxHeight = $window.height(), minWidth = $attrs.minWidth ? Math.floor($attrs.minWidth) : null, minHeight = $attrs.minHeight ? Math.floor($attrs.minHeight) : null, width = $attrs.width ? Math.floor($attrs.width) : null, height = $attrs.height ? Math.floor($attrs.height) : null;
-            // Set margin and maximum dimensions
-            var space = maxWidth > 1200 ? 24 : 16;
-            maxWidth -= space * 2;
-            maxHeight -= space * 2;
-            // Set minimum dimensions
-            minWidth = minWidth && minWidth < maxWidth ? minWidth : null;
-            minHeight = minHeight && minHeight < maxHeight ? minHeight : null;
-            // Set regular dimensions
-            width = width ? Math.min(width, maxWidth) : null;
-            height = height ? Math.min(height, maxHeight) : null;
-            // Set dimensions
-            $element.css('max-width', maxWidth ? maxWidth + 'px' : '');
-            $element.css('max-height', maxHeight ? maxHeight + 'px' : '');
-            $element.css('min-width', minWidth ? minWidth + 'px' : '');
-            $element.css('min-height', minHeight ? minHeight + 'px' : '');
-            $element.css('width', width ? width + 'px' : '');
-            $element.css('height', height ? height + 'px' : '');
-            // Notify child controls that layout was resized
-            $scope.$broadcast('pipLayoutResized');
-        }
-        ;
-    }]);
-})();
-
-/**
- * @file Top-level application container
- * @copyright Digital Living Software Corp. 2014-2015
- */
-/* global angular */
-(function () {
-    'use strict';
-    var thisModule = angular.module('pipLayout.Main', []);
-    thisModule.directive('pipMain', function () {
-        return {
-            restrict: 'EA',
-            controller: 'pipMainController'
-        };
-    });
-    thisModule.directive('pipMainBody', function () {
-        return {
-            restrict: 'EA',
-            link: function ($scope, $element) {
-                $element.addClass('pip-main-body');
-            }
-        };
-    });
-    thisModule.controller('pipMainController', ['$scope', '$element', '$rootScope', 'pipMedia', function ($scope, $element, $rootScope, pipMedia) {
-        var $window = $(window);
-        // Add CSS class
-        $element.addClass('pip-main');
-        pipMedia().addResizeListener($element[0], resize);
-        // Handle window resize events
-        //$window.bind('resize', resize);
-        // Unbind when scope is removed
-        $scope.$on('$destroy', function () {
-            pipMedia().removeResizeListener($element[0]);
-            //$window.unbind('resize', resize);
-        });
-        // Resize window from request
-        //$rootScope.$on('pipResizeWindow', function(event) {
-        //    // Trigger a bit latter t allow full initialization
-        //    // Do not remove! Otherwise, sizes in layouts calculated incorrectly
-        //    setTimeout(resize, 0);
-        //});
-        // Allow to finish initialization of all controllers
-        //setTimeout(resize, 0);
-        return;
-        //---------------
-        function resize() {
-            $rootScope.$broadcast('pipWindowResized');
-        }
     }]);
 })();
 
@@ -341,6 +258,56 @@
 })();
 
 /**
+ * @file Top-level application container
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
+/* global angular */
+(function () {
+    'use strict';
+    var thisModule = angular.module('pipLayout.Main', []);
+    thisModule.directive('pipMain', function () {
+        return {
+            restrict: 'EA',
+            controller: 'pipMainController'
+        };
+    });
+    thisModule.directive('pipMainBody', function () {
+        return {
+            restrict: 'EA',
+            link: function ($scope, $element) {
+                $element.addClass('pip-main-body');
+            }
+        };
+    });
+    thisModule.controller('pipMainController', ['$scope', '$element', '$rootScope', 'pipMedia', function ($scope, $element, $rootScope, pipMedia) {
+        var $window = $(window);
+        // Add CSS class
+        $element.addClass('pip-main');
+        pipMedia().addResizeListener($element[0], resize);
+        // Handle window resize events
+        //$window.bind('resize', resize);
+        // Unbind when scope is removed
+        $scope.$on('$destroy', function () {
+            pipMedia().removeResizeListener($element[0]);
+            //$window.unbind('resize', resize);
+        });
+        // Resize window from request
+        //$rootScope.$on('pipResizeWindow', function(event) {
+        //    // Trigger a bit latter t allow full initialization
+        //    // Do not remove! Otherwise, sizes in layouts calculated incorrectly
+        //    setTimeout(resize, 0);
+        //});
+        // Allow to finish initialization of all controllers
+        //setTimeout(resize, 0);
+        return;
+        //---------------
+        function resize() {
+            $rootScope.$broadcast('pipWindowResized');
+        }
+    }]);
+})();
+
+/**
  * @file Simple layout
  * @copyright Digital Living Software Corp. 2014-2015
  */
@@ -399,7 +366,7 @@
         };
     });
     function pipTilesController($scope, $element, $attrs) {
-        var $window = $(window), columnWidth = $attrs.columnWidth ? Math.floor($attrs.columnWidth) : 440, container = $element.children('.pip-tiles-container'), prevContainerWidth = null, masonry = Masonry.data(container[0]);
+        var columnWidth = $attrs.columnWidth ? Math.floor($attrs.columnWidth) : 440, container = $element.children('.pip-tiles-container'), prevContainerWidth = null, masonry = Masonry.data(container[0]);
         // Add class to the element
         $element.addClass('pip-tiles');
         // Insert sizer
@@ -407,19 +374,15 @@
         sizer.appendTo(container);
         // Resize every time window is resized
         $scope.$on('pipWindowResized', function () {
-            console.log('resize tiles');
             resize(false);
         });
-        // Force layout by request
-        //$scope.$on('pipResizeLayout', function () {
-        //    resize(true);
-        //});
         // Resize the element right away
         resize(true);
         return;
-        //--------------------
+        //---------------------
         function resize(force) {
-            var width = $window.width(), containerWidth;
+            var width = $('.pip-main').width(), containerWidth;
+            console.log('width', width);
             if (width > 767) {
                 width = width - 24 * 2;
                 var columns = Math.floor(width / columnWidth);
@@ -435,15 +398,17 @@
                 else {
                     sizer.css('width', columnWidth + 'px');
                 }
-                // +1 to avoid precision related error
-                container.css('width', (containerWidth + 1) + 'px');
+                // +10 to avoid precision related error
+                container.css('width', (containerWidth + 10) + 'px');
+                container.removeClass('pip-mobile');
             }
             else {
                 width = width - 16 * 2;
                 containerWidth = width;
                 sizer.css('width', containerWidth + 'px');
-                // +1 to avoid precision related error
-                container.css('width', (containerWidth + 1) + 'px');
+                // +10 to avoid precision related error
+                container.css('width', (containerWidth + 10) + 'px');
+                container.addClass('pip-mobile');
             }
             // Manually call layout on tile container
             if (prevContainerWidth != containerWidth || force) {
