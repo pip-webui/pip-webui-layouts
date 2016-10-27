@@ -109,13 +109,13 @@
 
             function setSizes() {
                 elementWidth = $('.pip-main').innerWidth();
-                sizes['xs'] = elementWidth <= 599;
-                sizes['gt-xs'] = elementWidth >= 600;
-                sizes['sm'] = elementWidth >= 600 && elementWidth <= 959;
-                sizes['gt-sm'] = elementWidth >= 960;
-                sizes['md'] = elementWidth >= 960 && elementWidth <= 1279;
-                sizes['gt-md'] = elementWidth >= 1280;
-                sizes['lg'] = elementWidth >= 1280 && elementWidth <= 1919;
+                sizes['xs'] = elementWidth <= 768;
+                sizes['gt-xs'] = elementWidth >= 769;
+                sizes['sm'] = elementWidth >= 769 && elementWidth <= 1199;
+                sizes['gt-sm'] = elementWidth >= 1200;
+                sizes['md'] = elementWidth >= 1200 && elementWidth <= 1399;
+                sizes['gt-md'] = elementWidth >= 1400;
+                sizes['lg'] = elementWidth >= 1400 && elementWidth <= 1919;
                 sizes['gt-lg'] = elementWidth >= 1920;
                 sizes['xl'] = sizes['gt-lg'];
 

@@ -744,9 +744,77 @@ pip-document {
   width: 1100px;
   max-width: 100%;
 }
+pip-document .pip-content-container {
+  position: absolute !important;
+  left: 300px;
+  height: 100%;
+  width: calc(100% - 300px);
+}
 pip-document.pip-document-small {
   left: calc(50% - 450px);
   width: 900px;
+}
+pip-document.pip-single-content .pip-menu {
+  opacity: 0;
+  z-index: -100;
+}
+pip-document.pip-single-content .pip-content-container {
+  width: 100%;
+  left: 0;
+}
+pip-document.pip-multi-document-stretched {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+pip-document.pip-multi-document-stretched .pip-menu-container {
+  background-color: #eeeeee !important;
+  background: none !important;
+}
+pip-document.pip-multi-document-stretched .pip-menu {
+  transition: all 0.5s ease;
+  border-right: none;
+  width: 388px;
+  opacity: 1;
+}
+pip-document.pip-multi-document-stretched .pip-content-container {
+  transition: all 0.5s ease;
+  position: absolute;
+  left: 388px;
+  height: calc(100% - 16px);
+  width: calc(100% - 404px);
+  max-width: 800px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: #fafafa !important;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0NWQ3ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMTM1NWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+) !important;
+  background: -moz-linear-gradient(top, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(18%, #fafafa), color-stop(19%, #fafafa), color-stop(81%, #fafafa), color-stop(82%, #fafafa), color-stop(100%, #f2f1f1)) !important;
+  background: -webkit-linear-gradient(top, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
+  background: -o-linear-gradient(top, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
+  background: -ms-linear-gradient(top, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
+  background: linear-gradient(to bottom, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.26) !important;
+}
+pip-document.pip-multi-document-stretched.pip-single-content .pip-menu {
+  opacity: 0;
+  z-index: -100;
+}
+pip-document.pip-multi-document-stretched.pip-single-content .pip-content-container {
+  width: 800px;
+  left: calc(50% - 400px);
 }
 .pip-document-container {
   /*min-height: 100%;*/
@@ -787,9 +855,8 @@ pip-document.pip-document-small {
   height: 95px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
-.pip-md .pip-document:not(.pip-document-small),
-.pip-sm .pip-document:not(.pip-document-small),
-.pip-xs .pip-document:not(.pip-document-small) {
+.pip-xs .pip-document,
+.pip-sm .pip-document {
   position: absolute;
   top: 0;
   left: 0;
@@ -800,20 +867,6 @@ pip-document.pip-document-small {
   border-radius: 0;
   width: 100%;
   height: 100%;
-}
-.pip-sm .pip-document.pip-document-small,
-.pip-xs .pip-document.pip-document-small {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 0px;
-  border: none;
-  border-radius: 0;
-  width: 100%;
-  height: 100%;
-  left: 0px;
 }
 /*
  * <md-dialog class="pip-dialog" width="600">
@@ -921,7 +974,7 @@ pip-document.pip-document-small {
 .pip-tiles .pip-tiles-container {
   margin: 0 auto;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .pip-tiles .pip-tile {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -940,7 +993,7 @@ pip-document.pip-document-small {
   background: -ms-linear-gradient(top, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
   background: linear-gradient(to bottom, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.26) !important;
-  width: 430px;
+  width: 438px;
   padding: 1px;
   margin-left: 2px;
   min-height: 100px;
@@ -969,9 +1022,7 @@ pip-document.pip-document-small {
 .pip-simple .pip-tiles .pip-tiles-container {
   margin: auto;
 }
-.pip-xs .pip-tiles .pip-tile,
-.pip-sm .pip-tiles .pip-tile,
-.pip-md .pip-tiles .pip-tile {
+.pip-xs .pip-tiles .pip-tile {
   min-width: 180px;
 }
 .pip-xs .pip-tiles,
