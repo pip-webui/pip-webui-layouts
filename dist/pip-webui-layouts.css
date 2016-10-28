@@ -581,6 +581,7 @@ body.pip-windows .pip-scroll::-webkit-scrollbar-thumb {
   padding: 0px;
   margin: 0px;
   background-color: #fafafa;
+  overflow-x: hidden !important;
 }
 /*
  * @example - Card layout
@@ -762,7 +763,7 @@ pip-document.pip-single-content .pip-content-container {
   width: 100%;
   left: 0;
 }
-pip-document.pip-multi-document-stretched {
+pip-document.pip-document-list {
   position: absolute;
   top: 0;
   left: 0;
@@ -774,17 +775,17 @@ pip-document.pip-multi-document-stretched {
   width: 100% !important;
   height: 100% !important;
 }
-pip-document.pip-multi-document-stretched .pip-menu-container {
+pip-document.pip-document-list .pip-menu-container {
   background-color: #eeeeee !important;
   background: none !important;
 }
-pip-document.pip-multi-document-stretched .pip-menu {
+pip-document.pip-document-list .pip-menu {
   transition: all 0.5s ease;
   border-right: none;
   width: calc(100% - 816px);
   opacity: 1;
 }
-pip-document.pip-multi-document-stretched .pip-content-container {
+pip-document.pip-document-list .pip-content-container {
   transition: all 0.5s ease;
   position: absolute;
   left: auto;
@@ -808,11 +809,11 @@ pip-document.pip-multi-document-stretched .pip-content-container {
   background: linear-gradient(to bottom, #fefefe 0, #fafafa 18%, #fafafa 19%, #fafafa 81%, #fafafa 82%, #f2f1f1 100%) !important;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.26) !important;
 }
-pip-document.pip-multi-document-stretched.pip-single-content .pip-menu {
+pip-document.pip-document-list.pip-single-content .pip-menu {
   opacity: 0;
   z-index: -100;
 }
-pip-document.pip-multi-document-stretched.pip-single-content .pip-content-container {
+pip-document.pip-document-list.pip-single-content .pip-content-container {
   width: 800px;
   right: calc(50% - 400px);
 }
@@ -883,49 +884,49 @@ pip-document.pip-multi-document-stretched.pip-single-content .pip-content-contai
   opacity: 1;
   z-index: 100;
 }
-.pip-xs .pip-document.pip-single-content.pip-multi-document-stretched .pip-menu {
+.pip-xs .pip-document.pip-single-content.pip-document-list .pip-menu {
   z-index: -100;
 }
 .pip-xs .pip-document.pip-single-content .pip-content-container {
   left: 0;
 }
-.pip-sm .pip-document.pip-multi-document-stretched .pip-menu {
+.pip-sm .pip-document.pip-document-list .pip-menu {
   width: 320px;
 }
-.pip-sm .pip-document.pip-multi-document-stretched .pip-content-container {
+.pip-sm .pip-document.pip-document-list .pip-content-container {
   left: 320px;
   width: calc(100% - 336px);
 }
-.pip-sm .pip-document.pip-multi-document-stretched.pip-single-content .pip-content-container {
+.pip-sm .pip-document.pip-document-list.pip-single-content .pip-content-container {
   width: 800px;
   left: calc(50% - 400px);
 }
 @media (max-width: 832px) {
-  .pip-sm .pip-document.pip-multi-document-stretched.pip-single-content .pip-content-container {
+  .pip-sm .pip-document.pip-document-list.pip-single-content .pip-content-container {
     left: 0;
     width: 100%;
     height: 100%;
   }
 }
-.pip-gt-md .pip-document.pip-multi-document-stretched .pip-menu {
+.pip-gt-md .pip-document.pip-document-list .pip-menu {
   width: calc(100% - 1116px);
 }
-.pip-gt-md .pip-document.pip-multi-document-stretched .pip-content-container {
+.pip-gt-md .pip-document.pip-document-list .pip-content-container {
   left: calc(100% - 1116px);
   width: 1100px;
 }
-.pip-gt-md .pip-document.pip-multi-document-stretched.pip-single-content .pip-content-container {
+.pip-gt-md .pip-document.pip-document-list.pip-single-content .pip-content-container {
   left: calc(50% - 550px);
 }
 @media (min-width: 1616px) {
-  .pip-gt-md .pip-document.pip-multi-document-stretched .pip-menu {
+  .pip-gt-md .pip-document.pip-document-list .pip-menu {
     width: 500px;
   }
-  .pip-gt-md .pip-document.pip-multi-document-stretched .pip-content-container {
+  .pip-gt-md .pip-document.pip-document-list .pip-content-container {
     left: 500px;
     width: 1100px;
   }
-  .pip-gt-md .pip-document.pip-multi-document-stretched.pip-single-content .pip-content-container {
+  .pip-gt-md .pip-document.pip-document-list.pip-single-content .pip-content-container {
     left: calc(50% - 550px);
   }
 }
@@ -1064,7 +1065,7 @@ pip-document.pip-multi-document-stretched.pip-single-content .pip-content-contai
   background-color: #fafafa;
 }
 .pip-tiles .pip-mobile .pip-tile {
-  width: calc(100% - 16px);
+  width: calc(100% - 16px) !important;
   margin-left: 8px;
 }
 .pip-tile-body .pip-submenu-details-button > div pip-location {
