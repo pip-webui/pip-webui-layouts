@@ -5,15 +5,13 @@
                        ng-click="backToList()" ng-show="isMobileDetails()">
                 <md-icon md-svg-icon="icons:arrow-left"></md-icon>
             </md-button>
-            <h2><span>Multi Document Layout</span></h2>
+            <h2><span>New Multi Document Layout</span></h2>
         </div>
     </md-toolbar>
 
     <pip-main-body>
-        <md-toolbar class="pip-appbar-ext" ng-show="!stretch">
-        </md-toolbar>
 
-        <pip-document class="pip-no-border"
+        <pip-document class="pip-no-border pip-multi-document-stretched"
                       ng-class="{'pip-single-content': tabIndex === 0 || isMobileDetails()}">
 
             <md-toolbar class="pip-nav">

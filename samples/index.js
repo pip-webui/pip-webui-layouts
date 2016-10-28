@@ -8,7 +8,8 @@
         { title: 'Dialogs', state: 'dialogs', url: '/dialogs', controller: 'DialogMainController', templateUrl: 'dialog/dialog.html' },
         { title: 'Simple', state: 'simple', url: '/simple', controller: 'SimpleController', templateUrl: 'simple/simple.html' },
         { title: 'Document', state: 'document', url: '/document', controller: 'DocumentController', templateUrl: 'document/document.html' },
-        { title: 'Multi Document', state: 'multi_document', url: '/multi_document', controller: 'MultiDocumentController', templateUrl: 'multi_document/multi_document.html' },
+        { title: 'Multi Document', state: 'multi_document', reloadOnSearch: false, url: '/multi_document?id', controller: 'MultiDocumentController', templateUrl: 'multi_document/multi_document.html' },
+        { title: 'New Multi Document', state: 'new_multi_document', reloadOnSearch: false, url: '/new_multi_document?id', controller: 'MultiDocumentController', templateUrl: 'new_multi_document/multi_document.html' },
         { title: 'Tiles', state: 'tiles', url: '/tiles', controller: 'TilesController', templateUrl: 'tiles/tiles.html' },
         { title: 'Tile groups', state: 'tile_groups', url: '/tile_groups', controller: 'TileGroupsController', templateUrl: 'tile_groups/tile_groups.html' },
         { title: 'Media', state: 'media', url: '/media', controller: 'MediaController', templateUrl: 'media/media.html' }
@@ -34,7 +35,7 @@
             }
 
             $urlRouterProvider.otherwise('/card');
-        } 
+        }
     );
 
     thisModule.controller('AppController', 

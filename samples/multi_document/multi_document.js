@@ -8,8 +8,7 @@
 
     var thisModule = angular.module('appMultiDocument', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('MultiDocumentController', function ($scope, $rootScope, $mdMedia) {
-        $scope.$mdMedia = $mdMedia;
+    thisModule.controller('MultiDocumentController', function ($scope, pipMedia, $state, $location) {
 
         $scope.items = [
             {id: '7a26e18f78s87ftf8', po: '23432', start: '30 m 7 s ago', last: '12 m 34 s ago', activities: [
@@ -36,6 +35,18 @@
 
         $scope.itemClicked = function (item) {
             $scope.item = item;
+
+            if (pipMedia('xs')) {
+                $location.replace().search({id: item.id});
+            }
+        };
+
+        $scope.backToList = function () {
+            $location.replace().search({});
+        };
+
+        $scope.isMobileDetails = function () {
+            return pipMedia('xs') && $location.$$search.id !== undefined;
         };
 
         $scope.tabIndex = 1;
