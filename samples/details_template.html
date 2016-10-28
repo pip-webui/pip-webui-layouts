@@ -1,0 +1,43 @@
+<div class="pip-header">
+    <h2>{{ item.id }}</h2>
+</div>
+
+<div class="pip-body">
+    <div class="layout-row">
+        <div class="flex layout-column">
+            <div class="flex" style="color: rgba(0, 0, 0, 0.54)">POReceipt#</div>
+            <h3 class="flex" style="margin-top: 0px"><b>{{ item.po }}</b></h3>
+        </div>
+        <div class="flex layout-column">
+            <div class="flex" style="color: rgba(0, 0, 0, 0.54)">Started</div>
+            <h3 class="flex" style="margin-top: 0px"><b>{{ item.start }}</b></h3>
+        </div>
+        <div class="flex layout-column">
+            <div class="flex" style="color: rgba(0, 0, 0, 0.54)">Last activity</div>
+            <h3 class="flex" style="margin-top: 0px"><b>{{ item.last }}</b></h3>
+        </div>
+    </div>
+
+    <md-button class="md-primary md-raised" style="margin-left: 0">EDIT MESSAGE AND RESTART
+    </md-button>
+    <span style="color: #ff5252; font-weight: 500">{{ item.activities.length }} attempts failed</span>
+
+    <p style="font-weight: 500;color: rgba(0, 0, 0, 0.54)">Activities</p>
+
+    <md-list>
+        <md-list-item ng-repeat="activity in item.activities" style="padding-left: 0">
+            <md-icon md-svg-icon="icons:{{ activity.check ? 'check' : 'cross'}}"
+                     ng-style="{color: activity.check ? '' : '#ff5252'}">
+            </md-icon>
+            <div class="md-list-item-text flex-var">
+                <h3 ng-style="{color: activity.check ? '' : '#ff5252'}">
+                    <span>{{ activity.type }}</span> -
+                    <span>{{ activity.time }}</span>
+                </h3>
+            </div>
+            <span style="color: #4a90e2; font-weight: 500; cursor: pointer">VIEW MESSAGE</span>
+            <md-divider style="margin-left: 56px"></md-divider>
+        </md-list-item>
+    </md-list>
+
+</div>

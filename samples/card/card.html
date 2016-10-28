@@ -9,21 +9,7 @@
 
             <div class="pip-card-container pip-outer-scroll">
                 <pip-card width="400" min-height="400">
-                    <div class="pip-header">
-                        <h2 >This is a Header</h2>
-                    </div>
-                    <div class="pip-body">
-                        <div class="pip-content">
-                            <div class="bg-yellow" style="height:100px"></div>
-                            <div class="bg-blue" style="height:100px"></div>
-                            <div class="bg-green" style="height:100px"></div>
-                            <div class="bg-red" style="height:100px"></div>
-                        </div>
-                    </div>
-                    <div class="pip-footer">
-                        <md-button>Cancel</md-button>
-                        <md-button class="md-accent">Ok</md-button>
-                    </div>
+                    <div ng-include="'details_template.html'"></div>
                 </pip-card>
             </div>
 

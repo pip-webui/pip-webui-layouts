@@ -5,13 +5,13 @@
                        ng-click="backToList()" ng-show="isMobileDetails()">
                 <md-icon md-svg-icon="icons:arrow-left"></md-icon>
             </md-button>
-            <h2><span>New Multi Document Layout</span></h2>
+            <h2><span>Document List Layout</span></h2>
         </div>
     </md-toolbar>
 
     <pip-main-body>
 
-        <pip-document class="pip-no-border pip-multi-document-stretched"
+        <pip-document class="pip-no-border pip-document-list"
                       ng-class="{'pip-single-content': tabIndex === 0 || isMobileDetails()}">
 
             <md-toolbar class="pip-nav">
@@ -30,25 +30,28 @@
                             <md-list-item class="md-3-line" ng-repeat="item in  items" ng-click="itemClicked(item)">
                                 <div class="md-list-item-text layout-column">
                                     <h3 class="layout-row">
-                                        <span class="flex"
+                                        <span class="flex-fixed"
                                               style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                                             ID: <b>{{ item.id }}</b>
                                         </span>
-                                        <span class="flex"
+                                        <span style="margin: 0 8px 0 8px">-</span>
+                                        <span class="flex-fixed"
                                               style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                                             PO#: <b>{{ item.po }}</b>
                                         </span>
-                                        <span class="flex"
+                                        <span style="margin: 0 8px 0 8px">-</span>
+                                        <span class="flex-fixed"
                                               style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                                             Activities: <b>{{ item.activities.length }}</b>
                                         </span>
                                     </h3>
                                     <h4 class="layout-row">
-                                        <span class="flex"
+                                        <span class="flex-fixed"
                                               style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                                             Started: <b>{{ item.start }}</b>
                                         </span>
-                                        <span class="flex"
+                                        <span style="margin: 0 8px 0 8px">-</span>
+                                        <span class="flex-fixed"
                                               style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                                             Last activity: <b>{{ item.last }}</b>
                                         </span>
@@ -62,50 +65,8 @@
                 </div>
 
                 <div class="pip-content-container" >
-                    <div ng-if="tabIndex !== 0">
-                        <div class="pip-header">
-                            <h2>{{ item.id }}</h2>
-                        </div>
+                    <div ng-if="tabIndex !== 0" ng-include="'details_template.html'">
 
-                        <div class="pip-body">
-                            <div class="layout-row">
-                                <div class="flex layout-column">
-                                    <div class="flex" style="color: rgba(0, 0, 0, 0.54)">POReceipt#</div>
-                                    <h3 class="flex" style="margin-top: 0px"><b>{{ item.po }}</b></h3>
-                                </div>
-                                <div class="flex layout-column">
-                                    <div class="flex" style="color: rgba(0, 0, 0, 0.54)">Started</div>
-                                    <h3 class="flex" style="margin-top: 0px"><b>{{ item.start }}</b></h3>
-                                </div>
-                                <div class="flex layout-column">
-                                    <div class="flex" style="color: rgba(0, 0, 0, 0.54)">Last activity</div>
-                                    <h3 class="flex" style="margin-top: 0px"><b>{{ item.last }}</b></h3>
-                                </div>
-                            </div>
-
-                            <md-button class="md-primary md-raised" style="margin-left: 0">EDIT MESSAGE AND RESTART
-                            </md-button>
-                            <span style="color: #ff5252; font-weight: 500">{{ item.activities.length }} attempts failed</span>
-
-                            <p style="font-weight: 500;color: rgba(0, 0, 0, 0.54)">Activities</p>
-
-                            <md-list>
-                                <md-list-item ng-repeat="activity in item.activities" style="padding-left: 0">
-                                    <md-icon md-svg-icon="icons:{{ activity.check ? 'check' : 'cross'}}"
-                                             ng-style="{color: activity.check ? '' : '#ff5252'}">
-                                    </md-icon>
-                                    <div class="md-list-item-text flex-var">
-                                        <h3 ng-style="{color: activity.check ? '' : '#ff5252'}">
-                                            <span>{{ activity.type }}</span> -
-                                            <span>{{ activity.time }}</span>
-                                        </h3>
-                                    </div>
-                                    <span style="color: #4a90e2; font-weight: 500; cursor: pointer">VIEW MESSAGE</span>
-                                    <md-divider style="margin-left: 56px"></md-divider>
-                                </md-list-item>
-                            </md-list>
-
-                        </div>
                     </div>
 
                     <div ng-if="tabIndex === 0">
@@ -116,7 +77,7 @@
                             <h1 class="flex-var" style="margin-left: 16px">{{ overview.title }}</h1>
                         </div>
 
-                        <div class="pip-body">
+                        <div class="pip-body" style="padding-bottom: 0">
                             <div class="layout-row">
                                 <div class="flex layout-column">
                                     <div class="flex" style="color: rgba(0, 0, 0, 0.54)">Active</div>
@@ -131,12 +92,10 @@
                                     <h3 class="flex" style="margin-top: 0px"><b>{{ overview.last }}</b></h3>
                                 </div>
                             </div>
-
-                            <p style="font-weight: 500;color: rgba(0, 0, 0, 0.54)">Recent events</p>
-
+                            <p style="font-weight: 500;color: rgba(0, 0, 0, 0.54); margin: 0">Recent events</p>
                         </div>
 
-                        <md-list class="flex">
+                        <md-list class="flex" style="padding-top: 0">
                             <md-list-item class="md-3-line" ng-repeat="item in  items" ng-click="null" >
                                 <div class="md-list-item-text layout-column">
                                     <h3 class="layout-row">

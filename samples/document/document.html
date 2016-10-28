@@ -12,25 +12,7 @@
             </md-toolbar>
 
             <pip-document width="600" xheight="600" ng-class="{'pip-document-small': small}">
-
-                <div class="pip-header">
-                    <h2>This is a Header</h2>
-                </div>
-
-                <div class="pip-body">
-                    <div class="pip-content">
-                        <md-switch ng-model="small" style="margin-top: 0px"><h3>Small document layout (900px width)</h3></md-switch>
-                        <div class="bg-yellow" style="height:100px"></div>
-                        <div class="bg-blue" style="height:100px"></div>
-                        <div class="bg-green" style="height:100px"></div>
-                        <div class="bg-red" style="height:100px"></div>
-                    </div>
-                </div>
-
-                <div class="pip-footer">
-                    <md-button>Cancel</md-button>
-                    <md-button class="md-accent">Ok</md-button>
-                </div>
+                <div ng-include="'details_template.html'"></div>
             </pip-document>
         </div>
 
