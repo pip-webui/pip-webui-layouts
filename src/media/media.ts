@@ -1,3 +1,4 @@
+import size = require("lodash/size");
 /**
  * @file Media service to detect the width of pip-main container
  * @copyright Digital Living Software Corp. 2014-2016
@@ -23,6 +24,13 @@
                     'gt-lg': false,
                     'xl': false
                 },
+                boundaries = {
+                    'xs': [0, 768],
+                    'sm': [769, 1199],
+                    'md': [1200, 1399],
+                    'lg': [1400, 1919],
+                    'xl': [1920, '-']
+                },
                 attachEvent = (<any>document).attachEvent,
                 isIE = navigator.userAgent.match(/Trident/);
             
@@ -32,10 +40,15 @@
                 } else {
                     return {
                         addResizeListener: addResizeListener,
-                        removeResizeListener: removeResizeListener
+                        removeResizeListener: removeResizeListener,
+                        getBoundaries: getBoundaries
                     };
                 }
             };
+
+            function getBoundaries (size) {
+                return boundaries[size];
+            }
 
             function requestFrame(fn) {
                 var raf = window.requestAnimationFrame || (<any>window).mozRequestAnimationFrame || (<any>window).webkitRequestAnimationFrame ||
@@ -109,14 +122,14 @@
 
             function setSizes() {
                 elementWidth = $('.pip-main').innerWidth();
-                sizes['xs'] = elementWidth <= 768;
-                sizes['gt-xs'] = elementWidth >= 769;
-                sizes['sm'] = elementWidth >= 769 && elementWidth <= 1199;
-                sizes['gt-sm'] = elementWidth >= 1200;
-                sizes['md'] = elementWidth >= 1200 && elementWidth <= 1399;
-                sizes['gt-md'] = elementWidth >= 1400;
-                sizes['lg'] = elementWidth >= 1400 && elementWidth <= 1919;
-                sizes['gt-lg'] = elementWidth >= 1920;
+                sizes['xs'] = elementWidth <= boundaries['xs'][1];
+                sizes['gt-xs'] = elementWidth >= boundaries['sm'][0];
+                sizes['sm'] = elementWidth >= boundaries['sm'][0] && elementWidth <= boundaries['sm'][1];
+                sizes['gt-sm'] = elementWidth >= boundaries['md'][0];
+                sizes['md'] = elementWidth >= boundaries['md'][0] && elementWidth <= boundaries['md'][1];
+                sizes['gt-md'] = elementWidth >= boundaries['lg'][0];
+                sizes['lg'] = elementWidth >= boundaries['lg'][0] && elementWidth <= boundaries['lg'][1];
+                sizes['gt-lg'] = elementWidth >= boundaries['xl'][0];
                 sizes['xl'] = sizes['gt-lg'];
 
                 updateClasses();

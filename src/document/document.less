@@ -65,7 +65,7 @@ pip-document {
         .pip-menu {
             transition: all 0.5s ease;
             border-right: none;
-            width: ~"calc(100% - 816px)";
+            width: ~"calc(100% - 800px)";
             opacity: 1;
         }
 
@@ -73,7 +73,7 @@ pip-document {
             transition: all 0.5s ease;
             position: absolute;
             left: auto;
-            right: 16px;
+            right: 0;
             height: ~"calc(100% - 16px)";
             width: 800px;
             box-shadow: @box-shadow;
@@ -167,7 +167,8 @@ pip-document {
 
             .pip-content-container {
                 left: 320px;
-                width: ~"calc(100% - 336px)";
+                width: ~"calc(100% - 320px)";
+                height: 100%;
             }
 
             &.pip-single-content {
@@ -178,9 +179,18 @@ pip-document {
                     @media (max-width: 832px) {
                         left: 0;
                         width: 100%;
-                        height: 100%;
                     }
                 }
+            }
+        }
+    }
+}
+
+.pip-md {
+    .pip-document {
+        &.pip-document-list {
+            .pip-content-container {
+                height: 100%;
             }
         }
     }
