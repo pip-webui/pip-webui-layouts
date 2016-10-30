@@ -1,3 +1,4 @@
+declare module pip {
 
 
 
@@ -5,4 +6,7 @@
 
 
 
-declare var Masonry: any;
+var Masonry: any;
+
+}
+
