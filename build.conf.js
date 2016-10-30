@@ -2,7 +2,8 @@ module.exports = {
     module: {
         name: 'pipLayouts',
         styles: 'layouts',
-        export: 'pip'
+        export: 'pip',
+        standalone: 'pip.layouts'
     },
     build: {
         js: false,
