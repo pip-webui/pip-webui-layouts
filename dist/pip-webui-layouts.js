@@ -1,42 +1,18 @@
-/**
- * @file Registration of all application layouts
- * @copyright Digital Living Software Corp. 2014-2015
- */
-/* global angular */
-(function () {
-    'use strict';
-    angular.module('pipLayout', [
-        'pipLayout.Main', 'pipLayout.Simple', 'pipLayout.Card', 'pipLayout.Document',
-        'pipLayout.Tiles', 'pipLayout.Dialog', 'pipLayout.Media'
-    ]);
-})();
-
-/**
- * @file Card layout
- * @copyright Digital Living Software Corp. 2014-2015
- */
-/* global angular */
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}(g.pip || (g.pip = {})).layouts = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipLayout.Card', []);
     thisModule.directive('pipCard', function () {
         return {
             restrict: 'EA',
-            //controller: 'pipCardController'
             link: function ($scope, $element, $attrs) {
-                // Add class to the element
                 $element.addClass('pip-card');
-                // Resize every time window is resized
                 $scope.$on('pipWindowResized', resize);
-                // Resize right away to avoid flicking
                 resize();
-                // Resize the element right away
                 setTimeout(resize, 100);
                 return;
-                //---------------
                 function resize() {
                     var $mainBody = $('.pip-main-body'), cardContainer = $('.pip-card-container'), windowWidth = $('pip-main').width(), maxWidth = $mainBody.width(), maxHeight = $mainBody.height(), minWidth = $attrs.minWidth ? Math.floor($attrs.minWidth) : null, minHeight = $attrs.minHeight ? Math.floor($attrs.minHeight) : null, width = $attrs.width ? Math.floor($attrs.width) : null, height = $attrs.height ? Math.floor($attrs.height) : null, left, top;
-                    // Full-screen on phone
                     if (windowWidth <= 768) {
                         minWidth = null;
                         minHeight = null;
@@ -46,18 +22,14 @@
                         maxHeight = null;
                     }
                     else {
-                        // Set margin and maximum dimensions
                         var space = windowWidth > 1200 ? 24 : 16;
                         maxWidth -= space * 2;
                         maxHeight -= space * 2;
-                        // Set minimum dimensions
                         minWidth = minWidth ? Math.min(minWidth, maxWidth) : null;
                         minHeight = minHeight ? Math.min(minHeight, maxHeight) : null;
-                        // Set regular dimensions
                         width = width ? Math.min(width, maxWidth) : null;
                         height = height ? Math.min(height, maxHeight) : null;
                     }
-                    // Set dimensions
                     $element.css('max-width', maxWidth ? maxWidth + 'px' : '');
                     $element.css('min-width', minWidth ? minWidth + 'px' : '');
                     $element.css('width', width ? width + 'px' : '');
@@ -88,19 +60,13 @@
                             $element.css('display', 'flex');
                         }, 100);
                     }
-                    // Notify child controls that layout was resized
                     $scope.$broadcast('pipLayoutResized');
                 }
             }
         };
     });
 })();
-
-/**
- * @file Dialog layout
- * @copyright Digital Living Software Corp. 2014-2015
- */
-/* global angular */
+},{}],2:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipLayout.Dialog', []);
@@ -111,19 +77,12 @@
         };
     });
     thisModule.controller('pipDialogController', ['$element', '$attrs', function ($element, $attrs) {
-        // Add class to the element
         $element.addClass('pip-dialog');
-        // Set width
         $element.css('width', $attrs.width);
         return;
     }]);
 })();
-
-/**
- * @file Document layout
- * @copyright Digital Living Software Corp. 2014-2015
- */
-/* global angular */
+},{}],3:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipLayout.Document', []);
@@ -134,15 +93,50 @@
         };
     });
     thisModule.controller('pipDocumentController', ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
-        // Add class to the element
         $element.addClass('pip-document');
     }]);
 })();
-
-/**
- * @file Media service to detect the width of pip-main container
- * @copyright Digital Living Software Corp. 2014-2016
- */
+},{}],4:[function(require,module,exports){
+(function () {
+    'use strict';
+    angular.module('pipLayout', [
+        'pipLayout.Main', 'pipLayout.Simple', 'pipLayout.Card', 'pipLayout.Document',
+        'pipLayout.Tiles', 'pipLayout.Dialog', 'pipLayout.Media'
+    ]);
+})();
+},{}],5:[function(require,module,exports){
+(function () {
+    'use strict';
+    var thisModule = angular.module('pipLayout.Main', []);
+    thisModule.directive('pipMain', function () {
+        return {
+            restrict: 'EA',
+            controller: 'pipMainController'
+        };
+    });
+    thisModule.directive('pipMainBody', function () {
+        return {
+            restrict: 'EA',
+            link: function ($scope, $element) {
+                $element.addClass('pip-main-body');
+            }
+        };
+    });
+    thisModule.controller('pipMainController', ['$scope', '$element', '$rootScope', 'pipMedia', function ($scope, $element, $rootScope, pipMedia) {
+        var $window = $(window);
+        $element.addClass('pip-main');
+        pipMedia().addResizeListener($element[0], resize);
+        $scope.$on('$destroy', function () {
+            pipMedia().removeResizeListener($element[0]);
+        });
+        return;
+        function resize() {
+            $rootScope.$broadcast('pipWindowResized');
+        }
+    }]);
+})();
+},{}],6:[function(require,module,exports){
+"use strict";
 (function () {
     'use strict';
     var thisModule = angular.module('pipLayout.Media', []);
@@ -157,6 +151,12 @@
             'lg': false,
             'gt-lg': false,
             'xl': false
+        }, boundaries = {
+            'xs': [0, 768],
+            'sm': [769, 1199],
+            'md': [1200, 1399],
+            'lg': [1400, 1919],
+            'xl': [1920, '-']
         }, attachEvent = document.attachEvent, isIE = navigator.userAgent.match(/Trident/);
         return function (size) {
             if (size) {
@@ -165,10 +165,14 @@
             else {
                 return {
                     addResizeListener: addResizeListener,
-                    removeResizeListener: removeResizeListener
+                    removeResizeListener: removeResizeListener,
+                    getBoundaries: getBoundaries
                 };
             }
         };
+        function getBoundaries(size) {
+            return boundaries[size];
+        }
         function requestFrame(fn) {
             var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame ||
                 function (fn) { return window.setTimeout(fn, 20); };
@@ -240,14 +244,14 @@
         }
         function setSizes() {
             elementWidth = $('.pip-main').innerWidth();
-            sizes['xs'] = elementWidth <= 768;
-            sizes['gt-xs'] = elementWidth >= 769;
-            sizes['sm'] = elementWidth >= 769 && elementWidth <= 1199;
-            sizes['gt-sm'] = elementWidth >= 1200;
-            sizes['md'] = elementWidth >= 1200 && elementWidth <= 1399;
-            sizes['gt-md'] = elementWidth >= 1400;
-            sizes['lg'] = elementWidth >= 1400 && elementWidth <= 1919;
-            sizes['gt-lg'] = elementWidth >= 1920;
+            sizes['xs'] = elementWidth <= boundaries['xs'][1];
+            sizes['gt-xs'] = elementWidth >= boundaries['sm'][0];
+            sizes['sm'] = elementWidth >= boundaries['sm'][0] && elementWidth <= boundaries['sm'][1];
+            sizes['gt-sm'] = elementWidth >= boundaries['md'][0];
+            sizes['md'] = elementWidth >= boundaries['md'][0] && elementWidth <= boundaries['md'][1];
+            sizes['gt-md'] = elementWidth >= boundaries['lg'][0];
+            sizes['lg'] = elementWidth >= boundaries['lg'][0] && elementWidth <= boundaries['lg'][1];
+            sizes['gt-lg'] = elementWidth >= boundaries['xl'][0];
             sizes['xl'] = sizes['gt-lg'];
             updateClasses();
             $timeout(function () {
@@ -256,62 +260,7 @@
         }
     }]);
 })();
-
-/**
- * @file Top-level application container
- * @copyright Digital Living Software Corp. 2014-2015
- */
-/* global angular */
-(function () {
-    'use strict';
-    var thisModule = angular.module('pipLayout.Main', []);
-    thisModule.directive('pipMain', function () {
-        return {
-            restrict: 'EA',
-            controller: 'pipMainController'
-        };
-    });
-    thisModule.directive('pipMainBody', function () {
-        return {
-            restrict: 'EA',
-            link: function ($scope, $element) {
-                $element.addClass('pip-main-body');
-            }
-        };
-    });
-    thisModule.controller('pipMainController', ['$scope', '$element', '$rootScope', 'pipMedia', function ($scope, $element, $rootScope, pipMedia) {
-        var $window = $(window);
-        // Add CSS class
-        $element.addClass('pip-main');
-        pipMedia().addResizeListener($element[0], resize);
-        // Handle window resize events
-        //$window.bind('resize', resize);
-        // Unbind when scope is removed
-        $scope.$on('$destroy', function () {
-            pipMedia().removeResizeListener($element[0]);
-            //$window.unbind('resize', resize);
-        });
-        // Resize window from request
-        //$rootScope.$on('pipResizeWindow', function(event) {
-        //    // Trigger a bit latter t allow full initialization
-        //    // Do not remove! Otherwise, sizes in layouts calculated incorrectly
-        //    setTimeout(resize, 0);
-        //});
-        // Allow to finish initialization of all controllers
-        //setTimeout(resize, 0);
-        return;
-        //---------------
-        function resize() {
-            $rootScope.$broadcast('pipWindowResized');
-        }
-    }]);
-})();
-
-/**
- * @file Simple layout
- * @copyright Digital Living Software Corp. 2014-2015
- */
-/* global angular */
+},{}],7:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipLayout.Simple', []);
@@ -324,11 +273,7 @@
         };
     });
 })();
-
-/**
- * @file Tiles layout
- * @copyright Digital Living Software Corp. 2014-2015
- */
+},{}],8:[function(require,module,exports){
 (function () {
     'use strict';
     var thisModule = angular.module('pipLayout.Tiles', ['wu.masonry']);
@@ -359,7 +304,7 @@
                     gutter: 8,
                     isFitWidth: false,
                     isResizeBound: false,
-                    transitionDuration: 0 // '0.2s'
+                    transitionDuration: 0
                 };
             }],
             link: pipTilesController
@@ -367,19 +312,14 @@
     });
     function pipTilesController($scope, $element, $attrs) {
         var columnWidth = $attrs.columnWidth ? Math.floor($attrs.columnWidth) : 440, container = $element.children('.pip-tiles-container'), prevContainerWidth = null, masonry = Masonry.data(container[0]);
-        // Add class to the element
         $element.addClass('pip-tiles');
-        // Insert sizer
         var sizer = $('<div class="pip-tile-sizer"></div>');
         sizer.appendTo(container);
-        // Resize every time window is resized
         $scope.$on('pipWindowResized', function () {
             resize(false);
         });
-        // Resize the element right away
         resize(true);
         return;
-        //---------------------
         function resize(force) {
             var width = $('.pip-main').width(), containerWidth;
             console.log('width', width);
@@ -398,7 +338,6 @@
                 else {
                     sizer.css('width', columnWidth + 'px');
                 }
-                // +10 to avoid precision related error
                 container.css('width', (containerWidth + 10) + 'px');
                 container.removeClass('pip-mobile');
             }
@@ -406,20 +345,16 @@
                 width = width - 16 * 2;
                 containerWidth = width;
                 sizer.css('width', containerWidth + 'px');
-                // +10 to avoid precision related error
                 container.css('width', (containerWidth + 10) + 'px');
                 container.addClass('pip-mobile');
             }
-            // Manually call layout on tile container
             if (prevContainerWidth != containerWidth || force) {
                 prevContainerWidth = containerWidth;
                 masonry.layout();
-                // Notify child controls that layout was resized
                 $scope.$broadcast('pipLayoutResized');
             }
         }
     }
-    // Converts value into boolean
     function convertToBoolean(value) {
         if (value == null)
             return false;
@@ -430,7 +365,8 @@
     }
     ;
 })();
-
+},{}]},{},[1,2,3,4,5,6,7,8])(8)
+});
 
 
 //# sourceMappingURL=pip-webui-layouts.js.map
