@@ -5,23 +5,15 @@
         </div>
     </md-toolbar>
     <md-toolbar class=" md-primary pip-body-nav">
-        <md-tabs md-selected="0" xmd-stretch-tabs="auto">
+        <md-tabs md-selected="0" >
             <md-tab label="One"></md-tab>
             <md-tab label="Two"></md-tab>
             <md-tab label="Three"></md-tab>
             <md-tab label="Four"></md-tab>
         </md-tabs>
     </md-toolbar>
-    <pip-main-body>
-        <pip-tiles class="layout-fill"  column-width="440">
-            <div class="masonry-brick pip-tile bg-grey tile_width">
-                <h3 class="tile-sm">This is a special tile</h3>
-            </div>
+    <pip-main-body ng-include="'common_templates/tiles_template.html'">
 
-            <div class="masonry-brick pip-tile {{tile.color}} tile_width" ng-repeat="tile in tiles">
-                <h3 class="{{tile.size}}">{{tile.name}}</h3>
-            </div>
-        </pip-tiles>
     </pip-main-body>
 
 </pip-main>

@@ -74,10 +74,8 @@ declare var Masonry: any;
 
         function resize(force) {
             var
-                width = $('.pip-main').width(),
+                width = $element.parent().width(),
                 containerWidth;
-            
-            console.log('width', width);
 
             if (width > 767) {
                 width = width - 24 * 2;
@@ -127,6 +125,6 @@ declare var Masonry: any;
         if (!value) return false;
         value = value.toString().toLowerCase();
         return value == '1' || value == 'true';
-    };
+    }
 
 })();

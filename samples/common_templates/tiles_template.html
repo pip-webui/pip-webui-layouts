@@ -1,0 +1,9 @@
+<pip-tiles class="layout-fill"  column-width="440">
+    <div class="masonry-brick pip-tile bg-grey tile_width">
+        <h3 class="tile-sm">This is a special tile</h3>
+    </div>
+
+    <div class="masonry-brick pip-tile {{tile.color}} tile_width" ng-repeat="tile in tiles">
+        <h3 class="{{tile.size}}">{{tile.name}}</h3>
+    </div>
+</pip-tiles>

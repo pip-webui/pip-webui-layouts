@@ -39,7 +39,7 @@
     }
 }
 
-.pip-card, .pip-document, .pip-dialog {
+.pip-main {
     .pip-nav {
         .flex-fixed;
         // Expand to overlay document shadow
@@ -58,7 +58,9 @@
             //!!overflow: hidden;
         }
     }
+}
 
+.pip-card, .pip-document, .pip-dialog {
     .pip-menu-container {
         position: relative;
         //!!z-index: 200;
@@ -173,7 +175,7 @@
 
 
 // On tablet
-@media (max-width: 1200px) {
+.pip-xs, .pip-sm {
     .pip-card, 
     .pip-document {
         .pip-header {
@@ -202,7 +204,7 @@
 }
 
 // On phone
-@media (max-width: 768px) {
+.pip-xs {
     .pip-menu {
         width: 100% !important;
     }

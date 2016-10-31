@@ -1,0 +1,164 @@
+.pip-main-body {
+  .pip-external-menu {
+    position: relative;
+    width: 100%;
+    .flex();
+    .flex-direction(row);
+    .flex-var;
+    align-items: initial;
+
+    > .pip-menu {
+      transition: all 0.5s ease;
+      border-right: none;
+      width: ~"calc(100% - 800px)";
+      opacity: 1;
+    }
+
+    > .pip-content-container {
+      margin: initial;
+      transition: all 0.5s ease;
+      position: absolute;
+      left: auto;
+      right: 0;
+      height: ~"calc(100% - 16px)";
+      width: 800px;
+
+      .pip-document {
+        width: 100% !important;
+        height: 100% !important;
+        left: initial;
+        right: initial;
+      }
+    }
+
+    &.pip-single-content {
+      > .pip-menu {
+        opacity: 0;
+        z-index: -100;
+      }
+
+      > .pip-content-container {
+        width: 800px;
+        right: ~"calc(50% - 400px)";
+      }
+    }
+  }
+}
+
+.pip-xs {
+  .pip-main-body {
+    .pip-external-menu {
+      .pip-menu {
+        transition: all 0.5s ease;
+        width: 100%;
+      }
+
+      .pip-content-container {
+        transition: all 0.5s ease;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+      }
+
+      &.pip-single-content {
+        .pip-menu {
+          left: -100%;
+          opacity: 1;
+          z-index: 100;
+        }
+
+        &.pip-document-list {
+          .pip-menu {
+            z-index: -100;
+          }
+        }
+
+        .pip-content-container {
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+.pip-sm {
+  .pip-main-body {
+    .pip-external-menu {
+
+      .pip-menu {
+        width: 320px;
+      }
+
+      .pip-content-container {
+        left: 320px;
+        width: ~"calc(100% - 320px)";
+        height: 100%;
+      }
+
+      &.pip-single-content {
+        .pip-content-container {
+          width: 800px;
+          left: ~"calc(50% - 400px)";
+
+          @media (max-width: 832px) {
+            left: 0;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.pip-md {
+  .pip-main-body {
+    .pip-external-menu {
+
+      .pip-content-container {
+        height: 100%;
+      }
+
+    }
+  }
+}
+
+.pip-gt-md {
+  .pip-main-body {
+    .pip-external-menu {
+
+      .pip-menu {
+        width: ~"calc(100% - 1116px)";
+      }
+
+      .pip-content-container {
+        left: ~"calc(100% - 1116px)";
+        width: 1100px;
+      }
+
+      &.pip-single-content {
+        .pip-content-container {
+          left: ~"calc(50% - 550px)";
+        }
+      }
+
+      @media (min-width: 1616px) {
+        .pip-menu {
+          width: 500px;
+        }
+
+        .pip-content-container {
+          left: 500px;
+          width: 1100px;
+        }
+
+        &.pip-single-content {
+          .pip-content-container {
+            left: ~"calc(50% - 550px)";
+          }
+        }
+      }
+
+    }
+  }
+}

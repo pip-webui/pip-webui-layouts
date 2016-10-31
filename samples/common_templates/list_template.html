@@ -1,0 +1,37 @@
+<div class="pip-menu-list">
+    <md-list class="flex" style="padding-top: 0px">
+        <md-list-item class="md-3-line" ng-repeat="item in  items" ng-click="itemClicked(item)">
+            <div class="md-list-item-text layout-column">
+                <h3 class="layout-row">
+                                        <span class="flex-fixed"
+                                              style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                            ID: <b>{{ item.id }}</b>
+                                        </span>
+                    <span style="margin: 0 8px 0 8px">-</span>
+                                        <span class="flex-fixed"
+                                              style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                            PO#: <b>{{ item.po }}</b>
+                                        </span>
+                    <span style="margin: 0 8px 0 8px">-</span>
+                                        <span class="flex-fixed"
+                                              style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                            Activities: <b>{{ item.activities.length }}</b>
+                                        </span>
+                </h3>
+                <h4 class="layout-row">
+                                        <span class="flex-fixed"
+                                              style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                            Started: <b>{{ item.start }}</b>
+                                        </span>
+                    <span style="margin: 0 8px 0 8px">-</span>
+                                        <span class="flex-fixed"
+                                              style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                            Last activity: <b>{{ item.last }}</b>
+                                        </span>
+                </h4>
+
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+</div>
