@@ -1,7 +1,5 @@
 'use strict';
 
-export const __ = null;
-
 function documentDirective() {
     return {
         restrict: 'EA',

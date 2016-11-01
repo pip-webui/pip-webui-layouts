@@ -2,8 +2,6 @@
 
 import { MainResizedEvent, LayoutResizedEvent, MainBreakpointStatuses } from '../media/MediaService';
 
-export const __ = null;
-
 class CardDirectiveLink {
     private _element: any;
     private _attrs: any;

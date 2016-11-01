@@ -37,6 +37,14 @@
     },
     "dependencies": {},
     "devDependencies": {
-        "pip-webui-tasks": "git+https://github.com/pip-webui/pip-webui-tasks.git"
+        "pip-webui-tasks": "git+https://github.com/pip-webui/pip-webui-tasks.git",
+        "mocha": "*",
+        "chai": "*",
+        "jsdom": "*",
+        "jquery": "*",
+        "angular": "*",
+        "angular-aria": "*",
+        "angular-material": "*",
+        "angular-mocks": "*"
     }
 }

@@ -1,7 +1,5 @@
 'use strict';
 
-export const __ = null;
-
 import { addResizeListener, removeResizeListener } from '../media/ResizeFunctions';
 import { MainBreakpoints, MainBreakpointStatuses, MainResizedEvent } from '../media/MediaService'; 
 

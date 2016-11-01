@@ -1,7 +1,5 @@
 'use strict';
 
-export const __ = null;
-
 import { MainResizedEvent, LayoutResizedEvent, MainBreakpoints, MainBreakpointStatuses } from '../media/MediaService';
 
 declare var Masonry: any;
