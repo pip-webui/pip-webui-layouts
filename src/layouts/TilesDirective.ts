@@ -43,6 +43,9 @@ class TilesDirectiveLink {
         this._sizer = $('<div class="pip-tile-sizer"></div>');
         this._sizer.appendTo(this._container);
 
+        // Resize every time window is resized
+        $rootScope.$on(MainResizedEvent, () => { this.resize(false); });
+
         // Resize the element right away
         this.resize(true);
     }

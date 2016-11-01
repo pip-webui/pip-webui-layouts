@@ -222,6 +222,7 @@ var TilesDirectiveLink = (function () {
         });
         this._sizer = $('<div class="pip-tile-sizer"></div>');
         this._sizer.appendTo(this._container);
+        $rootScope.$on(MediaService_1.MainResizedEvent, function () { _this.resize(false); });
         this.resize(true);
     }
     TilesDirectiveLink.prototype.resize = function (force) {
