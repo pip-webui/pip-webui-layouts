@@ -20,14 +20,14 @@
         [
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
-            'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
+            'ngMaterial', 'wu.masonry', 'ngAnimate',
 			
             'appCard', 'appDialog', 'appSimple', 'appDocument', 'appMultiDocument', 'appTileGroups',
             'appTiles', 'appMedia', 'appMenu'
         ]
     );
 
-    thisModule.config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider) {
+    thisModule.config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
             for (var i = 0; i < content.length; i++) {
@@ -40,10 +40,7 @@
     );
 
     thisModule.controller('AppController', 
-        function ($scope, $rootScope, $state, $mdSidenav, $mdTheming, localStorageService) {
-            $scope.languages = ['en', 'ru'];
-            $scope.themes = _.keys(_.omit($mdTheming.THEMES, 'default'));
-            $rootScope.$theme = localStorageService.get('theme');
+        function ($scope, $rootScope, $state, $mdSidenav) {
             $rootScope.rightPanel = false;
 
             $scope.selected = {
@@ -53,24 +50,6 @@
 
             $scope.content = content;
             $scope.menuOpened = false;
-
-            $scope.onLanguageClick = function(language) {
-               // pipTranslate.use(language);
-            };
-
-            // Update page after language changed
-            $rootScope.$on('languageChanged', function(event) {
-                console.log('Reloading...');
-                console.log($state.current);
-                console.log($state.params);
-
-                $state.reload();
-            });
-
-            // Update page after theme changed
-            $rootScope.$on('themeChanged', function(event) {
-                $state.reload();
-            });
                         
             $scope.onSwitchPage = function(state) {
                 $mdSidenav('left').close();
