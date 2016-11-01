@@ -1,6 +1,10 @@
 <pip-main>
     <md-toolbar>
         <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="menu"
+                       ng-click="backToList()" ng-show="isMobileDetails()">
+                <md-icon md-svg-icon="icons:arrow-left"></md-icon>
+            </md-button>
             <h2 class="flex-var"><span>Menu Layout</span></h2>
             <md-switch ng-model="single">Single content</md-switch>
         </div>
@@ -15,7 +19,7 @@
                 <md-tab label="Configuration"></md-tab>
             </md-tabs>
         </md-toolbar>
-        <div class="pip-main-menu" ng-class="{'pip-single-content': single}">
+        <div class="pip-main-menu" ng-class="{'pip-single-content': single || isMobileDetails()}">
             <div class="pip-menu" ng-include="'common_templates/list_template.html'">
             </div>
 
