@@ -56,6 +56,16 @@ class MainDirectiveController {
     }
 }
 
+class MainBodyDirectiveLink {
+    public constructor(
+        $scope: ng.IScope, 
+        $element: any
+    ) {
+        // Add CSS class
+        $element.addClass('pip-main-body');
+    }
+}
+
 function mainDirective() {
     return {
         restrict: 'EA',
@@ -64,6 +74,14 @@ function mainDirective() {
     }
 }
 
+function mainBodyDirective() {
+    return {
+        restrict: 'EA',
+        link: MainBodyDirectiveLink
+    }
+}
+
 angular
     .module('pipLayout')
-    .directive('pipMain', mainDirective);
+    .directive('pipMain', mainDirective)
+    .directive('pipMainBody', mainBodyDirective);

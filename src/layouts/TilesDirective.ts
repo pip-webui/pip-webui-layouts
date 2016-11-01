@@ -1,5 +1,11 @@
 'use strict';
 
+<<<<<<< HEAD
+=======
+export const __ = null;
+
+import { addResizeListener, removeResizeListener } from '../media/ResizeFunctions';
+>>>>>>> 783f58fcb6edb1cf369c2fd92263751f62d0e9ae
 import { MainResizedEvent, LayoutResizedEvent, MainBreakpoints, MainBreakpointStatuses } from '../media/MediaService';
 
 declare var Masonry: any;
@@ -14,7 +20,7 @@ class TilesDirectiveLink {
     private _masonry: any;
     private _sizer: any;
 
-    public constructor($rootScope: ng.IRootScopeService, $element: any, $attrs: any) {
+    public constructor($scope: ng.IScope, $element: any, $rootScope: ng.IRootScopeService, $attrs: any) {
         this._element = $element;
         this._rootScope = $rootScope;
         this._attrs = $attrs;
@@ -26,6 +32,15 @@ class TilesDirectiveLink {
         
         // Add class to the element
         $element.addClass('pip-tiles');
+
+        // Add resize listener
+        let listener = () => { this.resize(false); };
+        addResizeListener($element[0], listener);
+
+        // Unbind when scope is removed
+        $scope.$on('$destroy', () => {
+            removeResizeListener($element[0], listener);
+        });
 
         // Insert sizer
         this._sizer = $('<div class="pip-tile-sizer"></div>');
@@ -41,8 +56,10 @@ class TilesDirectiveLink {
     private resize(force: boolean) {
         let width = this._element.parent().width();
         let containerWidth;
+        
+        console.log();
 
-        if (MainBreakpointStatuses.xs) {
+        if (MainBreakpointStatuses['gt-xs'] && (width - 36) > this._columnWidth) {
             width = width - 24 * 2;
 
             let columns = Math.floor(width / this._columnWidth);
@@ -125,7 +142,7 @@ function tilesDirective($rootScope: ng.IRootScopeService) {
             };
         },
         link: ($scope, $element, $attrs) => {
-            new TilesDirectiveLink($rootScope, $element, $attrs);
+            new TilesDirectiveLink($scope, $element, $rootScope, $attrs);
         } 
     };
 }
