@@ -1,5 +1,8 @@
 'use strict';
 
+// Avoid default export
+(() => {
+
 function dialogDirective() {
     return {
         restrict: 'EA',
@@ -12,3 +15,5 @@ function dialogDirective() {
 angular
     .module('pipLayout')
     .directive('pipDialog', dialogDirective);
+
+})();

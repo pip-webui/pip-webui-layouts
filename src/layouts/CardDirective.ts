@@ -2,6 +2,9 @@
 
 import { MainResizedEvent, LayoutResizedEvent, MainBreakpointStatuses } from '../media/MediaService';
 
+// Avoid default export
+(() => {
+
 class CardDirectiveLink {
     private _element: any;
     private _attrs: any;
@@ -123,3 +126,4 @@ angular
     .module('pipLayout')
     .directive('pipCard', cardDirective);
 
+})();

@@ -3,6 +3,9 @@
 import { addResizeListener, removeResizeListener } from '../media/ResizeFunctions';
 import { MainBreakpoints, MainBreakpointStatuses, MainResizedEvent } from '../media/MediaService'; 
 
+// Avoid default export
+(() => {
+
 class MainDirectiveController {
     private _element: any;
     private _rootScope: ng.IRootScopeService;
@@ -85,3 +88,5 @@ angular
     .module('pipLayout')
     .directive('pipMain', mainDirective)
     .directive('pipMainBody', mainBodyDirective);
+
+})();

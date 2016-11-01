@@ -16,192 +16,197 @@ __export(require('./media/MediaService'));
 __export(require('./media/ResizeFunctions'));
 },{"./layouts/CardDirective":2,"./layouts/DialogDirective":3,"./layouts/DocumentDirective":4,"./layouts/MainDirective":5,"./layouts/SimpleDirective":6,"./layouts/TilesDirective":7,"./media/MediaService":8,"./media/ResizeFunctions":9}],2:[function(require,module,exports){
 'use strict';
-cardDirective.$inject = ['$rootScope'];
 var MediaService_1 = require('../media/MediaService');
-exports.__ = null;
-var CardDirectiveLink = (function () {
-    function CardDirectiveLink($rootScope, $element, $attrs) {
-        var _this = this;
-        this._element = $element;
-        this._rootScope = $rootScope;
-        this._attrs = $attrs;
-        $element.addClass('pip-card');
-        var listener = function () { _this.resize(); };
-        $rootScope.$on(MediaService_1.MainResizedEvent, listener);
-        this.resize();
-        setTimeout(listener, 100);
-    }
-    CardDirectiveLink.prototype.resize = function () {
-        var _this = this;
-        var $mainBody = $('.pip-main-body'), cardContainer = $('.pip-card-container'), windowWidth = $('pip-main').width(), maxWidth = $mainBody.width(), maxHeight = $mainBody.height(), minWidth = this._attrs.minWidth ? Math.floor(this._attrs.minWidth) : null, minHeight = this._attrs.minHeight ? Math.floor(this._attrs.minHeight) : null, width = this._attrs.width ? Math.floor(this._attrs.width) : null, height = this._attrs.height ? Math.floor(this._attrs.height) : null, left, top;
-        if (MediaService_1.MainBreakpointStatuses.xs) {
-            minWidth = null;
-            minHeight = null;
-            width = null;
-            height = null;
-            maxWidth = null;
-            maxHeight = null;
+(function () {
+    cardDirective.$inject = ['$rootScope'];
+    var CardDirectiveLink = (function () {
+        function CardDirectiveLink($rootScope, $element, $attrs) {
+            var _this = this;
+            this._element = $element;
+            this._rootScope = $rootScope;
+            this._attrs = $attrs;
+            $element.addClass('pip-card');
+            var listener = function () { _this.resize(); };
+            $rootScope.$on(MediaService_1.MainResizedEvent, listener);
+            this.resize();
+            setTimeout(listener, 100);
         }
-        else {
-            var space = MediaService_1.MainBreakpointStatuses['gt-md'] ? 24 : 16;
-            maxWidth -= space * 2;
-            maxHeight -= space * 2;
-            minWidth = minWidth ? Math.min(minWidth, maxWidth) : null;
-            minHeight = minHeight ? Math.min(minHeight, maxHeight) : null;
-            width = width ? Math.min(width, maxWidth) : null;
-            height = height ? Math.min(height, maxHeight) : null;
-        }
-        this._element.css('max-width', maxWidth ? maxWidth + 'px' : '');
-        this._element.css('min-width', minWidth ? minWidth + 'px' : '');
-        this._element.css('width', width ? width + 'px' : '');
-        this._element.css('height', height ? height + 'px' : '');
-        if (!cardContainer.hasClass('pip-outer-scroll')) {
-            this._element.css('max-height', maxHeight ? maxHeight + 'px' : '');
-            this._element.css('min-height', minHeight ? minHeight + 'px' : '');
-            var $header = this._element.find('.pip-header:visible'), $footer = this._element.find('.pip-footer:visible'), $body = this._element.find('.pip-body'), maxBodyHeight = maxHeight || $mainBody.height();
-            if ($header.length > 0)
-                maxBodyHeight -= $header.outerHeight(true);
-            if ($footer.length > 0)
-                maxBodyHeight -= $footer.outerHeight(true);
-            $body.css('max-height', maxBodyHeight + 'px');
-        }
-        else {
-            cardContainer.addClass('pip-scroll');
+        CardDirectiveLink.prototype.resize = function () {
+            var _this = this;
+            var $mainBody = $('.pip-main-body'), cardContainer = $('.pip-card-container'), windowWidth = $('pip-main').width(), maxWidth = $mainBody.width(), maxHeight = $mainBody.height(), minWidth = this._attrs.minWidth ? Math.floor(this._attrs.minWidth) : null, minHeight = this._attrs.minHeight ? Math.floor(this._attrs.minHeight) : null, width = this._attrs.width ? Math.floor(this._attrs.width) : null, height = this._attrs.height ? Math.floor(this._attrs.height) : null, left, top;
             if (MediaService_1.MainBreakpointStatuses.xs) {
-                left = 0;
-                top = 0;
+                minWidth = null;
+                minHeight = null;
+                width = null;
+                height = null;
+                maxWidth = null;
+                maxHeight = null;
             }
             else {
-                left = cardContainer.width() / 2 - this._element.width() / 2 - 16;
-                top = Math.max(cardContainer.height() / 2 - this._element.height() / 2 - 16, 0);
+                var space = MediaService_1.MainBreakpointStatuses['gt-md'] ? 24 : 16;
+                maxWidth -= space * 2;
+                maxHeight -= space * 2;
+                minWidth = minWidth ? Math.min(minWidth, maxWidth) : null;
+                minHeight = minHeight ? Math.min(minHeight, maxHeight) : null;
+                width = width ? Math.min(width, maxWidth) : null;
+                height = height ? Math.min(height, maxHeight) : null;
             }
-            this._element.css('left', left);
-            this._element.css('top', top);
-            setTimeout(function () { _this._element.css('display', 'flex'); }, 100);
-        }
-        this._rootScope.$emit('pipLayoutResized');
-    };
-    return CardDirectiveLink;
-}());
-function cardDirective($rootScope) {
-    "ngInject";
-    return {
-        restrict: 'EA',
-        link: function ($scope, $element, $attrs) {
-            new CardDirectiveLink($rootScope, $element, $attrs);
-        }
-    };
-}
-angular
-    .module('pipLayout')
-    .directive('pipCard', cardDirective);
+            this._element.css('max-width', maxWidth ? maxWidth + 'px' : '');
+            this._element.css('min-width', minWidth ? minWidth + 'px' : '');
+            this._element.css('width', width ? width + 'px' : '');
+            this._element.css('height', height ? height + 'px' : '');
+            if (!cardContainer.hasClass('pip-outer-scroll')) {
+                this._element.css('max-height', maxHeight ? maxHeight + 'px' : '');
+                this._element.css('min-height', minHeight ? minHeight + 'px' : '');
+                var $header = this._element.find('.pip-header:visible'), $footer = this._element.find('.pip-footer:visible'), $body = this._element.find('.pip-body'), maxBodyHeight = maxHeight || $mainBody.height();
+                if ($header.length > 0)
+                    maxBodyHeight -= $header.outerHeight(true);
+                if ($footer.length > 0)
+                    maxBodyHeight -= $footer.outerHeight(true);
+                $body.css('max-height', maxBodyHeight + 'px');
+            }
+            else {
+                cardContainer.addClass('pip-scroll');
+                if (MediaService_1.MainBreakpointStatuses.xs) {
+                    left = 0;
+                    top = 0;
+                }
+                else {
+                    left = cardContainer.width() / 2 - this._element.width() / 2 - 16;
+                    top = Math.max(cardContainer.height() / 2 - this._element.height() / 2 - 16, 0);
+                }
+                this._element.css('left', left);
+                this._element.css('top', top);
+                setTimeout(function () { _this._element.css('display', 'flex'); }, 100);
+            }
+            this._rootScope.$emit('pipLayoutResized');
+        };
+        return CardDirectiveLink;
+    }());
+    function cardDirective($rootScope) {
+        "ngInject";
+        return {
+            restrict: 'EA',
+            link: function ($scope, $element, $attrs) {
+                new CardDirectiveLink($rootScope, $element, $attrs);
+            }
+        };
+    }
+    angular
+        .module('pipLayout')
+        .directive('pipCard', cardDirective);
+})();
 },{"../media/MediaService":8}],3:[function(require,module,exports){
 'use strict';
-exports.__ = null;
-function dialogDirective() {
-    return {
-        restrict: 'EA',
-        link: function ($scope, $element, $attrs) {
-            $element.addClass('pip-dialog');
-        }
-    };
-}
-angular
-    .module('pipLayout')
-    .directive('pipDialog', dialogDirective);
+(function () {
+    function dialogDirective() {
+        return {
+            restrict: 'EA',
+            link: function ($scope, $element, $attrs) {
+                $element.addClass('pip-dialog');
+            }
+        };
+    }
+    angular
+        .module('pipLayout')
+        .directive('pipDialog', dialogDirective);
+})();
 },{}],4:[function(require,module,exports){
 'use strict';
-exports.__ = null;
-function documentDirective() {
-    return {
-        restrict: 'EA',
-        link: function ($scope, $element, $attrs) {
-            $element.addClass('pip-document');
-        }
-    };
-}
-angular
-    .module('pipLayout')
-    .directive('pipDocument', documentDirective);
+(function () {
+    function documentDirective() {
+        return {
+            restrict: 'EA',
+            link: function ($scope, $element, $attrs) {
+                $element.addClass('pip-document');
+            }
+        };
+    }
+    angular
+        .module('pipLayout')
+        .directive('pipDocument', documentDirective);
+})();
 },{}],5:[function(require,module,exports){
 'use strict';
-exports.__ = null;
 var ResizeFunctions_1 = require('../media/ResizeFunctions');
 var MediaService_1 = require('../media/MediaService');
-var MainDirectiveController = (function () {
-    MainDirectiveController.$inject = ['$scope', '$element', '$rootScope', '$timeout'];
-    function MainDirectiveController($scope, $element, $rootScope, $timeout) {
-        var _this = this;
-        this._element = $element;
-        this._rootScope = $rootScope;
-        this._timeout = $timeout;
-        $element.addClass('pip-main');
-        var listener = function () { _this.resize(); };
-        ResizeFunctions_1.addResizeListener($element[0], listener);
-        $scope.$on('$destroy', function () {
-            ResizeFunctions_1.removeResizeListener($element[0], listener);
-        });
-        this.updateBreakpointStatuses();
+(function () {
+    var MainDirectiveController = (function () {
+        MainDirectiveController.$inject = ['$scope', '$element', '$rootScope', '$timeout'];
+        function MainDirectiveController($scope, $element, $rootScope, $timeout) {
+            var _this = this;
+            this._element = $element;
+            this._rootScope = $rootScope;
+            this._timeout = $timeout;
+            $element.addClass('pip-main');
+            var listener = function () { _this.resize(); };
+            ResizeFunctions_1.addResizeListener($element[0], listener);
+            $scope.$on('$destroy', function () {
+                ResizeFunctions_1.removeResizeListener($element[0], listener);
+            });
+            this.updateBreakpointStatuses();
+        }
+        MainDirectiveController.prototype.updateBreakpointStatuses = function () {
+            var _this = this;
+            var width = this._element.innerWidth();
+            var body = $('body');
+            MediaService_1.MainBreakpointStatuses.update(MediaService_1.MainBreakpoints, width);
+            $.each(MediaService_1.MainBreakpointStatuses, function (breakpoint, status) {
+                if (_.isBoolean(status))
+                    body[status ? 'addClass' : 'removeClass']('pip-' + breakpoint);
+            });
+            this._timeout(function () {
+                _this._rootScope.$apply();
+            });
+        };
+        MainDirectiveController.prototype.resize = function () {
+            this.updateBreakpointStatuses();
+            this._rootScope.$emit(MediaService_1.MainResizedEvent, MediaService_1.MainBreakpointStatuses);
+        };
+        return MainDirectiveController;
+    }());
+    var MainBodyDirectiveLink = (function () {
+        function MainBodyDirectiveLink($scope, $element) {
+            $element.addClass('pip-main-body');
+        }
+        return MainBodyDirectiveLink;
+    }());
+    function mainDirective() {
+        return {
+            restrict: 'EA',
+            controller: MainDirectiveController,
+            controllerAs: 'vm'
+        };
     }
-    MainDirectiveController.prototype.updateBreakpointStatuses = function () {
-        var _this = this;
-        var width = this._element.innerWidth();
-        var body = $('body');
-        MediaService_1.MainBreakpointStatuses.update(MediaService_1.MainBreakpoints, width);
-        $.each(MediaService_1.MainBreakpointStatuses, function (breakpoint, status) {
-            if (_.isBoolean(status))
-                body[status ? 'addClass' : 'removeClass']('pip-' + breakpoint);
-        });
-        this._timeout(function () {
-            _this._rootScope.$apply();
-        });
-    };
-    MainDirectiveController.prototype.resize = function () {
-        this.updateBreakpointStatuses();
-        this._rootScope.$emit(MediaService_1.MainResizedEvent, MediaService_1.MainBreakpointStatuses);
-    };
-    return MainDirectiveController;
-}());
-var MainBodyDirectiveLink = (function () {
-    function MainBodyDirectiveLink($scope, $element) {
-        $element.addClass('pip-main-body');
+    function mainBodyDirective() {
+        return {
+            restrict: 'EA',
+            link: MainBodyDirectiveLink
+        };
     }
-    return MainBodyDirectiveLink;
-}());
-function mainDirective() {
-    return {
-        restrict: 'EA',
-        controller: MainDirectiveController,
-        controllerAs: 'vm'
-    };
-}
-function mainBodyDirective() {
-    return {
-        restrict: 'EA',
-        link: MainBodyDirectiveLink
-    };
-}
-angular
-    .module('pipLayout')
-    .directive('pipMain', mainDirective)
-    .directive('pipMainBody', mainBodyDirective);
+    angular
+        .module('pipLayout')
+        .directive('pipMain', mainDirective)
+        .directive('pipMainBody', mainBodyDirective);
+})();
 },{"../media/MediaService":8,"../media/ResizeFunctions":9}],6:[function(require,module,exports){
 'use strict';
-function simpleDirective() {
-    return {
-        restrict: 'EA',
-        link: function ($scope, $element, $attrs) {
-            $element.addClass('pip-simple');
-        }
-    };
-}
-angular
-    .module('pipLayout')
-    .directive('pipSimple', simpleDirective);
+(function () {
+    function simpleDirective() {
+        return {
+            restrict: 'EA',
+            link: function ($scope, $element, $attrs) {
+                $element.addClass('pip-simple');
+            }
+        };
+    }
+    angular
+        .module('pipLayout')
+        .directive('pipSimple', simpleDirective);
+})();
 },{}],7:[function(require,module,exports){
 'use strict';
 tilesDirective.$inject = ['$rootScope'];
-exports.__ = null;
 var ResizeFunctions_1 = require('../media/ResizeFunctions');
 var MediaService_1 = require('../media/MediaService');
 var TilesDirectiveLink = (function () {
@@ -456,7 +461,7 @@ function removeResizeListener(element, listener) {
     }
 }
 exports.removeResizeListener = removeResizeListener;
-},{}]},{},[1,2,3,4,5,6,7,8,9])(9)
+},{}]},{},[1])(1)
 });
 
 

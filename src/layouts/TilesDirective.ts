@@ -1,11 +1,6 @@
 'use strict';
 
-<<<<<<< HEAD
-=======
-export const __ = null;
-
 import { addResizeListener, removeResizeListener } from '../media/ResizeFunctions';
->>>>>>> 783f58fcb6edb1cf369c2fd92263751f62d0e9ae
 import { MainResizedEvent, LayoutResizedEvent, MainBreakpoints, MainBreakpointStatuses } from '../media/MediaService';
 
 declare var Masonry: any;
