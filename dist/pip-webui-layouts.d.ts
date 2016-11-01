@@ -6,25 +6,6 @@ declare module pip.layouts {
 
 
 
-
-
-
-
-export const __: any;
-
-export const __: any;
-
-export const __: any;
-
-export const __: any;
-
-function simpleDirective(): {
-    restrict: string;
-    link: ($scope: any, $element: any, $attrs: any) => void;
-};
-
-export const __: any;
-
 export class MediaBreakpoints {
     constructor(xs: number, sm: number, md: number, lg: number);
     xs: number;

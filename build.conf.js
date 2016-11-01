@@ -24,9 +24,9 @@ module.exports = {
         ]
     },
 
-    // browserify: {
-    //     entries: [ './src/index.ts' ]
-    // },
+    browserify: {
+        entries: [ './src/index.ts' ]
+    },
 
     samples: {
         port: 8080

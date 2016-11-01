@@ -1,5 +1,8 @@
 'use strict';
 
+// Avoid default export
+(() => {
+
 function simpleDirective() {
     return {
         restrict: 'EA',
@@ -12,3 +15,5 @@ function simpleDirective() {
 angular
     .module('pipLayout')
     .directive('pipSimple', simpleDirective);
+
+})();
