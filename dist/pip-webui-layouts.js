@@ -162,6 +162,12 @@ var MainDirectiveController = (function () {
     };
     return MainDirectiveController;
 }());
+var MainBodyDirectiveLink = (function () {
+    function MainBodyDirectiveLink($scope, $element) {
+        $element.addClass('pip-main-body');
+    }
+    return MainBodyDirectiveLink;
+}());
 function mainDirective() {
     return {
         restrict: 'EA',
@@ -169,9 +175,16 @@ function mainDirective() {
         controllerAs: 'vm'
     };
 }
+function mainBodyDirective() {
+    return {
+        restrict: 'EA',
+        link: MainBodyDirectiveLink
+    };
+}
 angular
     .module('pipLayout')
-    .directive('pipMain', mainDirective);
+    .directive('pipMain', mainDirective)
+    .directive('pipMainBody', mainBodyDirective);
 },{"../media/MediaService":8,"../media/ResizeFunctions":9}],6:[function(require,module,exports){
 'use strict';
 function simpleDirective() {
@@ -189,9 +202,10 @@ angular
 'use strict';
 tilesDirective.$inject = ['$rootScope'];
 exports.__ = null;
+var ResizeFunctions_1 = require('../media/ResizeFunctions');
 var MediaService_1 = require('../media/MediaService');
 var TilesDirectiveLink = (function () {
-    function TilesDirectiveLink($rootScope, $element, $attrs) {
+    function TilesDirectiveLink($scope, $element, $rootScope, $attrs) {
         var _this = this;
         this._element = $element;
         this._rootScope = $rootScope;
@@ -201,15 +215,20 @@ var TilesDirectiveLink = (function () {
             this._prevContainerWidth = null,
             this._masonry = Masonry.data(this._container[0]);
         $element.addClass('pip-tiles');
+        var listener = function () { _this.resize(false); };
+        ResizeFunctions_1.addResizeListener($element[0], listener);
+        $scope.$on('$destroy', function () {
+            ResizeFunctions_1.removeResizeListener($element[0], listener);
+        });
         this._sizer = $('<div class="pip-tile-sizer"></div>');
         this._sizer.appendTo(this._container);
-        $rootScope.$on(MediaService_1.MainResizedEvent, function () { _this.resize(false); });
         this.resize(true);
     }
     TilesDirectiveLink.prototype.resize = function (force) {
         var width = this._element.parent().width();
         var containerWidth;
-        if (MediaService_1.MainBreakpointStatuses.xs) {
+        console.log();
+        if (MediaService_1.MainBreakpointStatuses['gt-xs'] && (width - 36) > this._columnWidth) {
             width = width - 24 * 2;
             var columns = Math.floor(width / this._columnWidth);
             containerWidth = (this._columnWidth + 16) * columns - 16;
@@ -282,14 +301,14 @@ function tilesDirective($rootScope) {
             };
         }],
         link: function ($scope, $element, $attrs) {
-            new TilesDirectiveLink($rootScope, $element, $attrs);
+            new TilesDirectiveLink($scope, $element, $rootScope, $attrs);
         }
     };
 }
 angular
     .module('pipLayout')
     .directive('pipTiles', tilesDirective);
-},{"../media/MediaService":8}],8:[function(require,module,exports){
+},{"../media/MediaService":8,"../media/ResizeFunctions":9}],8:[function(require,module,exports){
 'use strict';
 var MediaBreakpoints = (function () {
     function MediaBreakpoints(xs, sm, md, lg) {

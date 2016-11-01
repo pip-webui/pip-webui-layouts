@@ -1,0 +1,16 @@
+<pip-tiles class="layout-fill"  column-width="440">
+    <div class="masonry-brick pip-tile tile_width" ng-repeat="activity in item.activities">
+        <div style="padding: 16px">
+            <div class="layout-row">
+                <md-icon md-svg-icon="icons:warn-circle" ng-style="{color: activity.check ? '#f5a623' : '#ff5252'}" style="height: 40px; width: 50px"></md-icon>
+                <h3 class="flex-var">{{ activity.type }} - {{activity.time}}</h3>
+                <md-checkbox style="margin-top: 16px"></md-checkbox>
+            </div>
+            <div class="layout-row">
+                <div class="flex-var"></div>
+                <md-button>Resolve</md-button>
+                <md-button style="margin-right: -8px">Ignore</md-button>
+            </div>
+        </div>
+    </div>
+</pip-tiles>

@@ -44,51 +44,6 @@
             left: 0;
         }
     }
-
-    &.pip-document-list {
-        .position-absolute(0, 0, 0, 0);
-        margin: 0px !important;
-        border: none !important;
-        border-radius: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-
-        .pip-menu-container {
-            background-color: @color-window !important;
-            background: none !important;
-        }
-
-        .pip-menu {
-            transition: all 0.5s ease;
-            border-right: none;
-            width: ~"calc(100% - 800px)";
-            opacity: 1;
-        }
-
-        .pip-content-container {
-            transition: all 0.5s ease;
-            position: absolute;
-            left: auto;
-            right: 0;
-            height: ~"calc(100% - 16px)";
-            width: 800px;
-            box-shadow: @box-shadow;
-            .border-radius(@border-radius);
-            .shadow-card();
-        }
-
-        &.pip-single-content {
-            .pip-menu {
-                opacity: 0;
-                z-index: -100;
-            }
-
-            .pip-content-container {
-                width: 800px;
-                right: ~"calc(50% - 400px)";
-            }
-        }
-    }
 }
 
 .pip-document-container {
@@ -122,61 +77,46 @@
 
 .pip-xs {
     .pip-document {
+        width: 100%;
+        height: 100%;
+        .pip-menu {
+            transition: all 0.5s ease;
+            width: 100%;
+        }
+
+        .pip-content-container {
+            transition: all 0.5s ease;
+            left: 100%;
+            width: 100%;
+            height: 100%;
+        }
+
+        &.pip-single-content {
             .pip-menu {
-                transition: all 0.5s ease;
-                width: 100%;
+                left: -100%;
+                opacity: 1;
+                z-index: 100;
             }
 
             .pip-content-container {
-                transition: all 0.5s ease;
-                left: 100%;
-                width: 100%;
-                height: 100%;
+                left: 0;
             }
-
-            &.pip-single-content {
-                .pip-menu {
-                    left: -100%;
-                    opacity: 1;
-                    z-index: 100;
-                }
-
-                &.pip-document-list {
-                    .pip-menu {
-                        z-index: -100;
-                    }
-                }
-
-                .pip-content-container {
-                    left: 0;
-                }
-            }
+        }
     }
 }
 
 .pip-sm {
     .pip-document {
-        &.pip-document-list {
-            .pip-menu {
-                width: 320px;
-            }
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-            .pip-content-container {
-                left: 320px;
-                width: ~"calc(100% - 320px)";
+    .pip-main-menu:not(.pip-single-content) {
+        .pip-content-container {
+            .pip-document {
+                width: 100%;
                 height: 100%;
-            }
-
-            &.pip-single-content {
-                .pip-content-container {
-                    width: 800px;
-                    left: ~"calc(50% - 400px)";
-
-                    @media (max-width: 832px) {
-                        left: 0;
-                        width: 100%;
-                    }
-                }
             }
         }
     }
@@ -184,48 +124,36 @@
 
 .pip-md {
     .pip-document {
-        &.pip-document-list {
-            .pip-content-container {
+        width: 800px;
+        left: ~"calc(50% - 400px)";
+    }
+
+    .pip-main-menu:not(.pip-single-content) {
+        .pip-content-container {
+            .pip-document {
+                width: 100%;
                 height: 100%;
             }
         }
     }
 }
 
-.pip-gt-md {
-    .pip-document {
-        &.pip-document-list {
-            .pip-menu {
-                width: ~"calc(100% - 1116px)";
+.pip-main-menu {
+    &:not(.pip-single-content) {
+        .pip-content-container {
+            .pip-document {
+                left: 2px;
+                width: ~"calc(100% - 16px)";
+                height: ~"calc(100% - 16px)";
+                min-width: 320px;
+                max-width: 1100px;
             }
+        }
+    }
 
-            .pip-content-container {
-                left: ~"calc(100% - 1116px)";
-                width: 1100px;
-            }
-
-            &.pip-single-content {
-                .pip-content-container {
-                    left: ~"calc(50% - 550px)";
-                }
-            }
-
-            @media (min-width: 1616px) {
-                .pip-menu {
-                    width: 500px;
-                }
-
-                .pip-content-container {
-                    left: 500px;
-                    width: 1100px;
-                }
-
-                &.pip-single-content {
-                    .pip-content-container {
-                        left: ~"calc(50% - 550px)";
-                    }
-                }
-            }
+    .pip-content-container {
+        .pip-document {
+            transition: left 0.35s ease;
         }
     }
 }
