@@ -1,9 +1,10 @@
 'use strict';
 
-export const __ = null;
-
 import { addResizeListener, removeResizeListener } from '../media/ResizeFunctions';
 import { MainBreakpoints, MainBreakpointStatuses, MainResizedEvent } from '../media/MediaService'; 
+
+// Avoid default export
+(() => {
 
 class MainDirectiveController {
     private _element: any;
@@ -58,6 +59,16 @@ class MainDirectiveController {
     }
 }
 
+class MainBodyDirectiveLink {
+    public constructor(
+        $scope: ng.IScope, 
+        $element: any
+    ) {
+        // Add CSS class
+        $element.addClass('pip-main-body');
+    }
+}
+
 function mainDirective() {
     return {
         restrict: 'EA',
@@ -66,6 +77,16 @@ function mainDirective() {
     }
 }
 
+function mainBodyDirective() {
+    return {
+        restrict: 'EA',
+        link: MainBodyDirectiveLink
+    }
+}
+
 angular
     .module('pipLayout')
-    .directive('pipMain', mainDirective);
+    .directive('pipMain', mainDirective)
+    .directive('pipMainBody', mainBodyDirective);
+
+})();

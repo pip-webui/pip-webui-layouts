@@ -1,6 +1,7 @@
 'use strict';
 
-export const __ = null;
+// Avoid default export
+(() => {
 
 function documentDirective() {
     return {
@@ -14,3 +15,5 @@ function documentDirective() {
 angular
     .module('pipLayout')
     .directive('pipDocument', documentDirective);
+
+})();

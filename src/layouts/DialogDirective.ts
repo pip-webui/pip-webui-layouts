@@ -1,6 +1,7 @@
 'use strict';
 
-export const __ = null;
+// Avoid default export
+(() => {
 
 function dialogDirective() {
     return {
@@ -14,3 +15,5 @@ function dialogDirective() {
 angular
     .module('pipLayout')
     .directive('pipDialog', dialogDirective);
+
+})();

@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('appMenu', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('MenuController', function ($scope, $rootScope, pipMedia) {
+    thisModule.controller('MenuController', function ($scope, $rootScope, pipMedia, $location) {
         $scope.items = [
             {id: '7a26e18f78s87ftf8', po: '23432', start: '30 m 7 s ago', last: '12 m 34 s ago', activities: [
                 {type: 'POST', time: '30 m 7 sec ago', check: true},
@@ -35,29 +35,18 @@
         $scope.itemClicked = function (item) {
             $scope.item = item;
 
-            //if (pipMedia('xs')) {
-            //    $location.replace().search({id: item.id});
-            //}
+            if (pipMedia('xs')) {
+                $location.replace().search({id: item.id});
+            }
         };
 
-        $scope.tiles = [
-            {name: 'Tile #1', size: 'tile-lg', color: 'bg-red'},
-            {name: 'Tile #2', size: 'tile-md', color: 'bg-green'},
-            {name: 'Tile #3', size: 'tile-sm', color: 'bg-blue'},
-            {name: 'Tile #4', size: 'tile-sm', color: 'bg-yellow'},
-            {name: 'Tile #5', size: 'tile-lg', color: 'bg-green'},
-            {name: 'Tile #6', size: 'tile-sm', color: 'bg-blue'},
-            {name: 'Tile #7', size: 'tile-md', color: 'bg-red'},
-            {name: 'Tile #8', size: 'tile-lg', color: 'bg-yellow'},
-            {name: 'Tile #9', size: 'tile-lg', color: 'bg-red'},
-            {name: 'Tile #10', size: 'tile-md', color: 'bg-green'},
-            {name: 'Tile #11', size: 'tile-sm', color: 'bg-blue'},
-            {name: 'Tile #12', size: 'tile-sm', color: 'bg-yellow'},
-            {name: 'Tile #13', size: 'tile-lg', color: 'bg-green'},
-            {name: 'Tile #14', size: 'tile-sm', color: 'bg-blue'},
-            {name: 'Tile #15', size: 'tile-md', color: 'bg-red'},
-            {name: 'Tile #16', size: 'tile-lg', color: 'bg-yellow'}
-        ];
+        $scope.backToList = function () {
+            $location.replace().search({});
+        };
+
+        $scope.isMobileDetails = function () {
+            return pipMedia('xs') && $location.$$search.id !== undefined;
+        };
 
     });
 })(window.angular);

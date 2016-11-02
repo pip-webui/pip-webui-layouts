@@ -1,7 +1,12 @@
 <pip-main>
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2><span>Menu Layout</span></h2>
+            <md-button class="md-icon-button" aria-label="menu"
+                       ng-click="backToList()" ng-show="isMobileDetails()">
+                <md-icon md-svg-icon="icons:arrow-left"></md-icon>
+            </md-button>
+            <h2 class="flex-var"><span>Menu Layout</span></h2>
+            <md-switch ng-model="single">Single content</md-switch>
         </div>
     </md-toolbar>
 
@@ -10,22 +15,27 @@
             <md-tabs md-stretch-tabs="never" class="md-primary" md-selected="tabIndex">
                 <md-tab label="Document"></md-tab>
                 <md-tab label="Tiles"></md-tab>
-                <md-tab label="Analysis"></md-tab>
+                <md-tab label="Simple"></md-tab>
                 <md-tab label="Configuration"></md-tab>
             </md-tabs>
         </md-toolbar>
-        <div class="pip-main-menu">
+        <div class="pip-main-menu" ng-class="{'pip-single-content': single || isMobileDetails()}">
             <div class="pip-menu" ng-include="'common_templates/list_template.html'">
             </div>
 
-            <div class="pip-content-container" ng-if="tabIndex === 0">
-                <pip-document>
-                    <div ng-include="'common_templates/details_template.html'"></div>
-                </pip-document>
-            </div>
-
-            <div class="pip-content-container" ng-if="tabIndex === 1"
-                 ng-include="'common_templates/tiles_template.html'">
+            <div class="pip-content-container">
+                <div ng-if="tabIndex === 0">
+                    <pip-document>
+                        <div ng-include="'common_templates/details_template.html'"></div>
+                    </pip-document>
+                </div>
+                <div class="pip-scrolled-block" ng-if="tabIndex === 1" ng-include="'common_templates/tiles_template_menu.html'">
+                 </div>
+                 <div ng-if="tabIndex === 2">
+                    <pip-simple>
+                        <div ng-include="'common_templates/details_template.html'"></div>
+                    </pip-sample>
+                 </div>
             </div>
 
         </div>
