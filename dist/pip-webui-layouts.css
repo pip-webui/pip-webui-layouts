@@ -1292,6 +1292,8 @@ body.pip-windows .pip-scroll::-webkit-scrollbar-thumb {
   border-right: none;
   width: 390px;
   opacity: 1;
+  overflow-y: auto;
+  max-height: 100%;
 }
 .pip-main-body .pip-main-menu > .pip-content-container {
   margin: 0;
