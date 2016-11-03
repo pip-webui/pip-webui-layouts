@@ -6,16 +6,6 @@ declare module pip.layouts {
 
 
 
-
-
-
-
-
-
-
-
-
-
 export class MediaBreakpoints {
     constructor(xs: number, sm: number, md: number, lg: number);
     xs: number;
