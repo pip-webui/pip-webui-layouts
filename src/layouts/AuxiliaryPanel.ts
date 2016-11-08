@@ -89,7 +89,7 @@ function auxiliaryPanelDirective() {
         controllerAs: 'vm',
         template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-aux-panel color-content-bg"' + 
                     'md-component-id="pip-aux-panel" md-is-locked-open="vm.isGtxs()" pip-focused>' + 
-                    '<div class="close-button" ng-click="vm.onCloseClick()" ><md-icon md-svg-icon="icons:cross"></md-icon></div></md-sidenav>'
+                    '</md-sidenav>'
     }
 }
 
