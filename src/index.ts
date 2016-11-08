@@ -11,6 +11,7 @@ import './layouts/DialogDirective';
 import './layouts/DocumentDirective';
 import './layouts/SimpleDirective';
 import './layouts/TilesDirective';
+import './layouts/AuxiliaryPanel';
 
 export * from './media/MediaService';
 export * from './media/ResizeFunctions';

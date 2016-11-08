@@ -12,9 +12,89 @@ require('./layouts/DialogDirective');
 require('./layouts/DocumentDirective');
 require('./layouts/SimpleDirective');
 require('./layouts/TilesDirective');
+require('./layouts/AuxiliaryPanel');
 __export(require('./media/MediaService'));
 __export(require('./media/ResizeFunctions'));
-},{"./layouts/CardDirective":2,"./layouts/DialogDirective":3,"./layouts/DocumentDirective":4,"./layouts/MainDirective":5,"./layouts/SimpleDirective":6,"./layouts/TilesDirective":7,"./media/MediaService":8,"./media/ResizeFunctions":9}],2:[function(require,module,exports){
+},{"./layouts/AuxiliaryPanel":2,"./layouts/CardDirective":3,"./layouts/DialogDirective":4,"./layouts/DocumentDirective":5,"./layouts/MainDirective":6,"./layouts/SimpleDirective":7,"./layouts/TilesDirective":8,"./media/MediaService":9,"./media/ResizeFunctions":10}],2:[function(require,module,exports){
+'use strict';
+var MediaService_1 = require('../media/MediaService');
+var AuxiliaryService = (function () {
+    AuxiliaryService.$inject = ['$rootScope', '$compile', '$mdSidenav'];
+    function AuxiliaryService($rootScope, $compile, $mdSidenav) {
+        this._$rootScope = $rootScope;
+        this._$compile = $compile;
+        this._$mdSidenav = $mdSidenav;
+        this.opened = false;
+        this.popoverTemplate = "<div ng-controller='params.controller' class='for-scope'>" +
+            "<div ng-if='params.templateUrl' class='flex layout-column' ng-include='params.templateUrl'></div>";
+        "</div>";
+    }
+    AuxiliaryService.prototype.show = function (p) {
+        var _this = this;
+        if (this.opened)
+            return;
+        var scope, params, content;
+        this.element = $('md-sidenav.pip-aux-panel');
+        scope = this._$rootScope.$new();
+        params = p && _.isObject(p) ? p : {};
+        scope.params = params;
+        scope.locals = params.locals;
+        content = this._$compile(this.popoverTemplate)(scope);
+        this.element.append(content);
+        scope = _.defaultsDeep(scope, this.element.find('.for-scope').scope());
+        if (params.template) {
+            $(this.element.children()[1]).append(this._$compile(params.template)(scope));
+        }
+        try {
+            this._$mdSidenav('pip-aux-panel', true).then(function (instance) {
+                instance.open();
+                _this.opened = true;
+            });
+        }
+        catch (e) {
+            this._$mdSidenav('pip-aux-panel').open();
+            this.opened = true;
+        }
+    };
+    AuxiliaryService.prototype.hide = function () {
+        $(this.element.children()[1]).remove();
+        this.opened = false;
+        this._$mdSidenav('pip-aux-panel').close();
+    };
+    AuxiliaryService.prototype.isOpen = function () {
+        return this.opened;
+    };
+    return AuxiliaryService;
+}());
+var AuxiliaryPanelController = (function () {
+    AuxiliaryPanelController.$inject = ['pipAuxPanel'];
+    function AuxiliaryPanelController(pipAuxPanel) {
+        this._pipAuxPanel = pipAuxPanel;
+    }
+    AuxiliaryPanelController.prototype.isGtxs = function () {
+        return Number($('body').width()) > MediaService_1.MainBreakpoints.xs && this._pipAuxPanel.isOpen();
+    };
+    AuxiliaryPanelController.prototype.onCloseClick = function () {
+        this._pipAuxPanel.hide();
+    };
+    return AuxiliaryPanelController;
+}());
+function auxiliaryPanelDirective() {
+    return {
+        restrict: 'E',
+        replace: true,
+        controller: AuxiliaryPanelController,
+        controllerAs: 'vm',
+        template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-aux-panel color-content-bg"' +
+            'md-component-id="pip-aux-panel" md-is-locked-open="vm.isGtxs()" pip-focused>' +
+            '<div class="close-button" ng-click="vm.onCloseClick()" ><md-icon md-svg-icon="icons:cross"></md-icon></div></md-sidenav>'
+    };
+}
+angular
+    .module('pipLayout')
+    .directive('pipAuxPanel', auxiliaryPanelDirective)
+    .service('pipAuxPanel', AuxiliaryService);
+},{"../media/MediaService":9}],3:[function(require,module,exports){
 'use strict';
 var MediaService_1 = require('../media/MediaService');
 (function () {
@@ -96,7 +176,7 @@ var MediaService_1 = require('../media/MediaService');
         .module('pipLayout')
         .directive('pipCard', cardDirective);
 })();
-},{"../media/MediaService":8}],3:[function(require,module,exports){
+},{"../media/MediaService":9}],4:[function(require,module,exports){
 'use strict';
 (function () {
     function dialogDirective() {
@@ -111,7 +191,7 @@ var MediaService_1 = require('../media/MediaService');
         .module('pipLayout')
         .directive('pipDialog', dialogDirective);
 })();
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 (function () {
     function documentDirective() {
@@ -126,7 +206,7 @@ var MediaService_1 = require('../media/MediaService');
         .module('pipLayout')
         .directive('pipDocument', documentDirective);
 })();
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 var ResizeFunctions_1 = require('../media/ResizeFunctions');
 var MediaService_1 = require('../media/MediaService');
@@ -189,7 +269,7 @@ var MediaService_1 = require('../media/MediaService');
         .directive('pipMain', mainDirective)
         .directive('pipMainBody', mainBodyDirective);
 })();
-},{"../media/MediaService":8,"../media/ResizeFunctions":9}],6:[function(require,module,exports){
+},{"../media/MediaService":9,"../media/ResizeFunctions":10}],7:[function(require,module,exports){
 'use strict';
 (function () {
     function simpleDirective() {
@@ -204,7 +284,7 @@ var MediaService_1 = require('../media/MediaService');
         .module('pipLayout')
         .directive('pipSimple', simpleDirective);
 })();
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 tilesDirective.$inject = ['$rootScope'];
 var ResizeFunctions_1 = require('../media/ResizeFunctions');
@@ -314,7 +394,7 @@ function tilesDirective($rootScope) {
 angular
     .module('pipLayout')
     .directive('pipTiles', tilesDirective);
-},{"../media/MediaService":8,"../media/ResizeFunctions":9}],8:[function(require,module,exports){
+},{"../media/MediaService":9,"../media/ResizeFunctions":10}],9:[function(require,module,exports){
 'use strict';
 var MediaBreakpoints = (function () {
     function MediaBreakpoints(xs, sm, md, lg) {
@@ -386,7 +466,7 @@ var MediaProvider = (function () {
 angular
     .module('pipLayout')
     .provider('pipMedia', MediaProvider);
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 var attachEvent = document.attachEvent;
 var isIE = navigator.userAgent.match(/Trident/);

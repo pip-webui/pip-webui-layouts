@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('appMenu', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('MenuController', function ($scope, $rootScope, pipMedia, $location) {
+    thisModule.controller('MenuController', function ($scope, $rootScope, pipMedia, $location, pipAuxPanel) {
         $scope.items = [
             {id: '7a26e18f78s87ftf8', po: '23432', start: '30 m 7 s ago', last: '12 m 34 s ago', activities: [
                 {type: 'POST', time: '30 m 7 sec ago', check: true},
@@ -47,6 +47,15 @@
         $scope.isMobileDetails = function () {
             return pipMedia('xs') && $location.$$search.id !== undefined;
         };
+
+        $scope.showAuxPanel = function() {
+            pipAuxPanel.show({
+            controller: function($scope) {
+                $scope.title = 'Knowldge center record';
+            },
+            template: "<div style='margin:16px'>{{ title }}</div>"
+        });
+        }
 
     });
 })(window.angular);

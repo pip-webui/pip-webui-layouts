@@ -40,7 +40,7 @@
     <script src="index.js"></script>
 </head>
 <body ng-app="app" class="layout-column layout-align-start-center" ng-controller="AppController">
-<md-toolbar>
+<!--md-toolbar>
     <div class="md-toolbar-tools">
         <md-button class="md-icon-button" aria-label="menu"
                    ng-click="onToggleMenu()">
@@ -48,7 +48,7 @@
         </md-button>
         <div class="flex-var text-overflow">Layouts</div>
     </div>
-</md-toolbar>
+</md-toolbar-->
 
 <div class="layout-row flex" style="width: 100%">
     <md-sidenav md-component-id="left"
@@ -62,7 +62,7 @@
         </md-list>
     </md-sidenav>
 
-    <md-content id="content" class="flex" style="padding: 24px">
+    <md-content id="content" class="flex" style="padding: 24px" >
         <div ui-view></div>
     </md-content>
 
@@ -72,8 +72,8 @@
             For pipMedia test
         </md-content>
     </md-sidenav>
-
-
+    <pip-aux-panel> </pip-aux-panel>
 </div>
+
 </body>
 </html>
