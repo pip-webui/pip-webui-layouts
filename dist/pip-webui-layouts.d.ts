@@ -2,17 +2,6 @@ declare module pip.layouts {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 export let AuxPanelChangedEvent: string;
 export let AuxPanelStateChangedEvent: string;
 export let OpenAuxPanelEvent: string;
@@ -45,10 +34,6 @@ export interface IAuxPanelProvider extends ng.IServiceProvider {
     removeClass(...classes: string[]): void;
     part(part: string, value: any): void;
 }
-
-
-
-
 
 
 
