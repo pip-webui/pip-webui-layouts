@@ -1,9 +1,278 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}(g.pip || (g.pip = {})).layouts = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
+var MediaService_1 = require('../media/MediaService');
+(function () {
+    var AuxPanelDirectiveController = (function () {
+        AuxPanelDirectiveController.$inject = ['pipAuxPanel'];
+        function AuxPanelDirectiveController(pipAuxPanel) {
+            this._pipAuxPanel = pipAuxPanel;
+        }
+        AuxPanelDirectiveController.prototype.isGtxs = function () {
+            return Number($('body').width()) > MediaService_1.MainBreakpoints.xs && this._pipAuxPanel.isOpen();
+        };
+        return AuxPanelDirectiveController;
+    }());
+    function AuxPanelDirective() {
+        return {
+            restrict: 'E',
+            replace: true,
+            controller: AuxPanelDirectiveController,
+            transclude: true,
+            controllerAs: 'vm',
+            template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-auxpanel color-content-bg"' +
+                'md-component-id="pip-auxpanel" md-is-locked-open="vm.isGtxs()" pip-focused ng-transclude>' +
+                '</md-sidenav>'
+        };
+    }
+    angular
+        .module('pipAuxPanel')
+        .directive('pipAuxPanel', AuxPanelDirective);
+})();
+},{"../media/MediaService":12}],2:[function(require,module,exports){
+'use strict';
+(function () {
+    AuxPanelPartDirectiveController.$inject = ['$scope', '$element', '$attrs', '$rootScope', 'pipAuxPanel'];
+    AuxPanelPartDirective.$inject = ['ngIfDirective'];
+    function AuxPanelPartDirectiveController($scope, $element, $attrs, $rootScope, pipAuxPanel) {
+        "ngInject";
+        var partName = '' + $attrs.pipAuxPanelPart;
+        var partValue = null;
+        var pos = partName.indexOf(':');
+        if (pos > 0) {
+            partValue = partName.substr(pos + 1);
+            partName = partName.substr(0, pos);
+        }
+        onAuxPanelChanged(null, pipAuxPanel.config);
+        $rootScope.$on('pipAuxPanelChanged', onAuxPanelChanged);
+        function onAuxPanelChanged(event, config) {
+            var parts = config.parts || {};
+            var currentPartValue = config[partName];
+            $scope.visible = partValue ? currentPartValue == partValue : currentPartValue;
+        }
+    }
+    function AuxPanelPartDirective(ngIfDirective) {
+        "ngInject";
+        var ngIf = ngIfDirective[0];
+        return {
+            transclude: ngIf.transclude,
+            priority: ngIf.priority,
+            terminal: ngIf.terminal,
+            restrict: ngIf.restrict,
+            scope: true,
+            link: function ($scope, $element, $attrs) {
+                $attrs.ngIf = function () { return $scope.visible; };
+                ngIf.link.apply(ngIf);
+            },
+            controller: AuxPanelPartDirectiveController
+        };
+    }
+    angular
+        .module('pipAuxPanel')
+        .directive('pipAuxPanelPart', AuxPanelPartDirective);
+})();
+},{}],3:[function(require,module,exports){
+'use strict';
+hookAuxPanelEvents.$inject = ['$rootScope', 'pipAuxPanel'];
+exports.AuxPanelChangedEvent = 'pipAuxPanelChanged';
+exports.AuxPanelStateChangedEvent = 'pipAuxPanelStateChanged';
+exports.OpenAuxPanelEvent = 'pipOpenAuxPanel';
+exports.CloseAuxPanelEvent = 'pipCloseAuxPanel';
+var AuxPanelConfig = (function () {
+    function AuxPanelConfig() {
+    }
+    return AuxPanelConfig;
+}());
+exports.AuxPanelConfig = AuxPanelConfig;
+var AuxPanelService = (function () {
+    function AuxPanelService(config, $rootScope, $mdSidenav) {
+        this.id = 'pip-auxpanel';
+        this._config = config;
+        this._rootScope = $rootScope;
+        this._sidenav = $mdSidenav;
+    }
+    Object.defineProperty(AuxPanelService.prototype, "config", {
+        get: function () {
+            return this._config;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AuxPanelService.prototype, "classes", {
+        get: function () {
+            return this._config.classes;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AuxPanelService.prototype, "parts", {
+        get: function () {
+            return this._config.parts;
+        },
+        set: function (value) {
+            this._config.parts = value || {};
+            this.sendConfigEvent();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AuxPanelService.prototype, "state", {
+        get: function () {
+            return this._state;
+        },
+        set: function (value) {
+            this._state = value || {};
+            this._rootScope.$broadcast(exports.AuxPanelStateChangedEvent, value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AuxPanelService.prototype.isOpen = function () {
+        return this._sidenav(this.id).isOpen();
+    };
+    AuxPanelService.prototype.open = function () {
+        this._sidenav(this.id).open();
+    };
+    AuxPanelService.prototype.close = function () {
+        this._sidenav(this.id).close();
+    };
+    AuxPanelService.prototype.toggle = function () {
+        this._sidenav(this.id).toggle();
+    };
+    AuxPanelService.prototype.addClass = function () {
+        var _this = this;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i - 0] = arguments[_i];
+        }
+        _.each(classes, function (c) {
+            _this._config.classes.push(c);
+        });
+        this.sendConfigEvent();
+    };
+    AuxPanelService.prototype.removeClass = function () {
+        var _this = this;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i - 0] = arguments[_i];
+        }
+        _.each(classes, function (c) {
+            _this._config.classes = _.reject(_this._config.classes, function (cc) { return cc == c; });
+        });
+        this.sendConfigEvent();
+    };
+    AuxPanelService.prototype.part = function (part, value) {
+        this._config.parts[part] = value;
+        this.sendConfigEvent();
+    };
+    AuxPanelService.prototype.sendConfigEvent = function () {
+        this._rootScope.$emit(exports.AuxPanelChangedEvent, this._config);
+    };
+    return AuxPanelService;
+}());
+var AuxPanelProvider = (function () {
+    function AuxPanelProvider() {
+        this._config = {
+            parts: {},
+            classes: [],
+            type: 'sticky',
+            state: null
+        };
+    }
+    Object.defineProperty(AuxPanelProvider.prototype, "config", {
+        get: function () {
+            return this._config;
+        },
+        set: function (value) {
+            this._config = value || new AuxPanelConfig();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AuxPanelProvider.prototype, "parts", {
+        get: function () {
+            return this._config.parts;
+        },
+        set: function (value) {
+            this._config.parts = value || {};
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AuxPanelProvider.prototype, "type", {
+        get: function () {
+            return this._config.type;
+        },
+        set: function (value) {
+            this._config.type = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AuxPanelProvider.prototype, "classes", {
+        get: function () {
+            return this._config.classes;
+        },
+        set: function (value) {
+            this._config.classes = value || [];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AuxPanelProvider.prototype.addClass = function () {
+        var _this = this;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i - 0] = arguments[_i];
+        }
+        _.each(classes, function (c) {
+            _this._config.classes.push(c);
+        });
+    };
+    AuxPanelProvider.prototype.removeClass = function () {
+        var _this = this;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i - 0] = arguments[_i];
+        }
+        _.each(classes, function (c) {
+            _this._config.classes = _.reject(_this._config.classes, function (cc) { return cc == c; });
+        });
+    };
+    AuxPanelProvider.prototype.part = function (part, value) {
+        this._config.parts[part] = value;
+    };
+    AuxPanelProvider.prototype.$get = ['$rootScope', '$mdSidenav', function ($rootScope, $mdSidenav) {
+        "ngInject";
+        if (this._service == null)
+            this._service = new AuxPanelService(this._config, $rootScope, $mdSidenav);
+        return this._service;
+    }];
+    return AuxPanelProvider;
+}());
+function hookAuxPanelEvents($rootScope, pipAuxPanel) {
+    $rootScope.$on(exports.OpenAuxPanelEvent, function () { pipAuxPanel.open(); });
+    $rootScope.$on(exports.CloseAuxPanelEvent, function () { pipAuxPanel.close(); });
+}
+angular
+    .module('pipAuxPanel')
+    .provider('pipAuxPanel', AuxPanelProvider)
+    .run(hookAuxPanelEvents);
+},{}],4:[function(require,module,exports){
+'use strict';
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-angular.module('pipLayout', ['wu.masonry']);
+angular.module('pipAuxPanel', ['ngMaterial']);
+require('./AuxPanelService');
+require('./AuxPanelPartDirective');
+require('./AuxPanelDirective');
+__export(require('./AuxPanelService'));
+},{"./AuxPanelDirective":1,"./AuxPanelPartDirective":2,"./AuxPanelService":3}],5:[function(require,module,exports){
+'use strict';
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+angular.module('pipLayout', ['wu.masonry', 'pipAuxPanel']);
 require('./media/MediaService');
 require('./media/ResizeFunctions');
 require('./layouts/MainDirective');
@@ -12,89 +281,10 @@ require('./layouts/DialogDirective');
 require('./layouts/DocumentDirective');
 require('./layouts/SimpleDirective');
 require('./layouts/TilesDirective');
-require('./layouts/AuxiliaryPanel');
+require('./auxpanel/index');
 __export(require('./media/MediaService'));
 __export(require('./media/ResizeFunctions'));
-},{"./layouts/AuxiliaryPanel":2,"./layouts/CardDirective":3,"./layouts/DialogDirective":4,"./layouts/DocumentDirective":5,"./layouts/MainDirective":6,"./layouts/SimpleDirective":7,"./layouts/TilesDirective":8,"./media/MediaService":9,"./media/ResizeFunctions":10}],2:[function(require,module,exports){
-'use strict';
-var MediaService_1 = require('../media/MediaService');
-var AuxiliaryService = (function () {
-    AuxiliaryService.$inject = ['$rootScope', '$compile', '$mdSidenav'];
-    function AuxiliaryService($rootScope, $compile, $mdSidenav) {
-        this._$rootScope = $rootScope;
-        this._$compile = $compile;
-        this._$mdSidenav = $mdSidenav;
-        this.opened = false;
-        this.popoverTemplate = "<div ng-controller='params.controller' class='for-scope'>" +
-            "<div ng-if='params.templateUrl' class='flex layout-column' ng-include='params.templateUrl'></div>";
-        "</div>";
-    }
-    AuxiliaryService.prototype.show = function (p) {
-        var _this = this;
-        if (this.opened)
-            return;
-        var scope, params, content;
-        this.element = $('md-sidenav.pip-aux-panel');
-        scope = this._$rootScope.$new();
-        params = p && _.isObject(p) ? p : {};
-        scope.params = params;
-        scope.locals = params.locals;
-        content = this._$compile(this.popoverTemplate)(scope);
-        this.element.append(content);
-        scope = _.defaultsDeep(scope, this.element.find('.for-scope').scope());
-        if (params.template) {
-            $(this.element.children()[1]).append(this._$compile(params.template)(scope));
-        }
-        try {
-            this._$mdSidenav('pip-aux-panel', true).then(function (instance) {
-                instance.open();
-                _this.opened = true;
-            });
-        }
-        catch (e) {
-            this._$mdSidenav('pip-aux-panel').open();
-            this.opened = true;
-        }
-    };
-    AuxiliaryService.prototype.hide = function () {
-        $(this.element.children()[1]).remove();
-        this.opened = false;
-        this._$mdSidenav('pip-aux-panel').close();
-    };
-    AuxiliaryService.prototype.isOpen = function () {
-        return this.opened;
-    };
-    return AuxiliaryService;
-}());
-var AuxiliaryPanelController = (function () {
-    AuxiliaryPanelController.$inject = ['pipAuxPanel'];
-    function AuxiliaryPanelController(pipAuxPanel) {
-        this._pipAuxPanel = pipAuxPanel;
-    }
-    AuxiliaryPanelController.prototype.isGtxs = function () {
-        return Number($('body').width()) > MediaService_1.MainBreakpoints.xs && this._pipAuxPanel.isOpen();
-    };
-    AuxiliaryPanelController.prototype.onCloseClick = function () {
-        this._pipAuxPanel.hide();
-    };
-    return AuxiliaryPanelController;
-}());
-function auxiliaryPanelDirective() {
-    return {
-        restrict: 'E',
-        replace: true,
-        controller: AuxiliaryPanelController,
-        controllerAs: 'vm',
-        template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-aux-panel color-content-bg"' +
-            'md-component-id="pip-aux-panel" md-is-locked-open="vm.isGtxs()" pip-focused>' +
-            '<div class="close-button" ng-click="vm.onCloseClick()" ><md-icon md-svg-icon="icons:cross"></md-icon></div></md-sidenav>'
-    };
-}
-angular
-    .module('pipLayout')
-    .directive('pipAuxPanel', auxiliaryPanelDirective)
-    .service('pipAuxPanel', AuxiliaryService);
-},{"../media/MediaService":9}],3:[function(require,module,exports){
+},{"./auxpanel/index":4,"./layouts/CardDirective":6,"./layouts/DialogDirective":7,"./layouts/DocumentDirective":8,"./layouts/MainDirective":9,"./layouts/SimpleDirective":10,"./layouts/TilesDirective":11,"./media/MediaService":12,"./media/ResizeFunctions":13}],6:[function(require,module,exports){
 'use strict';
 var MediaService_1 = require('../media/MediaService');
 (function () {
@@ -176,7 +366,7 @@ var MediaService_1 = require('../media/MediaService');
         .module('pipLayout')
         .directive('pipCard', cardDirective);
 })();
-},{"../media/MediaService":9}],4:[function(require,module,exports){
+},{"../media/MediaService":12}],7:[function(require,module,exports){
 'use strict';
 (function () {
     function dialogDirective() {
@@ -191,7 +381,7 @@ var MediaService_1 = require('../media/MediaService');
         .module('pipLayout')
         .directive('pipDialog', dialogDirective);
 })();
-},{}],5:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 (function () {
     function documentDirective() {
@@ -206,7 +396,7 @@ var MediaService_1 = require('../media/MediaService');
         .module('pipLayout')
         .directive('pipDocument', documentDirective);
 })();
-},{}],6:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 var ResizeFunctions_1 = require('../media/ResizeFunctions');
 var MediaService_1 = require('../media/MediaService');
@@ -269,7 +459,7 @@ var MediaService_1 = require('../media/MediaService');
         .directive('pipMain', mainDirective)
         .directive('pipMainBody', mainBodyDirective);
 })();
-},{"../media/MediaService":9,"../media/ResizeFunctions":10}],7:[function(require,module,exports){
+},{"../media/MediaService":12,"../media/ResizeFunctions":13}],10:[function(require,module,exports){
 'use strict';
 (function () {
     function simpleDirective() {
@@ -284,7 +474,7 @@ var MediaService_1 = require('../media/MediaService');
         .module('pipLayout')
         .directive('pipSimple', simpleDirective);
 })();
-},{}],8:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 tilesDirective.$inject = ['$rootScope'];
 var ResizeFunctions_1 = require('../media/ResizeFunctions');
@@ -394,7 +584,7 @@ function tilesDirective($rootScope) {
 angular
     .module('pipLayout')
     .directive('pipTiles', tilesDirective);
-},{"../media/MediaService":9,"../media/ResizeFunctions":10}],9:[function(require,module,exports){
+},{"../media/MediaService":12,"../media/ResizeFunctions":13}],12:[function(require,module,exports){
 'use strict';
 var MediaBreakpoints = (function () {
     function MediaBreakpoints(xs, sm, md, lg) {
@@ -466,7 +656,7 @@ var MediaProvider = (function () {
 angular
     .module('pipLayout')
     .provider('pipMedia', MediaProvider);
-},{}],10:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 var attachEvent = document.attachEvent;
 var isIE = navigator.userAgent.match(/Trident/);
@@ -541,7 +731,7 @@ function removeResizeListener(element, listener) {
     }
 }
 exports.removeResizeListener = removeResizeListener;
-},{}]},{},[1])(1)
+},{}]},{},[5])(5)
 });
 
 

@@ -1380,8 +1380,3 @@ body.pip-windows .pip-scroll::-webkit-scrollbar-thumb {
 .pip-gt-lg .pip-main-body .pip-main-menu.pip-single-content .pip-content-container {
   left: 0;
 }
-.pip-aux-panel .close-button {
-  position: absolute;
-  right: 8px;
-  top: 12px;
-}

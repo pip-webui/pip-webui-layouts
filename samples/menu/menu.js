@@ -49,12 +49,7 @@
         };
 
         $scope.showAuxPanel = function() {
-            pipAuxPanel.show({
-            controller: function($scope) {
-                $scope.title = 'Knowldge center record';
-            },
-            template: "<div style='margin:16px'>{{ title }}</div>"
-        });
+            pipAuxPanel.open();
         }
 
     });
