@@ -35,6 +35,10 @@ export interface IAuxPanelProvider extends ng.IServiceProvider {
     type: string;
     classes: string[];
 
+    open(): void;
+    close(): void;
+    toggle(): void;
+
     addClass(...classes: string[]): void;
     removeClass(...classes: string[]): void;
 
