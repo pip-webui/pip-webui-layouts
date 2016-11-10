@@ -178,6 +178,18 @@ class AuxPanelProvider implements IAuxPanelProvider {
         this._config.parts[part] = value;
     }
 
+    public open(): void {
+        this._service.open();
+    }
+
+    public close(): void {
+        this._service.close();
+    }
+
+    public toggle(): void {
+        this._service.toggle();
+    }
+
     public $get($rootScope: ng.IRootScopeService, $mdSidenav: ng.material.ISidenavService) {
         "ngInject";
 

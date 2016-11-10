@@ -241,6 +241,15 @@ var AuxPanelProvider = (function () {
     AuxPanelProvider.prototype.part = function (part, value) {
         this._config.parts[part] = value;
     };
+    AuxPanelProvider.prototype.open = function () {
+        this._service.open();
+    };
+    AuxPanelProvider.prototype.close = function () {
+        this._service.close();
+    };
+    AuxPanelProvider.prototype.toggle = function () {
+        this._service.toggle();
+    };
     AuxPanelProvider.prototype.$get = ['$rootScope', '$mdSidenav', function ($rootScope, $mdSidenav) {
         "ngInject";
         if (this._service == null)
