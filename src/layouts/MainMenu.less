@@ -12,7 +12,7 @@
       position: absolute;
       transition: all 0.35s ease;
       border-right: none;
-      width: 390px;
+      width: 320px;
       opacity: 1;
       overflow-y: auto;
       max-height: 100%;
@@ -22,9 +22,9 @@
       margin: 0;
       transition: all 0.35s ease;
       position: absolute;
-      left: 390px;
+      left: 320px;
       height: 100%;
-      width: ~"calc(100% - 390px)";
+      width: ~"calc(100% - 320px)";
       overflow: hidden;
       .pip-scrolled-block {
         overflow-y: auto;
@@ -95,33 +95,16 @@
   }
 }
 
-.pip-sm {
-  .pip-main-body {
-    .pip-main-menu {
-
-      .pip-menu {
-        width: 320px;
-      }
-
-      .pip-content-container {
-        left: 320px;
-        width: ~"calc(100% - 320px)";
-        height: 100%;
-      }
-    }
-  }
-}
-
-.pip-gt-lg {
+.pip-gt-md {
   .pip-main-body {
     .pip-main-menu {
       .pip-menu {
-        width: 500px;
+        width: 480px;
       }
 
       .pip-content-container {
-        left: 500px;
-        width: ~"calc(100% - 500px)";
+        left: 480px;
+        width: ~"calc(100% - 480px)";
       }
 
       &.pip-single-content {

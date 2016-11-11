@@ -10,6 +10,9 @@ var MediaService_1 = require('../media/MediaService');
         AuxPanelDirectiveController.prototype.isGtxs = function () {
             return Number($('body').width()) > MediaService_1.MainBreakpoints.xs && this._pipAuxPanel.isOpen();
         };
+        AuxPanelDirectiveController.prototype.isGtmd = function () {
+            return Number($('body').width()) > MediaService_1.MainBreakpoints.md;
+        };
         return AuxPanelDirectiveController;
     }());
     function AuxPanelDirective() {
@@ -19,7 +22,7 @@ var MediaService_1 = require('../media/MediaService');
             controller: AuxPanelDirectiveController,
             transclude: true,
             controllerAs: 'vm',
-            template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-auxpanel color-content-bg"' +
+            template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-auxpanel color-content-bg" ng-class="{\'pip-large\': vm.isGtmd()}"' +
                 'md-component-id="pip-auxpanel" md-is-locked-open="vm.isGtxs()" pip-focused ng-transclude>' +
                 '</md-sidenav>'
         };
@@ -627,7 +630,7 @@ var MediaBreakpointStatuses = (function () {
 exports.MediaBreakpointStatuses = MediaBreakpointStatuses;
 exports.MainResizedEvent = 'pipMainResized';
 exports.LayoutResizedEvent = 'pipLayoutResized';
-exports.MainBreakpoints = new MediaBreakpoints(639, 1110, 1220, 1599);
+exports.MainBreakpoints = new MediaBreakpoints(639, 1119, 1439, 1919);
 exports.MainBreakpointStatuses = new MediaBreakpointStatuses();
 var MediaProvider = (function () {
     function MediaProvider() {
