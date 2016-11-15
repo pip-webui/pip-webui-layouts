@@ -10,8 +10,8 @@ var MediaService_1 = require('../media/MediaService');
         AuxPanelDirectiveController.prototype.isGtxs = function () {
             return Number($('body').width()) > MediaService_1.MainBreakpoints.xs && this._pipAuxPanel.isOpen();
         };
-        AuxPanelDirectiveController.prototype.isGtmd = function () {
-            return Number($('body').width()) > MediaService_1.MainBreakpoints.md;
+        AuxPanelDirectiveController.prototype.isGtlg = function () {
+            return Number($('body').width()) > MediaService_1.MainBreakpoints.lg;
         };
         return AuxPanelDirectiveController;
     }());
@@ -22,7 +22,7 @@ var MediaService_1 = require('../media/MediaService');
             controller: AuxPanelDirectiveController,
             transclude: true,
             controllerAs: 'vm',
-            template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-auxpanel color-content-bg" ng-class="{\'pip-large\': vm.isGtmd()}"' +
+            template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-auxpanel color-content-bg" ng-class="{\'pip-large\': vm.isGtlg()}"' +
                 'md-component-id="pip-auxpanel" md-is-locked-open="vm.isGtxs()" pip-focused ng-transclude>' +
                 '</md-sidenav>'
         };
@@ -630,7 +630,7 @@ var MediaBreakpointStatuses = (function () {
 exports.MediaBreakpointStatuses = MediaBreakpointStatuses;
 exports.MainResizedEvent = 'pipMainResized';
 exports.LayoutResizedEvent = 'pipLayoutResized';
-exports.MainBreakpoints = new MediaBreakpoints(639, 1119, 1439, 1919);
+exports.MainBreakpoints = new MediaBreakpoints(639, 703, 1024, 1439);
 exports.MainBreakpointStatuses = new MediaBreakpointStatuses();
 var MediaProvider = (function () {
     function MediaProvider() {
@@ -652,7 +652,7 @@ var MediaProvider = (function () {
         Object.defineProperty(service, 'breakpoints', {
             get: function () { return exports.MainBreakpoints; },
             set: function (value) {
-                exports.MainBreakpoints = value || new MediaBreakpoints(639, 1110, 1220, 1599);
+                exports.MainBreakpoints = value || new MediaBreakpoints(640, 704, 1025, 1440);
                 exports.MainBreakpointStatuses.update(exports.MainBreakpoints, exports.MainBreakpointStatuses.width);
             }
         });

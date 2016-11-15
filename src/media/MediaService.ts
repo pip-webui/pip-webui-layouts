@@ -47,7 +47,7 @@ export class MediaBreakpointStatuses {
 export let MainResizedEvent: string = 'pipMainResized';
 export let LayoutResizedEvent: string = 'pipLayoutResized';
 
-export let MainBreakpoints: MediaBreakpoints = new MediaBreakpoints(639, 1119, 1439, 1919);
+export let MainBreakpoints: MediaBreakpoints = new MediaBreakpoints(639, 703, 1024, 1439);
 export let MainBreakpointStatuses: MediaBreakpointStatuses = new MediaBreakpointStatuses();
 
 export interface IMediaService {
@@ -77,7 +77,7 @@ class MediaProvider {
         Object.defineProperty(service, 'breakpoints', {
             get: () => { return MainBreakpoints; },
             set: (value) => { 
-                MainBreakpoints = value || new MediaBreakpoints(639, 1110, 1220, 1599);
+                MainBreakpoints = value || new MediaBreakpoints(640, 704, 1025, 1440);
                 
                 MainBreakpointStatuses.update(
                     MainBreakpoints, 

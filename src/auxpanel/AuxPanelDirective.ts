@@ -16,8 +16,8 @@ class AuxPanelDirectiveController {
         return Number($('body').width()) > MainBreakpoints.xs && this._pipAuxPanel.isOpen();
     }
 
-    public isGtmd():boolean {
-        return Number($('body').width()) > MainBreakpoints.md;
+    public isGtlg():boolean {
+        return Number($('body').width()) > MainBreakpoints.lg;
     }
 }
 
@@ -28,7 +28,7 @@ function AuxPanelDirective() {
         controller: AuxPanelDirectiveController,
         transclude: true,
         controllerAs: 'vm',
-        template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-auxpanel color-content-bg" ng-class="{\'pip-large\': vm.isGtmd()}"' + 
+        template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-auxpanel color-content-bg" ng-class="{\'pip-large\': vm.isGtlg()}"' + 
                     'md-component-id="pip-auxpanel" md-is-locked-open="vm.isGtxs()" pip-focused ng-transclude>' + 
                     '</md-sidenav>'
     }
