@@ -77,7 +77,7 @@ class MediaProvider {
         Object.defineProperty(service, 'breakpoints', {
             get: () => { return MainBreakpoints; },
             set: (value) => { 
-                MainBreakpoints = value || new MediaBreakpoints(640, 704, 1025, 1440);
+                MainBreakpoints = value || new MediaBreakpoints(639, 711, 1024, 1439);
                 
                 MainBreakpointStatuses.update(
                     MainBreakpoints, 
