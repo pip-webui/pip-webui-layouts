@@ -47,7 +47,7 @@ export class MediaBreakpointStatuses {
 export let MainResizedEvent: string = 'pipMainResized';
 export let LayoutResizedEvent: string = 'pipLayoutResized';
 
-export let MainBreakpoints: MediaBreakpoints = new MediaBreakpoints(639, 703, 1024, 1439);
+export let MainBreakpoints: MediaBreakpoints = new MediaBreakpoints(639, 711, 1024, 1439);
 export let MainBreakpointStatuses: MediaBreakpointStatuses = new MediaBreakpointStatuses();
 
 export interface IMediaService {

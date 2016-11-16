@@ -5,13 +5,15 @@ var MediaService_1 = require('../media/MediaService');
     var AuxPanelDirectiveController = (function () {
         AuxPanelDirectiveController.$inject = ['pipAuxPanel'];
         function AuxPanelDirectiveController(pipAuxPanel) {
+            this.normalSize = 320;
+            this.largeSize = 480;
             this._pipAuxPanel = pipAuxPanel;
         }
         AuxPanelDirectiveController.prototype.isGtxs = function () {
             return Number($('body').width()) > MediaService_1.MainBreakpoints.xs && this._pipAuxPanel.isOpen();
         };
         AuxPanelDirectiveController.prototype.isGtlg = function () {
-            return Number($('body').width()) > MediaService_1.MainBreakpoints.lg;
+            return Number($('body').width()) > (MediaService_1.MainBreakpoints.lg + (this.largeSize - this.normalSize + 20));
         };
         return AuxPanelDirectiveController;
     }());

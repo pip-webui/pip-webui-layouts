@@ -7,6 +7,8 @@ import { IAuxPanelService } from './AuxPanelService';
 
 class AuxPanelDirectiveController {
     private _pipAuxPanel: IAuxPanelService;
+    private normalSize: number = 320;
+    private largeSize: number = 480;
 
     public constructor(pipAuxPanel: IAuxPanelService) {
         this._pipAuxPanel = pipAuxPanel;
@@ -17,7 +19,7 @@ class AuxPanelDirectiveController {
     }
 
     public isGtlg():boolean {
-        return Number($('body').width()) > MainBreakpoints.lg;
+        return Number($('body').width()) > (MainBreakpoints.lg + (this.largeSize - this.normalSize + 20));
     }
 }
 
