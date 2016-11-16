@@ -632,7 +632,7 @@ var MediaBreakpointStatuses = (function () {
 exports.MediaBreakpointStatuses = MediaBreakpointStatuses;
 exports.MainResizedEvent = 'pipMainResized';
 exports.LayoutResizedEvent = 'pipLayoutResized';
-exports.MainBreakpoints = new MediaBreakpoints(639, 711, 1024, 1439);
+exports.MainBreakpoints = new MediaBreakpoints(639, 714, 1024, 1439);
 exports.MainBreakpointStatuses = new MediaBreakpointStatuses();
 var MediaProvider = (function () {
     function MediaProvider() {
@@ -654,7 +654,7 @@ var MediaProvider = (function () {
         Object.defineProperty(service, 'breakpoints', {
             get: function () { return exports.MainBreakpoints; },
             set: function (value) {
-                exports.MainBreakpoints = value || new MediaBreakpoints(639, 711, 1024, 1439);
+                exports.MainBreakpoints = value || new MediaBreakpoints(639, 714, 1024, 1439);
                 exports.MainBreakpointStatuses.update(exports.MainBreakpoints, exports.MainBreakpointStatuses.width);
             }
         });
