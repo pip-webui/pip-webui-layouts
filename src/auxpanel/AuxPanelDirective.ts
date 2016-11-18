@@ -19,7 +19,7 @@ class AuxPanelDirectiveController {
     }
 
     public isGtlg():boolean {
-        return Number($('body').width()) > (MainBreakpoints.lg + (this.largeSize - this.normalSize + 20));
+        return Number($('body').width()) > (MainBreakpoints.lg + this.largeSize);
     }
 }
 

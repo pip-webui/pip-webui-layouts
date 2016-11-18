@@ -10,27 +10,30 @@ class MainDirectiveController {
     private _element: any;
     private _rootScope: ng.IRootScopeService;
     private _timeout: ng.ITimeoutService;
+    private _container: any;
 
     public constructor(
         $scope: ng.IScope, 
         $element: any, 
         $rootScope: ng.IRootScopeService,
-        $timeout: ng.ITimeoutService
+        $timeout: ng.ITimeoutService,
+        $attrs: any
     ) {
         this._element = $element;        
         this._rootScope = $rootScope;
         this._timeout = $timeout;
+        this._container = $attrs.pipContainer ? $($attrs.pipContainer) : $element;
 
         // Add CSS class
         $element.addClass('pip-main');
 
         // Add resize listener
         let listener = () => { this.resize(); };
-        addResizeListener($element[0], listener);
+        addResizeListener(this._container[0], listener);
 
         // Unbind when scope is removed
         $scope.$on('$destroy', () => {
-            removeResizeListener($element[0], listener);
+            removeResizeListener(this._container[0], listener);
         });
 
         // Perform initial calculations
@@ -38,7 +41,7 @@ class MainDirectiveController {
     }
 
     private updateBreakpointStatuses() {
-        let width = this._element.innerWidth();
+        let width = this._container.innerWidth();
         let body = $('body');
 
         MainBreakpointStatuses.update(MainBreakpoints, width);

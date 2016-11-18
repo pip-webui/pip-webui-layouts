@@ -13,7 +13,7 @@ var MediaService_1 = require('../media/MediaService');
             return Number($('body').width()) > MediaService_1.MainBreakpoints.xs && this._pipAuxPanel.isOpen();
         };
         AuxPanelDirectiveController.prototype.isGtlg = function () {
-            return Number($('body').width()) > (MediaService_1.MainBreakpoints.lg + (this.largeSize - this.normalSize + 20));
+            return Number($('body').width()) > (MediaService_1.MainBreakpoints.lg + this.largeSize);
         };
         return AuxPanelDirectiveController;
     }());
@@ -416,23 +416,24 @@ var ResizeFunctions_1 = require('../media/ResizeFunctions');
 var MediaService_1 = require('../media/MediaService');
 (function () {
     var MainDirectiveController = (function () {
-        MainDirectiveController.$inject = ['$scope', '$element', '$rootScope', '$timeout'];
-        function MainDirectiveController($scope, $element, $rootScope, $timeout) {
+        MainDirectiveController.$inject = ['$scope', '$element', '$rootScope', '$timeout', '$attrs'];
+        function MainDirectiveController($scope, $element, $rootScope, $timeout, $attrs) {
             var _this = this;
             this._element = $element;
             this._rootScope = $rootScope;
             this._timeout = $timeout;
+            this._container = $attrs.pipContainer ? $($attrs.pipContainer) : $element;
             $element.addClass('pip-main');
             var listener = function () { _this.resize(); };
-            ResizeFunctions_1.addResizeListener($element[0], listener);
+            ResizeFunctions_1.addResizeListener(this._container[0], listener);
             $scope.$on('$destroy', function () {
-                ResizeFunctions_1.removeResizeListener($element[0], listener);
+                ResizeFunctions_1.removeResizeListener(_this._container[0], listener);
             });
             this.updateBreakpointStatuses();
         }
         MainDirectiveController.prototype.updateBreakpointStatuses = function () {
             var _this = this;
-            var width = this._element.innerWidth();
+            var width = this._container.innerWidth();
             var body = $('body');
             MediaService_1.MainBreakpointStatuses.update(MediaService_1.MainBreakpoints, width);
             $.each(MediaService_1.MainBreakpointStatuses, function (breakpoint, status) {
