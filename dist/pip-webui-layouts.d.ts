@@ -2,41 +2,8 @@ declare module pip.layouts {
 
 
 
-export let AuxPanelChangedEvent: string;
-export let AuxPanelStateChangedEvent: string;
-export let OpenAuxPanelEvent: string;
-export let CloseAuxPanelEvent: string;
-export class AuxPanelConfig {
-    parts: any;
-    classes: string[];
-    state: any;
-    type: string;
-}
-export interface IAuxPanelService {
-    readonly config: AuxPanelConfig;
-    readonly classes: string[];
-    parts: any;
-    state: any;
-    isOpen(): boolean;
-    open(): void;
-    close(): void;
-    toggle(): void;
-    addClass(...classes: string[]): void;
-    removeClass(...classes: string[]): void;
-    part(part: string, value: any): void;
-}
-export interface IAuxPanelProvider extends ng.IServiceProvider {
-    config: AuxPanelConfig;
-    parts: any;
-    type: string;
-    classes: string[];
-    open(): void;
-    close(): void;
-    toggle(): void;
-    addClass(...classes: string[]): void;
-    removeClass(...classes: string[]): void;
-    part(part: string, value: any): void;
-}
+
+
 
 
 export class MediaBreakpoints {
@@ -77,8 +44,41 @@ export function removeResizeListener(element: any, listener: any): void;
 
 
 
-
-
+export let AuxPanelChangedEvent: string;
+export let AuxPanelStateChangedEvent: string;
+export let OpenAuxPanelEvent: string;
+export let CloseAuxPanelEvent: string;
+export class AuxPanelConfig {
+    parts: any;
+    classes: string[];
+    state: any;
+    type: string;
+}
+export interface IAuxPanelService {
+    readonly config: AuxPanelConfig;
+    readonly classes: string[];
+    parts: any;
+    state: any;
+    isOpen(): boolean;
+    open(): void;
+    close(): void;
+    toggle(): void;
+    addClass(...classes: string[]): void;
+    removeClass(...classes: string[]): void;
+    part(part: string, value: any): void;
+}
+export interface IAuxPanelProvider extends ng.IServiceProvider {
+    config: AuxPanelConfig;
+    parts: any;
+    type: string;
+    classes: string[];
+    open(): void;
+    close(): void;
+    toggle(): void;
+    addClass(...classes: string[]): void;
+    removeClass(...classes: string[]): void;
+    part(part: string, value: any): void;
+}
 
 
 }
