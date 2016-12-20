@@ -1,13 +1,4 @@
 declare module pip.layouts {
-import './media/MediaService';
-import './media/ResizeFunctions';
-import './layouts/MainDirective';
-import './layouts/CardDirective';
-import './layouts/DialogDirective';
-import './layouts/DocumentDirective';
-import './layouts/SimpleDirective';
-import './layouts/TilesDirective';
-import './auxpanel/index';
 
 
 
@@ -47,9 +38,6 @@ export interface IAuxPanelProvider extends ng.IServiceProvider {
     part(part: string, value: any): void;
 }
 
-import './AuxPanelService';
-import './AuxPanelPartDirective';
-import './AuxPanelDirective';
 
 export class MediaBreakpoints {
     constructor(xs: number, sm: number, md: number, lg: number);
