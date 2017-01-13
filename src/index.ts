@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('pipLayout', ['wu.masonry', 'pipAuxPanel']);
+angular.module('pipLayout', ['wu.masonry', 'pipMedia', 'pipAuxPanel']);
 
-import './media/MediaService';
-import './media/ResizeFunctions';
+import './media/index';
 
 import './layouts/MainDirective';
 import './layouts/CardDirective';
@@ -13,5 +12,4 @@ import './layouts/SimpleDirective';
 import './layouts/TilesDirective';
 import './auxpanel/index';
 
-export * from './media/MediaService';
-export * from './media/ResizeFunctions';
+export * from './media/index';

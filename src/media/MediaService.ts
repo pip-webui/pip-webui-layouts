@@ -97,5 +97,5 @@ class MediaProvider {
 }
 
 angular
-    .module('pipLayout')
+    .module('pipMedia')
     .provider('pipMedia', MediaProvider);
