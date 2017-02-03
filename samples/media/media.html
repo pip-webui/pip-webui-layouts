@@ -1,11 +1,4 @@
-
 <pip-main>
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2><span>Media</span></h2>
-        </div>
-    </md-toolbar>
-
     <pip-main-body style="padding: 20px">
         <table style="width: 100%; font-size: 16px">
             <thead style="text-align: left;">
@@ -87,14 +80,12 @@
                 <tr>
                     <td style="font-weight: 500">xl</td>
                     <td>(min-width: 1920px)</td>
-                    <td >{{ pipMedia('xl') }}</td>
+                    <td>{{ pipMedia('xl') }}</td>
                     <td style="background-color: rgb(63, 81, 181)" ng-show="pipMedia('xl')"></td>
                     <td style="background-color: rgb(63, 81, 181)" class="pip-show-xl"></td>
                 </tr>
             </tbody>
         </table>
-
         <md-button ng-click="trigRightPanel()">Show/hide right panel</md-button>
-
     </pip-main-body>
 </pip-main>

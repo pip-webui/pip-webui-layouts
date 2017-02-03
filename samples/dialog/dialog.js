@@ -17,6 +17,8 @@
                 clickOutsideToClose: true
             });
         };
+
+        $rootScope.layoutTitle = "Dialog layout";
     });
 
     thisModule.controller('DialogController', function ($scope, $mdDialog) {

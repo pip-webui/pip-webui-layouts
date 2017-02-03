@@ -41,6 +41,7 @@
     thisModule.controller('AppController', 
         function ($scope, $rootScope, $state, $mdSidenav) {
             $rootScope.rightPanel = false;
+            $rootScope.layoutTitle = "Layouts";
 
             $scope.selected = {
                 theme: 'blue',
