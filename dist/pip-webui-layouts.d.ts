@@ -2,10 +2,6 @@ declare module pip.layouts {
 
 
 
-<<<<<<< HEAD
-
-
-=======
 export let AuxPanelChangedEvent: string;
 export let AuxPanelStateChangedEvent: string;
 export let OpenAuxPanelEvent: string;
@@ -41,7 +37,6 @@ export interface IAuxPanelProvider extends ng.IServiceProvider {
     removeClass(...classes: string[]): void;
     part(part: string, value: any): void;
 }
->>>>>>> dab61391caf42cc0f8e3d9fb2e4e3341cb2cfaf1
 
 
 
@@ -83,46 +78,8 @@ export function removeResizeListener(element: any, listener: any): void;
 
 
 
-<<<<<<< HEAD
-export let AuxPanelChangedEvent: string;
-export let AuxPanelStateChangedEvent: string;
-export let OpenAuxPanelEvent: string;
-export let CloseAuxPanelEvent: string;
-export class AuxPanelConfig {
-    parts: any;
-    classes: string[];
-    state: any;
-    type: string;
-}
-export interface IAuxPanelService {
-    readonly config: AuxPanelConfig;
-    readonly classes: string[];
-    parts: any;
-    state: any;
-    isOpen(): boolean;
-    open(): void;
-    close(): void;
-    toggle(): void;
-    addClass(...classes: string[]): void;
-    removeClass(...classes: string[]): void;
-    part(part: string, value: any): void;
-}
-export interface IAuxPanelProvider extends ng.IServiceProvider {
-    config: AuxPanelConfig;
-    parts: any;
-    type: string;
-    classes: string[];
-    open(): void;
-    close(): void;
-    toggle(): void;
-    addClass(...classes: string[]): void;
-    removeClass(...classes: string[]): void;
-    part(part: string, value: any): void;
-}
-=======
 
 
->>>>>>> dab61391caf42cc0f8e3d9fb2e4e3341cb2cfaf1
 
 
 }
