@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('appMultiDocument', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('MultiDocumentController', function ($scope, pipMedia, $state, $location) {
+    thisModule.controller('MultiDocumentController', function ($scope, $rootScope, pipMedia, $state, $location) {
 
         $scope.items = [
             {id: '7a26e18f78s87ftf8', po: '23432', start: '30 m 7 s ago', last: '12 m 34 s ago', activities: [
@@ -32,6 +32,7 @@
         ];
 
         $scope.item = $scope.items[0];
+        $rootScope.layoutTitle = "Layouts";
 
         $scope.itemClicked = function (item) {
             $scope.item = item;

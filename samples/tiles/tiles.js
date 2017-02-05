@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('appTiles', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('TilesController', function ($scope) {
+    thisModule.controller('TilesController', function ($scope,  $rootScope) {
         $scope.tiles = [
             {name: 'Tile #1', size: 'tile-lg', color: 'bg-red'},
             {name: 'Tile #2', size: 'tile-md', color: 'bg-green'},
@@ -33,5 +33,7 @@
             {type: 'POST', time: '45 m 7 sec ago'},
             {type: 'POST', time: '1 hour 5 m 7 s ago', check: true}
         ]};
+
+         $rootScope.layoutTitle = "Tiles layout";
     });
 })(window.angular);

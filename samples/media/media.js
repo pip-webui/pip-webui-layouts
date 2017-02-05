@@ -15,5 +15,7 @@
             $rootScope.rightPanel = !$rootScope.rightPanel;
         }
 
+        $rootScope.layoutTitle = "Media service";
+
     });
 })(window.angular);

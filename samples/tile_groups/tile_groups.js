@@ -7,7 +7,7 @@
     'use strict';
     var thisModule = angular.module('appTileGroups', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('TileGroupsController', function ($scope) {
+    thisModule.controller('TileGroupsController', function ($scope, $rootScope) {
         $scope.tiles = [
             {name: 'Tile #1', size: 'tile-lg', color: 'bg-red'},
             {name: 'Tile #2', size: 'tile-md', color: 'bg-green'},
@@ -26,5 +26,7 @@
             {name: 'Tile #15', size: 'tile-md', color: 'bg-red'},
             {name: 'Tile #16', size: 'tile-lg', color: 'bg-yellow'}
         ];
+
+        $rootScope.layoutTitle = "Tile groups layout";
     });
 })(window.angular);

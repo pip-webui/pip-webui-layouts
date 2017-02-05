@@ -31,6 +31,7 @@
         ];
 
         $scope.item = $scope.items[0];
+        $rootScope.layoutTitle = "Layouts";
 
         $scope.itemClicked = function (item) {
             $scope.item = item;
