@@ -7,7 +7,7 @@ Development responsible applications requires to organization content the way th
 **Simple layout** is the simple layout type. It simply provides to content the entire screen, full width and full height 
 
 <a href="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-simple-layout.png" style="border: 3px ridge #c8d2df; display: block">
-    <img src="doc/images/img-simple-layout.png"/>
+    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-simple-layout.png"/>
 </a>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/simple/index.html)
@@ -22,8 +22,21 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/document/
 
 **Multi-documents layout** is an extention to **Document layout** that adds a list on the left hand side to switch between documents. On phones the list occupies the entire screen and user switches between list and document back and forth.
 
-<a href="doc/images/img-multi-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="doc/images/img-multi-document-layout.png"/>
+<a href="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-multi-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-multi-document-layout.png"/>
+</a>
+
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/multi_document/index.html)
+
+**Menu layout** is combines menu that adds  on the left hand side to switch between documents and **Document layout** or **Single document layout**. On phones the menu occupies the entire screen and user switches between menu and document back and forth. 
+
+<a href="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-menu-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-menu-document-layout.png"/>
+</a>
+
+You can hide menu if this need.
+<a href="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-menu-document-single-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-multi-document-single-layout.png"/>
 </a>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/multi_document/index.html)
