@@ -73,6 +73,23 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.htm
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/dialogs)
 
+**Media service** pipMedia is used to evaluate whether a given media query is true or false given the current device's screen / window size. 
+
+pipMedia also has pre-programmed support for media queries that match the layout breakpoints:
+| Breakpoint | mediaQuery | 
+|---|---|
+| xs | (max-width: 599px) |
+| gt-xs | (min-width: 600px) |
+| sm | 	(min-width: 600px) and (max-width: 959px) |
+| gt-sm | (min-width: 960px) |
+| md | (min-width: 960px) and (max-width: 1279px) |
+| gt-md | (min-width: 1280px) |
+| lg | (min-width: 1280px) and (max-width: 1919px) |
+| gt-lg | (min-width: 1920px) |
+| xl | (min-width: 1920px) |
+
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/media)
+
 ## Learn more about the module
 
 - [User's guide](https://github.com/pip-webui/pip-webui-layouts/blob/master/doc/UsersGuide.md)
