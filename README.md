@@ -36,7 +36,7 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/multi_doc
 
 You can hide menu if this need.
 <a href="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-menu-document-single-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-multi-document-single-layout.png"/>
+    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-menu-document-single-layout.png"/>
 </a>
 
 See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/multi_document/index.html)
