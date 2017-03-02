@@ -7,10 +7,10 @@ Development responsible applications requires to organization content the way th
 **Simple layout** is the simple layout type. It simply provides to content the entire screen, full width and full height 
 
 <a href="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-simple-layout.png" style="border: 3px ridge #c8d2df; display: block">
-    <img src="doc/images/img-simple-layout.png"/>
+    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-simple-layout.png"/>
 </a>
 
-See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/simple/index.html)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/simple)
 
 **Single document layout** places content as a document with fixed width and full height centered on the screen. On tables and phones the content occupies the whole screen line it **Simple layout**.
 
@@ -18,15 +18,28 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/simple/in
     <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-single-document-layout.png"/>
 </a>
 
-See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/document/index.html)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/document)
 
 **Multi-documents layout** is an extention to **Document layout** that adds a list on the left hand side to switch between documents. On phones the list occupies the entire screen and user switches between list and document back and forth.
 
-<a href="doc/images/img-multi-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
-    <img src="doc/images/img-multi-document-layout.png"/>
+<a href="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-multi-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-multi-document-layout.png"/>
 </a>
 
-See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/multi_document/index.html)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/multi_document)
+
+**Menu layout** is combines menu that adds  on the left hand side to switch between documents and **Document layout** or **Single document layout**. On phones the menu occupies the entire screen and user switches between menu and document back and forth. 
+
+<a href="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-menu-document-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-menu-document-layout.png"/>
+</a>
+
+You can hide menu if this need.
+<a href="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-menu-document-single-layout.png" style="border: 3px ridge #c8d2df; margin: 0 auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-menu-document-single-layout.png"/>
+</a>
+
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/menu)
 
 **Card layout** places small content at the center of the screen in a card. On phones the content is extended to the whole screen.
 
@@ -34,7 +47,7 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/multi_doc
     <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-card-layout.png"/>
 </a>
 
-See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/card/index.html)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/card)
 
 **Tiles layout** is used to present multiple items in tiles that arranged on the screen in one or several columns.
 
@@ -42,7 +55,7 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/card/inde
     <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-tiles-layout.png"/>
 </a>
 
-See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tiles/index.html)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/tiles)
 
 **Tiles groups layout** is an extension to **Tiles layout** that breaks items into groups.
 
@@ -50,7 +63,7 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tiles/ind
     <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-tiles-groups-layout.png"/>
 </a>
 
-See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tile_groups/index.html)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/tile_groups)
 
 **Dialog layout** places content in a modal dialog. On phones the dialog is resized to occupy the entire screen.
 
@@ -58,7 +71,24 @@ See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/tile_grou
     <img src="https://github.com/pip-webui/pip-webui-layouts/raw/master/doc/images/img-dialog-layout.png"/>
 </a>
 
-See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/dialog/index.html)
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/dialogs)
+
+**Media service** pipMedia is used to evaluate whether a given media query is true or false given the current device's screen / window size. 
+
+pipMedia also has pre-programmed support for media queries that match the layout breakpoints:
+| Breakpoint | mediaQuery | 
+|---|---|
+| xs | (max-width: 599px) |
+| gt-xs | (min-width: 600px) |
+| sm | 	(min-width: 600px) and (max-width: 959px) |
+| gt-sm | (min-width: 960px) |
+| md | (min-width: 960px) and (max-width: 1279px) |
+| gt-md | (min-width: 1280px) |
+| lg | (min-width: 1280px) and (max-width: 1919px) |
+| gt-lg | (min-width: 1920px) |
+| xl | (min-width: 1920px) |
+
+See online sample [here...](http://webui.pipdevs.com/pip-webui-layouts/index.html#/media)
 
 ## Learn more about the module
 
