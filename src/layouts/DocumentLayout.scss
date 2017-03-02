@@ -1,22 +1,22 @@
 .pip-document {
     z-index: 10;
     position: relative;
-    .flex-shrink();
-    .flex();
-    .flex-direction(column);
-    background-color: @color-content; 
-    box-shadow: @box-shadow; 
-    .border-radius(@border-radius);
-    .shadow-card();
+    @include flex-shrink();
+    @include flex();
+    @include flex-direction(column);
+    background-color: $color-content; 
+    box-shadow: $box-shadow; 
+    @include border-radius($border-radius);
+    @include shadow-card();
 
     margin: 24px;
     padding-bottom: 1px;
 
-    .flex-element(1, 0, 100%);
+    @include flex-element(1, 0, 100%);
 
     position: absolute;
-    height: ~"calc(100% - 24px)";
-    left: ~"calc(50% - 480px)";
+    height: calc(100% - 24px);
+    left: calc(50% - 480px);
     margin: 0 auto;
     width: 960px;
     max-width: 100%;
@@ -25,11 +25,11 @@
         position: absolute !important;
         left: 300px;
         height: 100%;
-        width: ~"calc(100% - 300px)";
+        width: calc(100% - 300px);
     }
 
     &.pip-document-small {
-        left: ~"calc(50% - 450px)";
+        left: calc(50% - 450px);
         width: 900px;
     }
 
@@ -51,22 +51,22 @@
     width: 100%;
     max-height: 100%;
 
-    .flex-var;
-    .flex();
-    .flex-direction(column);
-    .flex-vertical-content(center);
-    .flex-justify-content(start, flex-start);
+    @extend flex-var;
+    @include flex();
+    @include flex-direction(column);
+    @include flex-vertical-content(center);
+    @include flex-justify-content(start, flex-start);
 }
 
 .pip-appbar-ext {
-  .position-top;
+  @extend position-top;
   height: 95px;
-  box-shadow: @box-shadow;
+  box-shadow: $box-shadow;
 }
 
 .pip-xs, .pip-sm, .pip-md {
     .pip-document {
-        .position-absolute(0, 0, 0, 0);
+        @include position-absolute(0, 0, 0, 0);
         margin: 0px;
         border: none;
         border-radius: 0;
@@ -108,7 +108,7 @@
 .pip-lg {
     @media (max-width: 1200px) {
         .pip-document {
-            .position-absolute(0, 0, 0, 0);
+            @include position-absolute(0, 0, 0, 0);
             margin: 0px;
             border: none;
             border-radius: 0;
@@ -134,8 +134,8 @@
         .pip-content-container {
             .pip-document {
                 left: 2px;
-                width: ~"calc(100% - 16px)";
-                height: ~"calc(100% - 16px)";
+                width: calc(100% - 16px);
+                height: calc(100% - 16px);
                 min-width: 320px;
                 max-width: 960px;
             }

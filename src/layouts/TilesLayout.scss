@@ -11,7 +11,7 @@
 .pip-tiles-fixed {
 
   position: fixed; // todo
-  max-height: ~"calc(100% - 64px - 48px)";
+  max-height: calc(100% - 64px - 48px);
 }
 
 .pip-tiles {
@@ -25,13 +25,13 @@
   overflow: auto;
   margin: 0;
   width: 100%;
-  .flex-var;
-  .scroll;
+  @extend flex-var;
+  @extend scroll;
   padding: 16px 0px 0px 0px;
 
-  font-size: @font-size-body2;
-  color: @color-primary;
-  letter-spacing: @font-letter-spacing-title;
+  font-size: $font-size-body2;
+  color: $color-primary;
+  letter-spacing: $font-letter-spacing-title;
 
   .pip-tiles-container {
     margin: 0 auto;
@@ -40,9 +40,9 @@
   }
 
   .pip-tile {
-    box-shadow: @box-shadow;
-    .border-radius();
-    .shadow-card();
+    box-shadow: $box-shadow;
+    @include border-radius();
+    @include shadow-card();
     width: 438px;
     padding: 1px;
     margin-left: 2px;
@@ -50,7 +50,7 @@
     margin-bottom: 7px;
 
     .pip-tile-body {
-      background-color: @color-content;
+      background-color: $color-content;
     }
 
     &.ng-enter, &.ng-move {
@@ -64,7 +64,7 @@
 
   .pip-mobile {
     .pip-tile {
-      width: ~"calc(100% - 16px)" !important;
+      width: calc(100% - 16px) !important;
       margin-left: 8px;
     }
   }
@@ -72,7 +72,7 @@
 
 .pip-tile-body {
   .pip-submenu-details-button > div pip-location {
-    max-width: ~"calc(100% - 56px)" !important;
+    max-width: calc(100% - 56px) !important;
   }
 }
 

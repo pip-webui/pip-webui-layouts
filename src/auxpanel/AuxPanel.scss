@@ -1,0 +1,12 @@
+$auxpanel-width: 320px;
+$auxpanel-width-large: 480px;
+
+.pip-auxpanel {
+    max-width: $auxpanel-width;
+    width: $auxpanel-width;
+    min-width: $auxpanel-width;
+    &.pip-large {
+     max-width: $auxpanel-width-large;
+     width: $auxpanel-width-large;
+    }
+}

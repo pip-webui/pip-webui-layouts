@@ -1,4 +1,4 @@
-@dialog-desktop-width:     400px;
+$dialog-desktop-width:     400px;
 
 /*
  * <md-dialog class="pip-dialog" width="600">
@@ -19,16 +19,16 @@
  */
 
 .pip-dialog {
-  .flex();
-  .flex-direction(column);
-  min-width: @dialog-desktop-width;
-  width: @dialog-desktop-width;
-  font: @font-body1;
+  @include flex();
+  @include flex-direction(column);
+  min-width: $dialog-desktop-width;
+  width: $dialog-desktop-width;
+  font: $font-body1;
 
-  background-color: @color-content !important;
+  background-color: $color-content !important;
 
   @media (max-width: 450px) {
-    min-width: ~"calc(100% - 32px)";
+    min-width: calc(100% - 32px);
   }
 }
 

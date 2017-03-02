@@ -3,9 +3,9 @@
     z-index: 50;
     position: relative;
     width: 100%;
-    .flex();
-    .flex-direction(row);
-    .flex-var;
+    @include flex();
+    @include flex-direction(row);
+    @extend flex-var;
     align-items: initial;
 
     > .pip-menu {
@@ -38,7 +38,7 @@
       position: absolute;
       left: 320px;
       height: 100%;
-      width: ~"calc(100% - 320px)";
+      width: calc(100% - 320px);
       overflow: hidden;
       .pip-scrolled-block {
         overflow-y: auto;
@@ -47,8 +47,8 @@
         height: 100%;
       }
       > div {
-        .flex();
-        .flex-var;
+        @include flex();
+        @extend flex-var;
         height: 100%;
         transition: all 0.35s ease;
         &.ng-enter, &.ng-leave.ng-leave-active {
@@ -118,7 +118,7 @@
 
       .pip-content-container {
         left: 480px;
-        width: ~"calc(100% - 480px)";
+        width: calc(100% - 480px);
       }
 
       &.pip-single-content {
