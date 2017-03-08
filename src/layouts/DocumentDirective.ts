@@ -3,10 +3,10 @@
 // Avoid default export
 (() => {
 
-function documentDirective() {
+function documentDirective(): ng.IDirective {
     return {
         restrict: 'EA',
-        link: ($scope, $element, $attrs) => {
+        link: ($scope: ng.IScope, $element: JQuery, $attrs: ng.IAttributes) => {
             $element.addClass('pip-document');
         }
     };

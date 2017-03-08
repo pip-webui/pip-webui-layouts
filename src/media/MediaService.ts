@@ -60,7 +60,7 @@ export interface IMediaProvider extends ng.IServiceProvider {
     breakpoints: MediaBreakpoints;
 }
 
-class MediaProvider {
+class MediaProvider implements IMediaProvider {
     public get breakpoints(): MediaBreakpoints {
         return MainBreakpoints;
     }
@@ -70,7 +70,7 @@ class MediaProvider {
     }
 
     public $get() {
-        let service = function(size) {
+        const service = function(size) {
             return MainBreakpointStatuses[size];
         }
 

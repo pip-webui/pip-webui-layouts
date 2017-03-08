@@ -5,22 +5,36 @@ import { MainResizedEvent, LayoutResizedEvent, MainBreakpoints, MainBreakpointSt
 
 declare var Masonry: any;
 
+interface ITilesDirectiveAttributes extends ng.IAttributes {
+    columnWidth: string | number;
+    pipInfinite: string | boolean | number;
+}
+
+class TilesOptions {
+    gutter: number;
+    isFitWidth: boolean;
+    isResizeBound: boolean;
+    transitionDuration: number;
+}
+
+interface ITilesControllerScope extends ng.IScope {
+    tilesOptions: TilesOptions;
+}
+
 class TilesDirectiveLink {
-    private _element: any;
-    private _attrs: any;
-    private _rootScope: ng.IRootScopeService;
     private _columnWidth: number;
     private _container: any;
     private _prevContainerWidth: number;
     private _masonry: any;
     private _sizer: any;
 
-    public constructor($scope: ng.IScope, $element: any, $rootScope: ng.IRootScopeService, $attrs: any) {
-        this._element = $element;
-        this._rootScope = $rootScope;
-        this._attrs = $attrs;
-
-        this._columnWidth = $attrs.columnWidth ? Math.floor($attrs.columnWidth) : 440,
+    public constructor(
+        $scope: ng.IScope, 
+        private $element: JQuery, 
+        private $rootScope: ng.IRootScopeService, 
+        private $attrs: ITilesDirectiveAttributes
+    ) {
+        this._columnWidth = $attrs.columnWidth ? Math.floor(Number($attrs.columnWidth)) : 440,
         this._container = $element.children('.pip-tiles-container'),
         this._prevContainerWidth = null,
         this._masonry = Masonry.data(this._container[0]);
@@ -29,7 +43,7 @@ class TilesDirectiveLink {
         $element.addClass('pip-tiles');
 
         // Add resize listener
-        let listener = () => { this.resize(false); };
+        const listener = () => { this.resize(false); };
         addResizeListener($element[0], listener);
 
         // Unbind when scope is removed
@@ -49,10 +63,8 @@ class TilesDirectiveLink {
     }
 
     private resize(force: boolean) {
-        let width = this._element.parent().width();
-        let containerWidth;
-        
-        console.log();
+        let width = this.$element.parent().width(),
+            containerWidth;
 
         if (MainBreakpointStatuses['gt-xs'] && (width - 36) > this._columnWidth) {
             width = width - 24 * 2;
@@ -91,16 +103,16 @@ class TilesDirectiveLink {
             this._masonry.layout();
 
             // Notify child controls that layout was resized
-            this._rootScope.$emit(LayoutResizedEvent);
+            this.$rootScope.$emit(LayoutResizedEvent);
         }
     }
 }
 
-function tilesDirective($rootScope: ng.IRootScopeService) {
+function tilesDirective(): ng.IDirective {
     "ngInject";
 
     // Converts value into boolean
-    function convertToBoolean(value) {
+    function convertToBoolean(value): boolean {
         if (value == null) return false;
         if (!value) return false;
         value = value.toString().toLowerCase();
@@ -112,14 +124,14 @@ function tilesDirective($rootScope: ng.IRootScopeService) {
         scope: false,
         transclude: true,
         template:
-            ($element: any, $attrs: any) => {
+            ($element: JQuery, $attrs: ITilesDirectiveAttributes) => {
                 if (convertToBoolean($attrs.pipInfinite)) {
                     return String()
-                    + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
-                    + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
-                    + ' masonry-options="tilesOptions"  pip-scroll-container="\'.pip-tiles\'"'
-                    + ' pip-infinite-scroll="readScroll()" >'
-                    + '</div>';
+                        + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
+                        + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
+                        + ' masonry-options="tilesOptions"  pip-scroll-container="\'.pip-tiles\'"'
+                        + ' pip-infinite-scroll="readScroll()" >'
+                        + '</div>';
                 } else {
                     return String()
                         + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
@@ -128,7 +140,7 @@ function tilesDirective($rootScope: ng.IRootScopeService) {
                         + '</div>';
                 }
             },
-        controller: ($scope: any) => {
+        controller: ($scope: ITilesControllerScope) => {
             $scope.tilesOptions = {
                 gutter: 8,//16
                 isFitWidth: false,
@@ -136,9 +148,7 @@ function tilesDirective($rootScope: ng.IRootScopeService) {
                 transitionDuration: 0 // '0.2s'
             };
         },
-        link: ($scope, $element, $attrs) => {
-            new TilesDirectiveLink($scope, $element, $rootScope, $attrs);
-        } 
+        link: TilesDirectiveLink
     };
 }
 

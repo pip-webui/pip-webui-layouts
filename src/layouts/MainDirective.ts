@@ -73,7 +73,7 @@ class MainBodyDirectiveLink {
 
 function mainDirective(): ng.IDirective {
     return {
-        restrict: 'EA',
+        restrict: 'EAC',
         controller: MainDirectiveController,
         controllerAs: 'vm' 
     }
@@ -81,7 +81,7 @@ function mainDirective(): ng.IDirective {
 
 function mainBodyDirective(): ng.IDirective {
     return {
-        restrict: 'EA',
+        restrict: 'EAC',
         link: MainBodyDirectiveLink
     }
 }

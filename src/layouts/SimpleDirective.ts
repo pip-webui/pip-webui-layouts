@@ -3,10 +3,10 @@
 // Avoid default export
 (() => {
 
-function simpleDirective() {
+function simpleDirective(): ng.IDirective {
     return {
         restrict: 'EA',
-        link: ($scope, $element, $attrs) => {
+        link: ($scope: ng.IScope, $element: JQuery, $attrs: ng.IAttributes) => {
             $element.addClass('pip-simple');
         }
     };

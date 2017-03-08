@@ -26,10 +26,10 @@ function cancelFrame(): any {
 }
 
 function resizeListener(event: any): void {
-    var win = event.target || event.srcElement;
+    const win = event.target || event.srcElement;
     if (win.__resizeRAF__) cancelFrame(/*win.__resizeRAF__*/);
     win.__resizeRAF__ = requestFrame(function() {
-        var trigger = win.__resizeTrigger__;
+        const trigger = win.__resizeTrigger__;
         trigger.__resizeListeners__.forEach(function(fn){
             fn.call(trigger, event);
         });
@@ -50,7 +50,7 @@ export function addResizeListener(element, listener): void {
         }
         else {
             if (getComputedStyle(element).position == 'static') element.style.position = 'relative';
-            var obj: any = element.__resizeTrigger__ = document.createElement('object');
+            const obj: any = element.__resizeTrigger__ = document.createElement('object');
             obj.setAttribute('style', 'display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;');
             obj.__resizeElement__ = element;
             obj.onload = loadListener;
