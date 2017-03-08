@@ -1,0 +1,34 @@
+// $file Composition of all layout CSS styles
+// $copyright Digital Living Software Corp. 2014-2015
+
+@import "css_light/css_light";
+@import "dependences/effects_mixins";
+@import "dependences/positions_mixins";
+@import "dependences/scroll";
+
+$font-letter-spacing-title:        0.005em;
+$font-letter-spacing-primary:      0.01em;
+$padding-bottom-title:             24px;
+$padding-desktop:                  24px;
+$padding-mobile:                   16px;
+$divider-border:                   1px solid $color-divider;
+$border-radius:                    2px;
+
+@mixin flex-order($index) {
+    -webkit-box-ordinal-group: $index;
+    -moz-box-ordinal-group:    $index;
+    -webkit-order:             $index;
+    -ms-flex-order:            $index;
+    order:                     $index;
+}
+
+@import "media/MediaStyles";
+@import "layouts/LayoutContent";
+@import "layouts/MainContainer";
+@import "layouts/SimpleLayout";
+@import "layouts/CardLayout";
+@import "layouts/DocumentLayout";
+@import "layouts/DialogLayout";
+@import "layouts/TilesLayout";
+@import "layouts/MainMenu";
+@import "auxpanel/AuxPanel";

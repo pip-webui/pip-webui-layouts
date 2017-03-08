@@ -1,5 +1,5 @@
 /*
- * @example - Card layout
+ * $example - Card layout
  *  <div class="pip-card-container">
  *      <pip-card width="400" min-height="400">
  *          <div class="pip-header">
@@ -18,16 +18,16 @@
  */
 
 .pip-card {
-    .flex();
-    .flex-direction(column);
-    .flex-shrink();
-    .border-radius();    
-    .shadow-card();
+    @include flex();
+    @include flex-direction(column);
+    @include flex-shrink();
+    @include border-radius();    
+    @include shadow-card();
 
     z-index: 10;
     position: relative;
-    background-color: @color-content; 
-    box-shadow: @box-shadow; 
+    background-color: $color-content; 
+    box-shadow: $box-shadow; 
     margin: 24px;
     padding-bottom: 1px;
     padding-left: 1px;
@@ -38,12 +38,12 @@
 .pip-card-container {
     /*min-height: 100%;*/
     width: 100%;
-    .flex-var;
-    .flex();
-    .flex-direction(column);
-    .flex-vertical-content(center);
+    @extend flex-var;
+    @include flex();
+    @include flex-direction(column);
+    @include flex-vertical-content(center);
     max-height: 100%;
-    .flex-justify-content(center, center);
+    @include flex-justify-content(center, center);
 
     &.pip-outer-scroll {
         display: block !important;
@@ -64,7 +64,7 @@
 // On phone
 @media (max-width: 768px) {
     .pip-card {
-        .position-absolute(0, 0, 0, 0);
+        @include position-absolute(0, 0, 0, 0);
         margin: 0px;
         border: none;
         border-radius: 0;

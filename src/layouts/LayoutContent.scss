@@ -4,10 +4,10 @@
 .pip-container {
     /*min-height: 100%;*/
     width: 100%;
-    .flex-var;
-    .flex();
-    .flex-direction(column);
-    .flex-vertical-content(center);
+    @extend flex-var;
+    @include flex();
+    @include flex-direction(column);
+    @include flex-vertical-content(center);
     max-height: 100%;
 }
 
@@ -35,13 +35,13 @@
 .pip-card, 
 .pip-document{
     .pip-header{
-        .flex-direction(row);
+        @include flex-direction(row);
     }
 }
 
 .pip-main {
     .pip-nav {
-        .flex-fixed;
+        @extend flex-fixed;
         // Expand to overlay document shadow
         box-sizing: content-box;
         margin-left: -5px;
@@ -54,39 +54,39 @@
 .pip-card, .pip-document, .pip-simple, .pip-dialog {
     .pip-menu-container {
         position: relative;
-        .flex();
-        .flex-direction(row);
-        .flex-var;
+        @include flex();
+        @include flex-direction(row);
+        @extend flex-var;
     }
 
     .pip-content-container {
         position: relative;
-        .flex();
-        .flex-direction(column);
-        .flex-var;
+        @include flex();
+        @include flex-direction(column);
+        @extend flex-var;
     }
     
     .pip-menu {
-        .flex-fixed;
-        .scroll;
+        @extend flex-fixed;
+        @extend scroll;
 
         padding-top: 0px;
         padding-bottom: 0px;
 
         width: 300px;
         //background-color: @color-content;
-        border-right: @divider-border;
+        border-right: $divider-border;
         //!!border-bottom-left-radius: @border-radius;
     }
 
     .pip-header {
         position: relative;
        // .flex-order(1);
-        .flex-fixed;
+        @extend flex-fixed;
 
-        .flex();
-        .flex-vertical-content(center);
-        .flex-justify-content(start, flex-start);
+        @include flex();
+        @include flex-vertical-content(center);
+        @include flex-justify-content(start, flex-start);
 
         //!!border-top-left-radius: @border-radius;
         //!!border-top-right-radius: @border-radius;
@@ -94,29 +94,29 @@
         //color: @color-primary;
         //background-color: @color-content;
         //font-family: @font-family;
-        letter-spacing:   @font-letter-spacing-title; 
+        letter-spacing:   $font-letter-spacing-title; 
 
         //min-height: @dialog-padding-desktop + @dialog-padding-desktop;
-        padding:  @padding-desktop @padding-desktop @padding-bottom-title @padding-desktop;
+        padding:  $padding-desktop $padding-desktop $padding-bottom-title $padding-desktop;
     }
 
     .pip-footer{
         position: relative;
-        .flex-order(4);
-        .flex-fixed;
+        @include flex-order(4);
+        @extend flex-fixed;
 
-        .flex();
-        .flex-vertical-content(center);
-        .flex-justify-content(end, flex-end);
-        .flex-direction(row);
+        @include flex();
+        @include flex-vertical-content(center);
+        @include flex-justify-content(end, flex-end);
+        @include flex-direction(row);
 
         //!!border-bottom-left-radius: @border-radius;
         //!!border-bottom-right-radius: @border-radius;
 
         //background-color: @color-content;
-        border-top: @divider-border;
+        border-top: $divider-border;
         min-height: 56px; // от куда вообще эти цифры :  Леша, сказал поставить так.
-        padding:  0px @padding-desktop 0px @padding-desktop;
+        padding:  0px $padding-desktop 0px $padding-desktop;
 
         .md-button {
             min-width: 48px;
@@ -125,23 +125,23 @@
     }
 
     .pip-footer-for-composite {
-        .flex-direction(column);
-        .flex-order(3);
-        .flex-fixed;
+        @include flex-direction(column);
+        @include flex-order(3);
+        @extend flex-fixed;
     }
 
     .pip-body {
         position: relative;
-        .flex-order(2);
-        .flex-var();
+        @include flex-order(2);
+        @include flex-var();
 
         //background: rgb(250, 250, 250);
         //!!overflow-y: auto !important;
-        .scroll-y;
+        @extend scroll-y;
 
         //color: @color-primary;
-        letter-spacing: @font-letter-spacing-primary;
-        padding: @padding-desktop;
+        letter-spacing: $font-letter-spacing-primary;
+        padding: $padding-desktop;
         margin: 0;
     }
 
@@ -169,16 +169,16 @@
     .pip-card, 
     .pip-document {
         .pip-header {
-            padding:  @padding-desktop @padding-mobile @padding-bottom-title @padding-mobile; 
+            padding:  $padding-desktop $padding-mobile $padding-bottom-title $padding-mobile; 
         }
 
-        .pip-footer{
-            padding:  0px @padding-mobile 0px @padding-mobile;
+        .pip-footer {
+            padding:  0 $padding-mobile 0 $padding-mobile;
             min-height: 56px !important;
         }
 
         .pip-body {
-            padding: @padding-mobile;
+            padding: $padding-mobile;
 
         }
 
@@ -201,14 +201,14 @@
 
     .pip-document {
         .pip-menu {
-            .position-absolute(0, 0, 0, 0);
+            @include position-absolute(0, 0, 0, 0);
             //!!z-index: 300;
         }
     }
 
     .pip-dialog {
-      .pip-header{
-        padding:  @padding-mobile;
+      .pip-header {
+        padding: $padding-mobile;
       }
     }
 }
