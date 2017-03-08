@@ -31,8 +31,8 @@ class TilesDirectiveLink {
     public constructor(
         $scope: ng.IScope, 
         private $element: JQuery, 
-        private $rootScope: ng.IRootScopeService, 
-        private $attrs: ITilesDirectiveAttributes
+        private $attrs: ITilesDirectiveAttributes,
+        private $rootScope: ng.IRootScopeService
     ) {
         this._columnWidth = $attrs.columnWidth ? Math.floor(Number($attrs.columnWidth)) : 440,
         this._container = $element.children('.pip-tiles-container'),
@@ -108,7 +108,7 @@ class TilesDirectiveLink {
     }
 }
 
-function tilesDirective(): ng.IDirective {
+function tilesDirective($rootScope: ng.IRootScopeService): ng.IDirective {
     "ngInject";
 
     // Converts value into boolean
@@ -148,7 +148,9 @@ function tilesDirective(): ng.IDirective {
                 transitionDuration: 0 // '0.2s'
             };
         },
-        link: TilesDirectiveLink
+        link: ($scope: ng.IScope, $element: JQuery, $attrs: ITilesDirectiveAttributes) => {
+            new TilesDirectiveLink($scope, $element, $attrs, $rootScope);
+        }
     };
 }
 
