@@ -5,15 +5,20 @@ import { MainResizedEvent, LayoutResizedEvent, MainBreakpointStatuses } from '..
 // Avoid default export
 (() => {
 
-class CardDirectiveLink {
-    private _element: any;
-    private _attrs: any;
-    private _rootScope: ng.IRootScopeService;
+interface ICardDirectiveAttributes extends ng.IAttributes {
+    minWidth: string | number;
+    minHeight: string | number;
+    width: string | number;
+    height: string | number;
+}
 
-    public constructor($rootScope: ng.IRootScopeService, $element: any, $attrs: any) {
-        this._element = $element;
-        this._rootScope = $rootScope;
-        this._attrs = $attrs;
+class CardDirectiveLink {
+
+    public constructor(
+        private $rootScope: ng.IRootScopeService, 
+        private $element: JQuery, 
+        private $attrs: ICardDirectiveAttributes
+    ) {
 
         // Add class to the element
         $element.addClass('pip-card');
@@ -31,16 +36,17 @@ class CardDirectiveLink {
     }
 
     private resize() {
-        var
+        const
             $mainBody = $('.pip-main-body'),
             cardContainer = $('.pip-card-container'),
-            windowWidth = $('pip-main').width(),
+            windowWidth = $('pip-main').width();
+        let
             maxWidth = $mainBody.width(),
             maxHeight = $mainBody.height(),
-            minWidth = this._attrs.minWidth ? Math.floor(this._attrs.minWidth) : null,
-            minHeight = this._attrs.minHeight ? Math.floor(this._attrs.minHeight) : null,
-            width = this._attrs.width ? Math.floor(this._attrs.width) : null,
-            height = this._attrs.height ? Math.floor(this._attrs.height) : null,
+            minWidth = this.$attrs.minWidth ? Math.floor(Number(this.$attrs.minWidth)) : null,
+            minHeight = this.$attrs.minHeight ? Math.floor(Number(this.$attrs.minHeight)) : null,
+            width = this.$attrs.width ? Math.floor(Number(this.$attrs.width)) : null,
+            height = this.$attrs.height ? Math.floor(Number(this.$attrs.height)) : null,
             left, top;
 
         // Full-screen on phone
@@ -55,7 +61,7 @@ class CardDirectiveLink {
         // Card view with adjustable margins on tablet and desktop
         else {
             // Set margin and maximum dimensions
-            var space = MainBreakpointStatuses['gt-md'] ? 24 : 16;
+            const space = MainBreakpointStatuses['gt-md'] ? 24 : 16;
             maxWidth -= space * 2;
             maxHeight -= space * 2;
 
@@ -69,19 +75,19 @@ class CardDirectiveLink {
         }
 
         // Set dimensions
-        this._element.css('max-width', maxWidth ? maxWidth + 'px' : '');
-        this._element.css('min-width', minWidth ? minWidth + 'px' : '');
-        this._element.css('width', width ? width + 'px' : '');
-        this._element.css('height', height ? height + 'px' : '');
+        this.$element.css('max-width', maxWidth ? maxWidth + 'px' : '');
+        this.$element.css('min-width', minWidth ? minWidth + 'px' : '');
+        this.$element.css('width', width ? width + 'px' : '');
+        this.$element.css('height', height ? height + 'px' : '');
 
         if (!cardContainer.hasClass('pip-outer-scroll')) {
-            this._element.css('max-height', maxHeight ? maxHeight + 'px' : '');
-            this._element.css('min-height', minHeight ? minHeight + 'px' : '');
-            var
-                $header = this._element.find('.pip-header:visible'),
-                $footer = this._element.find('.pip-footer:visible'),
-                $body = this._element.find('.pip-body'),
-                maxBodyHeight = maxHeight || $mainBody.height();
+            this.$element.css('max-height', maxHeight ? maxHeight + 'px' : '');
+            this.$element.css('min-height', minHeight ? minHeight + 'px' : '');
+            const
+                $header = this.$element.find('.pip-header:visible'),
+                $footer = this.$element.find('.pip-footer:visible'),
+                $body = this.$element.find('.pip-body');
+            let maxBodyHeight = maxHeight || $mainBody.height();
 
             if ($header.length > 0)
                 maxBodyHeight -= $header.outerHeight(true);
@@ -95,18 +101,18 @@ class CardDirectiveLink {
                 left = 0;
                 top = 0;
             } else {
-                left = cardContainer.width() / 2 - this._element.width() / 2 - 16;
-                top = Math.max(cardContainer.height() / 2 - this._element.height() / 2 - 16, 0);
+                left = cardContainer.width() / 2 - this.$element.width() / 2 - 16;
+                top = Math.max(cardContainer.height() / 2 - this.$element.height() / 2 - 16, 0);
             }
 
-            this._element.css('left', left);
-            this._element.css('top', top);
+            this.$element.css('left', left);
+            this.$element.css('top', top);
 
-            setTimeout(() => { this._element.css('display', 'flex'); }, 100);
+            setTimeout(() => { this.$element.css('display', 'flex'); }, 100);
         }
 
         // Notify child controls that layout was resized
-        this._rootScope.$emit('pipLayoutResized');
+        this.$rootScope.$emit('pipLayoutResized');
     }
 }
 

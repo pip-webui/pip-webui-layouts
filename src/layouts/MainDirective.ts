@@ -6,29 +6,27 @@ import { MainBreakpoints, MainBreakpointStatuses, MainResizedEvent } from '../me
 // Avoid default export
 (() => {
 
-class MainDirectiveController {
-    private _element: any;
-    private _rootScope: ng.IRootScopeService;
-    private _timeout: ng.ITimeoutService;
+interface IMainDirectiveAttributes extends ng.IAttributes {
+    pipContainer: string;
+}
+
+class MainDirectiveController implements ng.IController {
     private _container: any;
 
     public constructor(
-        $scope: ng.IScope, 
-        $element: any, 
-        $rootScope: ng.IRootScopeService,
-        $timeout: ng.ITimeoutService,
-        $attrs: any
+        private $scope: ng.IScope, 
+        private $element: angular.IRootElementService, 
+        private $rootScope: ng.IRootScopeService,
+        private $timeout: ng.ITimeoutService,
+        private $attrs: IMainDirectiveAttributes
     ) {
-        this._element = $element;        
-        this._rootScope = $rootScope;
-        this._timeout = $timeout;
         this._container = $attrs.pipContainer ? $($attrs.pipContainer) : $element;
 
         // Add CSS class
         $element.addClass('pip-main');
 
         // Add resize listener
-        let listener = () => { this.resize(); };
+        const listener = () => { this.resize(); };
         addResizeListener(this._container[0], listener);
 
         // Unbind when scope is removed
@@ -41,38 +39,39 @@ class MainDirectiveController {
     }
 
     private updateBreakpointStatuses() {
-        let width = this._container.innerWidth();
-        let body = $('body');
+        const width = this._container.innerWidth();
+        const body = $('body');
 
         MainBreakpointStatuses.update(MainBreakpoints, width);
 
         $.each(MainBreakpointStatuses, (breakpoint, status) => {
-            if (_.isBoolean(status))
+            if (_.isBoolean(status)) {
                 body[status ? 'addClass': 'removeClass']('pip-' + breakpoint);
+            }
         });
 
-        this._timeout(() => {
-            this._rootScope.$apply();
+        this.$timeout(() => {
+            this.$rootScope.$apply();
         });
     }
     
     private resize() {
         this.updateBreakpointStatuses();
-        this._rootScope.$emit(MainResizedEvent, MainBreakpointStatuses);
+        this.$rootScope.$emit(MainResizedEvent, MainBreakpointStatuses);
     }
 }
 
 class MainBodyDirectiveLink {
     public constructor(
         $scope: ng.IScope, 
-        $element: any
+        $element: angular.IRootElementService
     ) {
         // Add CSS class
         $element.addClass('pip-main-body');
     }
 }
 
-function mainDirective() {
+function mainDirective(): ng.IDirective {
     return {
         restrict: 'EA',
         controller: MainDirectiveController,
@@ -80,7 +79,7 @@ function mainDirective() {
     }
 }
 
-function mainBodyDirective() {
+function mainBodyDirective(): ng.IDirective {
     return {
         restrict: 'EA',
         link: MainBodyDirectiveLink
