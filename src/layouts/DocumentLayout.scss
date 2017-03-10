@@ -51,7 +51,7 @@
     width: 100%;
     max-height: 100%;
 
-    @extend flex-var;
+    @include flex-var;
     @include flex();
     @include flex-direction(column);
     @include flex-vertical-content(center);
@@ -59,7 +59,7 @@
 }
 
 .pip-appbar-ext {
-  @extend position-top;
+  @include position-top;
   height: 95px;
   box-shadow: $box-shadow;
 }

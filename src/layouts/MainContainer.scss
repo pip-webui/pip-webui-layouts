@@ -10,7 +10,7 @@
     overflow-x: hidden;
 
     .pip-body-nav {
-        @extend flex-fixed;
+        @include flex-fixed;
         min-height: 0px;
         
         .md-paginator{
@@ -22,7 +22,7 @@
         position: relative;
         @include flex();
         @include flex-direction(column);
-        @extend flex-var;
+        @include flex-var;
         @include flex-vertical-content(center);
         overflow: hidden;
     }

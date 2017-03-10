@@ -38,7 +38,7 @@
 .pip-card-container {
     /*min-height: 100%;*/
     width: 100%;
-    @extend flex-var;
+    @include flex-var;
     @include flex();
     @include flex-direction(column);
     @include flex-vertical-content(center);

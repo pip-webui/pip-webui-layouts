@@ -7,8 +7,8 @@
 .pip-simple {
     /*min-height: 100%;*/
     width: 100%;
-    @extend flex-var;
-    @extend scroll;
+    @include flex-var;
+    @include scroll;
     padding: 0px;
     margin: 0px;
     background-color: $color-content;

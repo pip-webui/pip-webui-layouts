@@ -5,7 +5,7 @@
     width: 100%;
     @include flex();
     @include flex-direction(row);
-    @extend flex-var;
+    @include flex-var;
     align-items: initial;
 
     > .pip-menu {
@@ -48,7 +48,7 @@
       }
       > div {
         @include flex();
-        @extend flex-var;
+        @include flex-var;
         height: 100%;
         transition: all 0.35s ease;
         &.ng-enter, &.ng-leave.ng-leave-active {
