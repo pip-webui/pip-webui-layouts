@@ -31,25 +31,30 @@ var MediaService_1 = require("../media/MediaService");
 },{"../media/MediaService":12}],2:[function(require,module,exports){
 'use strict';
 (function () {
-    AuxPanelPartDirectiveController.$inject = ['$scope', '$element', '$attrs', '$rootScope', 'pipAuxPanel'];
     AuxPanelPartDirective.$inject = ['ngIfDirective'];
-    function AuxPanelPartDirectiveController($scope, $element, $attrs, $rootScope, pipAuxPanel) {
-        "ngInject";
-        var partName = '' + $attrs.pipAuxPanelPart;
-        var partValue = null;
-        var pos = partName.indexOf(':');
-        if (pos > 0) {
-            partValue = partName.substr(pos + 1);
-            partName = partName.substr(0, pos);
+    var AuxPanelPartController = (function () {
+        AuxPanelPartController.$inject = ['$scope', '$element', '$attrs', '$rootScope', 'pipAuxPanel'];
+        function AuxPanelPartController($scope, $element, $attrs, $rootScope, pipAuxPanel) {
+            var _this = this;
+            this.$scope = $scope;
+            this.partName = '' + $attrs.pipAuxPanelPart;
+            this.pos = this.partName.indexOf(':');
+            if (this.pos > 0) {
+                this.partValue = this.partName.substr(this.pos + 1);
+                this.partName = this.partName.substr(0, this.pos);
+            }
+            this.onAuxPanelChanged(null, pipAuxPanel.config);
+            $rootScope.$on('pipAuxPanelChanged', function (event, config) {
+                _this.onAuxPanelChanged(event, config);
+            });
         }
-        onAuxPanelChanged(null, pipAuxPanel.config);
-        $rootScope.$on('pipAuxPanelChanged', onAuxPanelChanged);
-        function onAuxPanelChanged(event, config) {
+        AuxPanelPartController.prototype.onAuxPanelChanged = function (event, config) {
             var parts = config.parts || {};
-            var currentPartValue = config[partName];
-            $scope.visible = partValue ? currentPartValue == partValue : currentPartValue;
-        }
-    }
+            var currentPartValue = config[this.partName];
+            this.$scope['visible'] = this.partValue ? currentPartValue == this.partValue : currentPartValue;
+        };
+        return AuxPanelPartController;
+    }());
     function AuxPanelPartDirective(ngIfDirective) {
         "ngInject";
         var ngIf = ngIfDirective[0];
@@ -60,10 +65,10 @@ var MediaService_1 = require("../media/MediaService");
             restrict: ngIf.restrict,
             scope: true,
             link: function ($scope, $element, $attrs) {
-                $attrs.ngIf = function () { return $scope.visible; };
+                $attrs.ngIf = function () { return $scope['visible']; };
                 ngIf.link.apply(ngIf);
             },
-            controller: AuxPanelPartDirectiveController
+            controller: AuxPanelPartController
         };
     }
     angular

@@ -3,36 +3,46 @@
 // Prevent junk from going into typescript definitions
 (() => {
 
-function AuxPanelPartDirectiveController($scope, $element, $attrs, $rootScope, pipAuxPanel) {
-    "ngInject";
+class AuxPanelPartController {
+    private partName: string;
+    private partValue: string;
+    private pos: number;
 
-    var partName = '' + $attrs.pipAuxPanelPart;
-    var partValue = null;
+    constructor(
+        private $scope: ng.IScope, 
+        $element: ng.IRootElementService, 
+        $attrs, 
+        $rootScope: ng.IRootScopeService, 
+        pipAuxPanel) {
 
-    // Break part apart
-    var pos = partName.indexOf(':');
-    if (pos > 0) {
-        partValue = partName.substr(pos + 1);
-        partName = partName.substr(0, pos);
+        this.partName = '' + $attrs.pipAuxPanelPart;
+        this.pos = this.partName.indexOf(':');
+        if (this.pos > 0) {
+            this.partValue = this.partName.substr(this.pos + 1);
+            this.partName = this.partName.substr(0, this.pos);
+        }
+
+        this.onAuxPanelChanged(null, pipAuxPanel.config)
+        $rootScope.$on('pipAuxPanelChanged', (event, config) => {
+            this.onAuxPanelChanged(event, config);
+        });
+
     }
 
-    onAuxPanelChanged(null, pipAuxPanel.config)
-    $rootScope.$on('pipAuxPanelChanged', onAuxPanelChanged);
-
-    function onAuxPanelChanged(event, config) {
-        var parts = config.parts || {};
-        var currentPartValue = config[partName];
+    private onAuxPanelChanged(event, config) {
+        let parts = config.parts || {};
+        let currentPartValue = config[this.partName];
         // Set visible variable to switch ngIf
 
-        $scope.visible = partValue ? currentPartValue == partValue : currentPartValue;
+        this.$scope['visible'] = this.partValue ? currentPartValue == this.partValue : currentPartValue;
     }
-
 }
+
 
 function AuxPanelPartDirective(ngIfDirective) {
     "ngInject";
 
-    var ngIf = ngIfDirective[0];
+    let ngIf = ngIfDirective[0];
 
     return {
         transclude: ngIf.transclude,
@@ -40,12 +50,12 @@ function AuxPanelPartDirective(ngIfDirective) {
         terminal: ngIf.terminal,
         restrict: ngIf.restrict,
         scope: true,
-        link: function($scope: any, $element, $attrs) {
+        link: function($scope: ng.IScope, $element, $attrs) {
             // Visualize based on visible variable in scope
-            $attrs.ngIf = function() { return $scope.visible };
+            $attrs.ngIf = () => { return $scope['visible'] };
             ngIf.link.apply(ngIf);
         },
-        controller: AuxPanelPartDirectiveController
+        controller: AuxPanelPartController
     };
 }
 
