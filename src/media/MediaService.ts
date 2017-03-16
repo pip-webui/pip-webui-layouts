@@ -44,8 +44,8 @@ export class MediaBreakpointStatuses {
     }
 }
 
-export let MainResizedEvent: string = 'pipMainResized';
-export let LayoutResizedEvent: string = 'pipLayoutResized';
+export const MainResizedEvent = 'pipMainResized';
+export const LayoutResizedEvent = 'pipLayoutResized';
 
 export let MainBreakpoints: MediaBreakpoints = new MediaBreakpoints(639, 716, 1024, 1439);
 export let MainBreakpointStatuses: MediaBreakpointStatuses = new MediaBreakpointStatuses();
@@ -70,7 +70,7 @@ class MediaProvider implements IMediaProvider {
     }
 
     public $get() {
-        const service = function(size) {
+        const service = (size) => {
             return MainBreakpointStatuses[size];
         }
 
