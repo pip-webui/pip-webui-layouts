@@ -1,5 +1,3 @@
-'use strict';
-
 let attachEvent = (<any>document).attachEvent;
 let isIE = navigator.userAgent.match(/Trident/);
 

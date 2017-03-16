@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('pipLayout', ['wu.masonry', 'pipMedia', 'pipAuxPanel']);
 
 import './media/index';

@@ -1,10 +1,7 @@
-'use strict';
-
 import { MainBreakpoints } from '../media/MediaService';
-import { IAuxPanelService } from './AuxPanelService';
+import { IAuxPanelService } from './IAuxPanelService';
 
-(() => {
-
+{
     class AuxPanelDirectiveController {
         private normalSize: number = 320;
         private largeSize: number = 480;
@@ -33,4 +30,4 @@ import { IAuxPanelService } from './AuxPanelService';
         .module('pipAuxPanel')
         .component('pipAuxPanel', AuxPanel);
 
-})();
+}

@@ -1,5 +1,3 @@
-'use strict';
-
 // Avoid default export
 (() => {
 

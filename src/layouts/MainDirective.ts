@@ -1,7 +1,6 @@
-'use strict';
-
 import { addResizeListener, removeResizeListener } from '../media/ResizeFunctions';
-import { MainBreakpoints, MainBreakpointStatuses, MainResizedEvent } from '../media/MediaService'; 
+import { MainResizedEvent } from '../media/IMediaService'; 
+import { MainBreakpoints, MainBreakpointStatuses } from '../media/MediaService'; 
 
 // Avoid default export
 (() => {

@@ -1,6 +1,3 @@
-'use strict';
-
-// Avoid default export
 (() => {
 
 function simpleDirective(): ng.IDirective {

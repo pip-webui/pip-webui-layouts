@@ -1,7 +1,6 @@
-'use strict';
-
 import { addResizeListener, removeResizeListener } from '../media/ResizeFunctions';
-import { MainResizedEvent, LayoutResizedEvent, MainBreakpoints, MainBreakpointStatuses } from '../media/MediaService';
+import { MainResizedEvent, LayoutResizedEvent } from '../media/IMediaService';
+import { MainBreakpoints, MainBreakpointStatuses } from '../media/MediaService';
 
 declare var Masonry: any;
 

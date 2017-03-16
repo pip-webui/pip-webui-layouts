@@ -1,6 +1,5 @@
-'use strict';
-
-import { MainResizedEvent, LayoutResizedEvent, MainBreakpointStatuses } from '../media/MediaService';
+import { MainResizedEvent, LayoutResizedEvent } from '../media/IMediaService';
+import { MainBreakpointStatuses } from '../media/MediaService';
 
 // Avoid default export
 (() => {
