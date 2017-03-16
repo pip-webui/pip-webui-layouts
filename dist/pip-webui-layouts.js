@@ -275,10 +275,10 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 angular.module('pipAuxPanel', ['ngMaterial']);
 require("./AuxPanelService");
-require("./AuxPanelPartDirective");
-require("./AuxPanelDirective");
+require("./AuxPanelPart");
+require("./AuxPanel");
 __export(require("./AuxPanelService"));
-},{"./AuxPanelDirective":1,"./AuxPanelPartDirective":2,"./AuxPanelService":3}],5:[function(require,module,exports){
+},{"./AuxPanel":1,"./AuxPanelPart":2,"./AuxPanelService":3}],5:[function(require,module,exports){
 'use strict';
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
