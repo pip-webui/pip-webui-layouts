@@ -1,9 +1,9 @@
 'use strict';
 
-export let AuxPanelChangedEvent = 'pipAuxPanelChanged';
-export let AuxPanelStateChangedEvent = 'pipAuxPanelStateChanged';
-export let OpenAuxPanelEvent = 'pipOpenAuxPanel';
-export let CloseAuxPanelEvent = 'pipCloseAuxPanel';
+export const AuxPanelChangedEvent = 'pipAuxPanelChanged';
+export const AuxPanelStateChangedEvent = 'pipAuxPanelStateChanged';
+export const OpenAuxPanelEvent = 'pipOpenAuxPanel';
+export const CloseAuxPanelEvent = 'pipCloseAuxPanel';
 
 export class AuxPanelConfig {
     parts: any;
