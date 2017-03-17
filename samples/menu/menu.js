@@ -50,7 +50,13 @@
         };
 
         $scope.showAuxPanel = function() {
+            $scope.panel = true;
             pipAuxPanel.open();
+        }
+
+         $scope.hideAuxPanel = function() {
+               $scope.panel = false;
+            pipAuxPanel.close();
         }
 
     });

@@ -1222,7 +1222,8 @@ body.pip-windows .pip-scroll ::-webkit-scrollbar-thumb {
 .pip-auxpanel {
   max-width: 320px;
   width: 320px;
-  min-width: 320px; }
+  min-width: 320px;
+  height: 100%; }
   .pip-auxpanel.pip-large {
     max-width: 480px;
     width: 480px; }

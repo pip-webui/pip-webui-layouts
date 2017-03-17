@@ -40,7 +40,7 @@
     <script src="index.js"></script>
 </head>
 <body ng-app="app" class="layout-column layout-align-start-center" ng-controller="AppController">
-<md-toolbar>
+<md-toolbar class="md-accent">
     <div class="md-toolbar-tools">
         <md-button class="md-icon-button" aria-label="menu"
                    ng-click="onToggleMenu()">
@@ -72,7 +72,25 @@
             For pipMedia test
         </md-content>
     </md-sidenav>
-    <pip-aux-panel> </pip-aux-panel>
+    <pip-aux-panel>
+        <div style="padding-left:16px; padding-right: 16px">
+            <h3>Help</h3>
+            <div ng-repeat="shortcut in shortcuts" class="layout-row layout-align-start-start bm8">
+                <div class="flex-fixed layout-row" style ="min-width: 100px">
+                    <div ng-repeat="letter in shortcut.shortcut" class="flex-fixed">
+                        <span class="color-secondary-text text-body2"
+                            style="background-color: #eaeaea; padding: 8px; display: inline-block">
+                            {{letter}}
+                        </span>
+                        <span ng-if="$index < shortcut.shortcut.length - 1" style="margin-right: 8px">+</span>
+                    </div>
+                </div>
+                <div class="lm8 text-subhead1 tm4 tp2" style="">
+                    {{shortcut.state}}
+                </div>
+            </div>
+        <div>
+    </pip-aux-panel>
 </div>
 
 </body>

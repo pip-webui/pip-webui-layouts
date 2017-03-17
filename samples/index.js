@@ -67,6 +67,24 @@
             $scope.lockRightPanel = function () {
                 return $rootScope.rightPanel;
             }
+
+            $scope.shortcuts = [
+                { shortcut: ['Alt','D'], state: 'Open dashboard'},
+                { shortcut: ['Alt','2'], state: 'Open adapters'},
+                { shortcut: ['Alt','3'], state: 'Open integrations'},
+                { shortcut: ['Alt','4'], state: 'Open infrastructure'},
+                { shortcut: ['Alt','5'], state: 'Open troubleshooting tools'},
+                { shortcut: ['Alt','S'], state: 'Open global search' },
+                { shortcut: ['Alt','N'], state: 'Open notifications' },
+                { shortcut: ['Alt','8'], state: 'Open k base' }, 
+                { shortcut: ['Alt','I'], state: 'Open settings' },
+                { shortcut: ['Alt','W'], state: 'Open secondary actions menu' },
+                
+                { shortcut: ['Alt','A'], state: 'Focused fisrt component when you are at home page in Integrations/ Adapters/ Infrastructure or dashboard' },
+                { shortcut: ['Alt','T'], state: 'Select next tab (when active page have tabs)' },
+                { shortcut: ['Alt','Shift','N'], state: 'Open notifications dialog' }
+            ];
+
         }
     );
 

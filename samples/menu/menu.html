@@ -6,7 +6,8 @@
                 <md-icon md-svg-icon="icons:arrow-left"></md-icon>
             </md-button>
             <h2 class="flex-var"><span>Menu Layout</span></h2>
-            <md-button ng-click="showAuxPanel()">Show auxiliary panel</md-button>
+            <md-button ng-click="showAuxPanel()" ng-if="!panel">Show auxiliary panel</md-button>
+             <md-button ng-click="hideAuxPanel()" ng-if="panel">Hide auxiliary panel</md-button>
             <md-switch ng-model="single">Single content</md-switch>
         </div>
     </md-toolbar>

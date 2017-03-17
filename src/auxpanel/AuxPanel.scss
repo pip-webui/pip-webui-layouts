@@ -5,6 +5,7 @@ $auxpanel-width-large: 480px;
     max-width: $auxpanel-width;
     width: $auxpanel-width;
     min-width: $auxpanel-width;
+    height: 100%;
     &.pip-large {
      max-width: $auxpanel-width-large;
      width: $auxpanel-width-large;
