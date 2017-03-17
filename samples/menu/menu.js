@@ -53,6 +53,9 @@
             $scope.panel = true;
             pipAuxPanel.open();
         }
+        $scope.changeMenu = function() {
+            $scope.single = !$scope.single;
+        }
 
          $scope.hideAuxPanel = function() {
                $scope.panel = false;

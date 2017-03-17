@@ -78,11 +78,7 @@
                 { shortcut: ['Alt','N'], state: 'Open notifications' },
                 { shortcut: ['Alt','8'], state: 'Open k base' }, 
                 { shortcut: ['Alt','I'], state: 'Open settings' },
-                { shortcut: ['Alt','W'], state: 'Open secondary actions menu' },
-                
-                { shortcut: ['Alt','A'], state: 'Focused fisrt component when you are at home page in Integrations/ Adapters/ Infrastructure or dashboard' },
-                { shortcut: ['Alt','T'], state: 'Select next tab (when active page have tabs)' },
-                { shortcut: ['Alt','Shift','N'], state: 'Open notifications dialog' }
+                { shortcut: ['Alt','W'], state: 'Open secondary actions menu' }
             ];
 
         }

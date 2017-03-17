@@ -1,5 +1,5 @@
 <pip-main >
-    <md-toolbar>
+    <md-toolbar class="md-accent">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button" aria-label="menu"
                        ng-click="backToList()" ng-show="isMobileDetails()">
@@ -8,13 +8,14 @@
             <h2 class="flex-var"><span>Menu Layout</span></h2>
             <md-button ng-click="showAuxPanel()" ng-if="!panel">Show auxiliary panel</md-button>
              <md-button ng-click="hideAuxPanel()" ng-if="panel">Hide auxiliary panel</md-button>
-            <md-switch ng-model="single">Single content</md-switch>
+             <md-button ng-click="changeMenu()" ng-if="single">Show menu</md-button>
+             <md-button ng-click="changeMenu()" ng-if="!single">Hide Menu</md-button>
         </div>
     </md-toolbar>
 
     <pip-main-body >
-        <md-toolbar class="pip-nav">
-            <md-tabs md-stretch-tabs="never" class="md-primary" md-selected="tabIndex">
+        <md-toolbar class="pip-nav md-accent">
+            <md-tabs md-stretch-tabs="never" class="md-accent" md-selected="tabIndex">
                 <md-tab label="Document"></md-tab>
                 <md-tab label="Tiles"></md-tab>
                 <md-tab label="Simple"></md-tab>
