@@ -8,7 +8,9 @@
 
     var thisModule = angular.module('appDialog', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('DialogMainController', function ($scope, $rootScope, $mdDialog) {
+    thisModule.controller('DialogMainController', function ($scope, $rootScope, $mdDialog, $mdSidenav, pipAuxPanel) {
+        
+        pipAuxPanel.close();
         $scope.openDialog = function (event) {
             $mdDialog.show({
                 controller: 'DialogController',
@@ -18,15 +20,31 @@
             });
         };
 
+          $scope.onToggleMenu = function () {
+            $mdSidenav('left').toggle();
+        };
+        
+        $scope.showAuxPanel = function () {
+            $scope.panel = true;
+            pipAuxPanel.open();
+        }
+
+        $scope.hideAuxPanel = function () {
+            $scope.panel = false;
+            pipAuxPanel.close();
+        }
+
         $rootScope.layoutTitle = "Dialog layout";
     });
 
     thisModule.controller('DialogController', function ($scope, $mdDialog) {
-        $scope.item = {id: '7a26e18f78s87ftf8', po: '23432', start: '30 m 7 s ago', last: '12 m 34 s ago', activities: [
-            {type: 'POST', time: '30 m 7 sec ago', check: true},
-            {type: 'POST', time: '45 m 7 sec ago'},
-            {type: 'POST', time: '1 hour 5 m 7 s ago', check: true}
-        ]};
+        $scope.item = {
+            id: '7a26e18f78s87ftf8', po: '23432', start: '30 m 7 s ago', last: '12 m 34 s ago', activities: [
+                { type: 'POST', time: '30 m 7 sec ago', check: true },
+                { type: 'POST', time: '45 m 7 sec ago' },
+                { type: 'POST', time: '1 hour 5 m 7 s ago', check: true }
+            ]
+        };
 
         $scope.hide = function () {
             $mdDialog.hide();
@@ -39,8 +57,6 @@
         $scope.answer = function (answer) {
             $mdDialog.hide(answer);
         };
-         $scope.onToggleMenu = function() {
-                $mdSidenav('left').toggle();
-            };
+      
     });
 })(window.angular);

@@ -6,6 +6,9 @@
                     <md-icon md-svg-icon="icons:menu"></md-icon>
                 </md-button>
                 <div class="flex-var text-overflow">Tiles</span></div>
+                
+            <md-button ng-click="showAuxPanel()" ng-if="!panel">Show auxiliary panel</md-button>
+             <md-button ng-click="hideAuxPanel()" ng-if="panel">Hide auxiliary panel</md-button>
             </div>
         </md-toolbar>
     <md-toolbar class=" md-primary pip-body-nav">
