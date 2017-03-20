@@ -37,8 +37,8 @@
         };
 
         $rootScope.layoutTitle = "Tiles layout";
-        
-            pipAuxPanel.close();
+
+        pipAuxPanel.close();
 
         $scope.onToggleMenu = function () {
             $mdSidenav('left').toggle();
