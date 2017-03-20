@@ -1,5 +1,14 @@
 <pip-main>
     <pip-main-body>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="menu"
+                        ng-click="onToggleMenu()">
+                    <md-icon md-svg-icon="icons:menu"></md-icon>
+                </md-button>
+                <div class="flex-var text-overflow">Simple</span></div>
+            </div>
+        </md-toolbar>
         <pip-simple>
             <div class="pip-content">
                 <div ng-include="'common_templates/details_template.html'"></div>

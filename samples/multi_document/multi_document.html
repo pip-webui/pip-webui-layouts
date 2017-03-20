@@ -1,14 +1,13 @@
 <pip-main>
     <md-toolbar>
-        <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="menu"
-                       ng-click="backToList()" ng-show="isMobileDetails()">
-                <md-icon md-svg-icon="icons:arrow-left"></md-icon>
-            </md-button>
-            <h2><span>Multi Document Layout</span></h2>
-        </div>
-    </md-toolbar>
-
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="menu"
+                        ng-click="onToggleMenu()">
+                    <md-icon md-svg-icon="icons:menu"></md-icon>
+                </md-button>
+                <div class="flex-var text-overflow">Multi document</span></div>
+            </div>
+        </md-toolbar>
     <pip-main-body>
         <md-toolbar class="pip-appbar-ext" ng-show="!stretch">
         </md-toolbar>

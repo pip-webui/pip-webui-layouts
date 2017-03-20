@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('appMenu', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('MenuController', function ($scope, $rootScope, pipMedia, $location, pipAuxPanel) {
+    thisModule.controller('MenuController', function ($scope, $rootScope, pipMedia, $location, pipAuxPanel, $mdSidenav) {
         $scope.items = [
             {id: '7a26e18f78s87ftf8', po: '23432', start: '30 m 7 s ago', last: '12 m 34 s ago', activities: [
                 {type: 'POST', time: '30 m 7 sec ago', check: true},
@@ -56,6 +56,9 @@
         $scope.changeMenu = function() {
             $scope.single = !$scope.single;
         }
+         $scope.onToggleMenu = function() {
+                $mdSidenav('left').toggle();
+            };
 
          $scope.hideAuxPanel = function() {
                $scope.panel = false;

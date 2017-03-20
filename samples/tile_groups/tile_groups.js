@@ -7,7 +7,7 @@
     'use strict';
     var thisModule = angular.module('appTileGroups', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('TileGroupsController', function ($scope, $rootScope) {
+    thisModule.controller('TileGroupsController', function ($scope, $rootScope, $mdSidenav) {
         $scope.tiles = [
             {name: 'Tile #1', size: 'tile-lg', color: 'bg-red'},
             {name: 'Tile #2', size: 'tile-md', color: 'bg-green'},
@@ -28,5 +28,8 @@
         ];
 
         $rootScope.layoutTitle = "Tile groups layout";
+         $scope.onToggleMenu = function() {
+                $mdSidenav('left').toggle();
+            };
     });
 })(window.angular);

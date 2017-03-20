@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('appMedia', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('MediaController', function ($scope, $rootScope, pipMedia) {
+    thisModule.controller('MediaController', function ($scope, $rootScope, pipMedia, $mdSidenav) {
         $scope.pipMedia = pipMedia;
 
         $scope.trigRightPanel = function () {
@@ -16,6 +16,9 @@
         }
 
         $rootScope.layoutTitle = "Media service";
+         $scope.onToggleMenu = function() {
+                $mdSidenav('left').toggle();
+            };
 
     });
 })(window.angular);

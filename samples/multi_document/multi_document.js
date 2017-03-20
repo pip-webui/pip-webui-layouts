@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('appMultiDocument', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('MultiDocumentController', function ($scope, $rootScope, pipMedia, $state, $location) {
+    thisModule.controller('MultiDocumentController', function ($scope, $mdSidenav, $rootScope, pipMedia, $state, $location) {
 
         $scope.items = [
             {id: '7a26e18f78s87ftf8', po: '23432', start: '30 m 7 s ago', last: '12 m 34 s ago', activities: [
@@ -58,6 +58,9 @@
             fail: 232,
             last: '22 min ago'
         };
+         $scope.onToggleMenu = function() {
+                $mdSidenav('left').toggle();
+            };
 
     });
 })(window.angular);

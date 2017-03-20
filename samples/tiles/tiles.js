@@ -8,7 +8,7 @@
 
     var thisModule = angular.module('appTiles', ['ngMaterial', 'pipLayout']);
 
-    thisModule.controller('TilesController', function ($scope,  $rootScope) {
+    thisModule.controller('TilesController', function ($scope,  $rootScope, $mdSidenav) {
         $scope.tiles = [
             {name: 'Tile #1', size: 'tile-lg', color: 'bg-red'},
             {name: 'Tile #2', size: 'tile-md', color: 'bg-green'},
@@ -35,5 +35,9 @@
         ]};
 
          $rootScope.layoutTitle = "Tiles layout";
+
+          $scope.onToggleMenu = function() {
+                $mdSidenav('left').toggle();
+            };
     });
 })(window.angular);

@@ -39,5 +39,8 @@
         $scope.answer = function (answer) {
             $mdDialog.hide(answer);
         };
+         $scope.onToggleMenu = function() {
+                $mdSidenav('left').toggle();
+            };
     });
 })(window.angular);

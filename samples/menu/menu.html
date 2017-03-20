@@ -1,6 +1,11 @@
 <pip-main >
-    <md-toolbar class="md-accent">
+
+    <md-toolbar>
         <div class="md-toolbar-tools">
+             <md-button class="md-icon-button" aria-label="menu"
+                        ng-click="onToggleMenu()" ng-hide="isMobileDetails()">
+                    <md-icon md-svg-icon="icons:menu"></md-icon>
+                </md-button>
             <md-button class="md-icon-button" aria-label="menu"
                        ng-click="backToList()" ng-show="isMobileDetails()">
                 <md-icon md-svg-icon="icons:arrow-left"></md-icon>
@@ -14,8 +19,8 @@
     </md-toolbar>
 
     <pip-main-body >
-        <md-toolbar class="pip-nav md-accent">
-            <md-tabs md-stretch-tabs="never" class="md-accent" md-selected="tabIndex">
+        <md-toolbar class="pip-nav">
+            <md-tabs md-stretch-tabs="never" md-selected="tabIndex">
                 <md-tab label="Document"></md-tab>
                 <md-tab label="Tiles"></md-tab>
                 <md-tab label="Simple"></md-tab>
