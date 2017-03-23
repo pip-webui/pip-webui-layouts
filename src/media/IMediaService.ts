@@ -30,7 +30,7 @@ export class MediaBreakpointStatuses {
     public 'xl': boolean;
 
     public update(breakpoints: MediaBreakpoints, width: number) {
-        if (breakpoints == null) return;
+        if (breakpoints == null || width == null) return;
 
         this.width = width;
         this['xs'] = width <= breakpoints.xs;
