@@ -727,8 +727,10 @@ function resizeListener(event) {
     });
 }
 function loadListener(event) {
-    this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__;
-    this.contentDocument.defaultView.addEventListener('resize', resizeListener);
+    if (this.contentDocument) {
+        this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__;
+        this.contentDocument.defaultView.addEventListener('resize', resizeListener);
+    }
 }
 function addResizeListener(element, listener) {
     if (!element.__resizeListeners__) {
@@ -762,8 +764,10 @@ function removeResizeListener(element, listener) {
         if (attachEvent)
             element.detachEvent('onresize', resizeListener);
         else {
-            element.__resizeTrigger__.contentDocument.defaultView.removeEventListener('resize', resizeListener);
-            element.__resizeTrigger__ = !element.removeChild(element.__resizeTrigger__);
+            if (element.__resizeTrigger__.contentDocument) {
+                element.__resizeTrigger__.contentDocument.defaultView.removeEventListener('resize', resizeListener);
+                element.__resizeTrigger__ = !element.removeChild(element.__resizeTrigger__);
+            }
         }
     }
 }

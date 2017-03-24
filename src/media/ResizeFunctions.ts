@@ -2,41 +2,43 @@ let attachEvent = (<any>document).attachEvent;
 let isIE = navigator.userAgent.match(/Trident/);
 
 function requestFrame(callback): any {
-    let frame = window.requestAnimationFrame 
-        || (<any>window).mozRequestAnimationFrame 
-        || (<any>window).webkitRequestAnimationFrame 
-        || function(callback) { 
-            return window.setTimeout(callback, 20);     
+    let frame = window.requestAnimationFrame
+        || (<any>window).mozRequestAnimationFrame
+        || (<any>window).webkitRequestAnimationFrame
+        || function (callback) {
+            return window.setTimeout(callback, 20);
         };
 
     return frame(callback);
 }
 
 function cancelFrame(): any {
-    let cancel = window.cancelAnimationFrame 
-        || (<any>window).mozCancelAnimationFrame 
-        || (<any>window).webkitCancelAnimationFrame 
+    let cancel = window.cancelAnimationFrame
+        || (<any>window).mozCancelAnimationFrame
+        || (<any>window).webkitCancelAnimationFrame
         || window.clearTimeout;
 
-    return function(id) { 
-        return cancel(id); 
+    return function (id) {
+        return cancel(id);
     };
 }
 
 function resizeListener(event: any): void {
     const win = event.target || event.srcElement;
     if (win.__resizeRAF__) cancelFrame(/*win.__resizeRAF__*/);
-    win.__resizeRAF__ = requestFrame(function() {
+    win.__resizeRAF__ = requestFrame(function () {
         const trigger = win.__resizeTrigger__;
-        trigger.__resizeListeners__.forEach(function(fn){
+        trigger.__resizeListeners__.forEach(function (fn) {
             fn.call(trigger, event);
         });
     });
 }
 
 function loadListener(event: any): void {
-    this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__;
-    this.contentDocument.defaultView.addEventListener('resize', resizeListener);
+    if (this.contentDocument) {
+        this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__;
+        this.contentDocument.defaultView.addEventListener('resize', resizeListener);
+    }
 }
 
 export function addResizeListener(element, listener): void {
@@ -67,8 +69,10 @@ export function removeResizeListener(element, listener): void {
     if (!element.__resizeListeners__.length) {
         if (attachEvent) element.detachEvent('onresize', resizeListener);
         else {
-            element.__resizeTrigger__.contentDocument.defaultView.removeEventListener('resize', resizeListener);
-            element.__resizeTrigger__ = !element.removeChild(element.__resizeTrigger__);
+            if (element.__resizeTrigger__.contentDocument) {
+                element.__resizeTrigger__.contentDocument.defaultView.removeEventListener('resize', resizeListener);
+                element.__resizeTrigger__ = !element.removeChild(element.__resizeTrigger__);
+            }
         }
     }
 }
