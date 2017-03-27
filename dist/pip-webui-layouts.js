@@ -34,6 +34,7 @@ var MediaService_1 = require("../media/MediaService");
     var AuxPanelPartController_1 = (function () {
         AuxPanelPartController_1.$inject = ['$scope', '$element', '$attrs', '$rootScope', 'pipAuxPanel'];
         function AuxPanelPartController_1($scope, $element, $attrs, $rootScope, pipAuxPanel) {
+            "ngInject";
             var _this = this;
             this.$scope = $scope;
             this.partName = '' + $attrs.pipAuxPanelPart;
@@ -81,7 +82,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var IAuxPanelService_1 = require("./IAuxPanelService");
 var IAuxPanelService_2 = require("./IAuxPanelService");
 var AuxPanelService = (function () {
+    AuxPanelService.$inject = ['config', '$rootScope', '$mdSidenav'];
     function AuxPanelService(config, $rootScope, $mdSidenav) {
+        "ngInject";
         this.id = 'pip-auxpanel';
         this._config = config;
         this._rootScope = $rootScope;
@@ -311,7 +314,9 @@ var MediaService_1 = require("../media/MediaService");
 (function () {
     cardDirective.$inject = ['$rootScope'];
     var CardDirectiveLink = (function () {
+        CardDirectiveLink.$inject = ['$rootScope', '$element', '$attrs'];
         function CardDirectiveLink($rootScope, $element, $attrs) {
+            "ngInject";
             var _this = this;
             this.$rootScope = $rootScope;
             this.$element = $element;

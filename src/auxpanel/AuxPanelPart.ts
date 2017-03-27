@@ -11,7 +11,7 @@
             $attrs,
             $rootScope: ng.IRootScopeService,
             pipAuxPanel) {
-
+            "ngInject";
             this.partName = '' + $attrs.pipAuxPanelPart;
             this.pos = this.partName.indexOf(':');
             if (this.pos > 0) {

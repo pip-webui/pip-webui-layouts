@@ -18,7 +18,7 @@ class CardDirectiveLink {
         private $element: JQuery, 
         private $attrs: ICardDirectiveAttributes
     ) {
-
+       "ngInject";
         // Add class to the element
         $element.addClass('pip-card');
 

@@ -9,6 +9,8 @@ class AuxPanelService implements IAuxPanelService {
     private id = 'pip-auxpanel';
 
     public constructor(config: AuxPanelConfig, $rootScope: ng.IRootScopeService, $mdSidenav: ng.material.ISidenavService) {
+
+        "ngInject";
         this._config = config;
         this._rootScope = $rootScope;
         this._sidenav = $mdSidenav;
@@ -47,7 +49,7 @@ class AuxPanelService implements IAuxPanelService {
     public open() {
         this._sidenav(this.id).open();
     }
-            
+
     public close() {
         this._sidenav(this.id).close();
     }
@@ -55,7 +57,7 @@ class AuxPanelService implements IAuxPanelService {
     public toggle() {
         this._sidenav(this.id).toggle();
     }
-  
+
     public addClass(...classes: string[]): void {
         _.each(classes, (c) => {
             this._config.classes.push(c);
@@ -69,7 +71,7 @@ class AuxPanelService implements IAuxPanelService {
         });
         this.sendConfigEvent();
     }
- 
+
     public part(part: string, value: any): void {
         this._config.parts[part] = value;
         this.sendConfigEvent();
@@ -133,7 +135,7 @@ class AuxPanelProvider implements IAuxPanelProvider {
             this._config.classes = _.reject(this._config.classes, (cc) => cc == c);
         });
     }
- 
+
     public part(part: string, value: any): void {
         this._config.parts[part] = value;
     }
@@ -157,7 +159,7 @@ class AuxPanelProvider implements IAuxPanelProvider {
             this._service = new AuxPanelService(this._config, $rootScope, $mdSidenav);
 
         return this._service;
-    }     
+    }
 }
 
 function hookAuxPanelEvents($rootScope: ng.IRootScopeService, pipAuxPanel: IAuxPanelService) {
