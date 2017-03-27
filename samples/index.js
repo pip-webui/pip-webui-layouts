@@ -1,6 +1,6 @@
 /* global angular */
 
-(function () {
+(() => {
     'use strict';
 
     var content = [
