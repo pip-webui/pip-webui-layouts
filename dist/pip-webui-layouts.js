@@ -4,7 +4,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var MediaService_1 = require("../media/MediaService");
 {
     var AuxPanelDirectiveController = (function () {
+        AuxPanelDirectiveController.$inject = ['pipAuxPanel'];
         function AuxPanelDirectiveController(pipAuxPanel) {
+            "ngInject";
             this.pipAuxPanel = pipAuxPanel;
             this.normalSize = 320;
             this.largeSize = 480;
@@ -259,6 +261,7 @@ var AuxPanelProvider = (function () {
     return AuxPanelProvider;
 }());
 function hookAuxPanelEvents($rootScope, pipAuxPanel) {
+    "ngInject";
     $rootScope.$on(IAuxPanelService_1.OpenAuxPanelEvent, function () { pipAuxPanel.open(); });
     $rootScope.$on(IAuxPanelService_1.CloseAuxPanelEvent, function () { pipAuxPanel.close(); });
 }
@@ -432,6 +435,7 @@ var MediaService_1 = require("../media/MediaService");
     var MainDirectiveController = (function () {
         MainDirectiveController.$inject = ['$scope', '$element', '$rootScope', '$timeout', '$attrs'];
         function MainDirectiveController($scope, $element, $rootScope, $timeout, $attrs) {
+            "ngInject";
             var _this = this;
             this.$scope = $scope;
             this.$element = $element;
@@ -468,12 +472,15 @@ var MediaService_1 = require("../media/MediaService");
         return MainDirectiveController;
     }());
     var MainBodyDirectiveLink = (function () {
+        MainBodyDirectiveLink.$inject = ['$scope', '$element'];
         function MainBodyDirectiveLink($scope, $element) {
+            "ngInject";
             $element.addClass('pip-main-body');
         }
         return MainBodyDirectiveLink;
     }());
     function mainDirective() {
+        "ngInject";
         return {
             restrict: 'EA',
             controller: MainDirectiveController,
@@ -481,6 +488,7 @@ var MediaService_1 = require("../media/MediaService");
         };
     }
     function mainBodyDirective() {
+        "ngInject";
         return {
             restrict: 'EA',
             link: MainBodyDirectiveLink
@@ -494,6 +502,7 @@ var MediaService_1 = require("../media/MediaService");
 },{"../media/IMediaService":13,"../media/MediaService":14,"../media/ResizeFunctions":15}],11:[function(require,module,exports){
 (function () {
     function simpleDirective() {
+        "ngInject";
         return {
             restrict: 'EA',
             link: function ($scope, $element, $attrs) {
@@ -518,15 +527,17 @@ var TilesOptions = (function () {
     return TilesOptions;
 }());
 var TilesDirectiveLink = (function () {
+    TilesDirectiveLink.$inject = ['$scope', '$element', '$attrs', '$rootScope'];
     function TilesDirectiveLink($scope, $element, $attrs, $rootScope) {
+        "ngInject";
         var _this = this;
         this.$element = $element;
         this.$attrs = $attrs;
         this.$rootScope = $rootScope;
-        this._columnWidth = $attrs.columnWidth ? Math.floor(Number($attrs.columnWidth)) : 440,
-            this._container = $element.children('.pip-tiles-container'),
-            this._prevContainerWidth = null,
-            this._masonry = Masonry.data(this._container[0]);
+        this._columnWidth = $attrs.columnWidth ? Math.floor(Number($attrs.columnWidth)) : 440;
+        this._container = $element.children('.pip-tiles-container');
+        this._prevContainerWidth = null;
+        this._masonry = Masonry.data(this._container[0]);
         $element.addClass('pip-tiles');
         var listener = function () { _this.resize(false); };
         ResizeFunctions_1.addResizeListener($element[0], listener);
@@ -699,10 +710,14 @@ angular
     .provider('pipMedia', MediaProvider);
 },{"./IMediaService":13}],15:[function(require,module,exports){
 "use strict";
+requestFrame.$inject = ['callback'];
+addResizeListener.$inject = ['element', 'listener'];
+removeResizeListener.$inject = ['element', 'listener'];
 Object.defineProperty(exports, "__esModule", { value: true });
 var attachEvent = document.attachEvent;
 var isIE = navigator.userAgent.match(/Trident/);
 function requestFrame(callback) {
+    "ngInject";
     var frame = window.requestAnimationFrame
         || window.mozRequestAnimationFrame
         || window.webkitRequestAnimationFrame
@@ -712,6 +727,7 @@ function requestFrame(callback) {
     return frame(callback);
 }
 function cancelFrame() {
+    "ngInject";
     var cancel = window.cancelAnimationFrame
         || window.mozCancelAnimationFrame
         || window.webkitCancelAnimationFrame
@@ -738,6 +754,7 @@ function loadListener(event) {
     }
 }
 function addResizeListener(element, listener) {
+    "ngInject";
     if (!element.__resizeListeners__) {
         element.__resizeListeners__ = [];
         if (attachEvent) {
@@ -763,6 +780,7 @@ function addResizeListener(element, listener) {
 }
 exports.addResizeListener = addResizeListener;
 function removeResizeListener(element, listener) {
+    "ngInject";
     if (listener)
         element.__resizeListeners__.splice(element.__resizeListeners__.indexOf(listener), 1);
     if (!element.__resizeListeners__.length) {

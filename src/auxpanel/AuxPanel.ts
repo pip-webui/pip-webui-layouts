@@ -6,7 +6,9 @@ import { IAuxPanelService } from './IAuxPanelService';
         private normalSize: number = 320;
         private largeSize: number = 480;
 
-        public constructor(private pipAuxPanel: IAuxPanelService) { }
+        public constructor(private pipAuxPanel: IAuxPanelService) {
+            "ngInject";
+        }
 
         public isGtxs(): boolean {
             return Number($('body').width()) > MainBreakpoints.xs && this.pipAuxPanel.isOpen();

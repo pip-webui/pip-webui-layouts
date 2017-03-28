@@ -28,16 +28,17 @@ class TilesDirectiveLink {
     private _sizer: any;
 
     public constructor(
-        $scope: ng.IScope, 
-        private $element: JQuery, 
+        $scope: ng.IScope,
+        private $element: JQuery,
         private $attrs: ITilesDirectiveAttributes,
         private $rootScope: ng.IRootScopeService
     ) {
-        this._columnWidth = $attrs.columnWidth ? Math.floor(Number($attrs.columnWidth)) : 440,
-        this._container = $element.children('.pip-tiles-container'),
-        this._prevContainerWidth = null,
+        "ngInject";
+        this._columnWidth = $attrs.columnWidth ? Math.floor(Number($attrs.columnWidth)) : 440;
+        this._container = $element.children('.pip-tiles-container');
+        this._prevContainerWidth = null;
         this._masonry = Masonry.data(this._container[0]);
-        
+
         // Add class to the element
         $element.addClass('pip-tiles');
 
@@ -123,22 +124,22 @@ function tilesDirective($rootScope: ng.IRootScopeService): ng.IDirective {
         scope: false,
         transclude: true,
         template:
-            ($element: JQuery, $attrs: ITilesDirectiveAttributes) => {
-                if (convertToBoolean($attrs.pipInfinite)) {
-                    return String()
-                        + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
-                        + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
-                        + ' masonry-options="tilesOptions"  pip-scroll-container="\'.pip-tiles\'"'
-                        + ' pip-infinite-scroll="readScroll()" >'
-                        + '</div>';
-                } else {
-                    return String()
-                        + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
-                        + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
-                        + ' masonry-options="tilesOptions">'
-                        + '</div>';
-                }
-            },
+        ($element: JQuery, $attrs: ITilesDirectiveAttributes) => {
+            if (convertToBoolean($attrs.pipInfinite)) {
+                return String()
+                    + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
+                    + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
+                    + ' masonry-options="tilesOptions"  pip-scroll-container="\'.pip-tiles\'"'
+                    + ' pip-infinite-scroll="readScroll()" >'
+                    + '</div>';
+            } else {
+                return String()
+                    + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
+                    + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
+                    + ' masonry-options="tilesOptions">'
+                    + '</div>';
+            }
+        },
         controller: ($scope: ITilesControllerScope) => {
             $scope.tilesOptions = {
                 gutter: 8,//16
