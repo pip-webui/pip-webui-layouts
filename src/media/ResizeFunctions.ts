@@ -2,6 +2,7 @@ let attachEvent = (<any>document).attachEvent;
 let isIE = navigator.userAgent.match(/Trident/);
 
 function requestFrame(callback): any {
+           "ngInject";
     let frame = window.requestAnimationFrame
         || (<any>window).mozRequestAnimationFrame
         || (<any>window).webkitRequestAnimationFrame
@@ -13,6 +14,7 @@ function requestFrame(callback): any {
 }
 
 function cancelFrame(): any {
+           "ngInject";
     let cancel = window.cancelAnimationFrame
         || (<any>window).mozCancelAnimationFrame
         || (<any>window).webkitCancelAnimationFrame
@@ -42,6 +44,7 @@ function loadListener(event: any): void {
 }
 
 export function addResizeListener(element, listener): void {
+           "ngInject";
     if (!element.__resizeListeners__) {
         element.__resizeListeners__ = [];
         if (attachEvent) {
@@ -65,6 +68,7 @@ export function addResizeListener(element, listener): void {
 }
 
 export function removeResizeListener(element, listener): void {
+           "ngInject";
     if (listener) element.__resizeListeners__.splice(element.__resizeListeners__.indexOf(listener), 1);
     if (!element.__resizeListeners__.length) {
         if (attachEvent) element.detachEvent('onresize', resizeListener);

@@ -1,8 +1,8 @@
 import { MediaBreakpoints, MediaBreakpointStatuses } from './IMediaService';
 import { IMediaProvider } from './IMediaService';
 
-export let MainBreakpoints: MediaBreakpoints = new MediaBreakpoints(639, 716, 1024, 1439);
-export let MainBreakpointStatuses: MediaBreakpointStatuses = new MediaBreakpointStatuses();
+export let MainBreakpoints = new MediaBreakpoints(639, 716, 1024, 1439);
+export const MainBreakpointStatuses = new MediaBreakpointStatuses();
 
 class MediaProvider implements IMediaProvider {
     public get breakpoints(): MediaBreakpoints {

@@ -163,6 +163,7 @@ class AuxPanelProvider implements IAuxPanelProvider {
 }
 
 function hookAuxPanelEvents($rootScope: ng.IRootScopeService, pipAuxPanel: IAuxPanelService) {
+    "ngInject";
     $rootScope.$on(OpenAuxPanelEvent, () => { pipAuxPanel.open(); });
     $rootScope.$on(CloseAuxPanelEvent, () => { pipAuxPanel.close(); });
 }
