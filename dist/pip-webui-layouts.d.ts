@@ -77,12 +77,12 @@ export interface IMediaProvider extends ng.IServiceProvider {
     breakpoints: MediaBreakpoints;
 }
 
-
 export let MainBreakpoints: MediaBreakpoints;
 export const MainBreakpointStatuses: MediaBreakpointStatuses;
 
 export function addResizeListener(element: any, listener: any): void;
 export function removeResizeListener(element: any, listener: any): void;
+
 
 }
 
