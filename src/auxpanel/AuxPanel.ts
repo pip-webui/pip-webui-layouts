@@ -24,7 +24,7 @@ import { IAuxPanelService } from './IAuxPanelService';
         controller: AuxPanelDirectiveController,
         transclude: true,
         template: '<md-sidenav class="md-sidenav-right md-whiteframe-z2 pip-auxpanel color-content-bg" ng-class="{\'pip-large\': $ctrl.isGtlg()}"' +
-        'md-component-id="pip-auxpanel" md-is-locked-open="$ctrl.isGtxs()" pip-focused ng-transclude>' +
+        'md-component-id="pip-auxpanel" md-is-locked-open="$ctrl.isGtxs()" ng-transclude><div pip-focused></div>' +
         '</md-sidenav>'
     }
 
