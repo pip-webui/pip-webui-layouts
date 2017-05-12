@@ -43,7 +43,6 @@ class AuxPanelService implements IAuxPanelService {
     }
 
     public isOpen(): boolean {
-        console.log('isOpen');
         return this._sidenav(this.id).isOpen();
     }
 
