@@ -129,7 +129,6 @@ var AuxPanelService = (function () {
         configurable: true
     });
     AuxPanelService.prototype.isOpen = function () {
-        console.log('isOpen');
         return this._sidenav(this.id).isOpen();
     };
     AuxPanelService.prototype.open = function () {
