@@ -5,17 +5,30 @@ import { IAuxPanelService } from './IAuxPanelService';
     class AuxPanelDirectiveController {
         private normalSize: number = 320;
         private largeSize: number = 480;
+        private _debounceBodySize: Function;
+        private gtxs: boolean;
+        private gtlg: boolean;
 
         public constructor(private pipAuxPanel: IAuxPanelService) {
             "ngInject";
+
+            this._debounceBodySize = _.debounce(() => {
+                let bodySize: number = Number($('body').width());
+                this.gtxs = bodySize > MainBreakpoints.xs && this.pipAuxPanel.isOpen();
+                this.gtlg = bodySize > (MainBreakpoints.lg + this.largeSize);
+            }, 50);
+
+            this._debounceBodySize();
         }
 
         public isGtxs(): boolean {
-            return Number($('body').width()) > MainBreakpoints.xs && this.pipAuxPanel.isOpen();
+            this._debounceBodySize();
+            return this.gtxs;
         }
 
         public isGtlg(): boolean {
-            return Number($('body').width()) > (MainBreakpoints.lg + this.largeSize);
+            this._debounceBodySize();
+            return this.gtlg;
         }
     }
 

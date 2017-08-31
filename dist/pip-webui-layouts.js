@@ -7,15 +7,24 @@ var MediaService_1 = require("../media/MediaService");
         AuxPanelDirectiveController.$inject = ['pipAuxPanel'];
         function AuxPanelDirectiveController(pipAuxPanel) {
             "ngInject";
+            var _this = this;
             this.pipAuxPanel = pipAuxPanel;
             this.normalSize = 320;
             this.largeSize = 480;
+            this._debounceBodySize = _.debounce(function () {
+                var bodySize = Number($('body').width());
+                _this.gtxs = bodySize > MediaService_1.MainBreakpoints.xs && _this.pipAuxPanel.isOpen();
+                _this.gtlg = bodySize > (MediaService_1.MainBreakpoints.lg + _this.largeSize);
+            }, 50);
+            this._debounceBodySize();
         }
         AuxPanelDirectiveController.prototype.isGtxs = function () {
-            return Number($('body').width()) > MediaService_1.MainBreakpoints.xs && this.pipAuxPanel.isOpen();
+            this._debounceBodySize();
+            return this.gtxs;
         };
         AuxPanelDirectiveController.prototype.isGtlg = function () {
-            return Number($('body').width()) > (MediaService_1.MainBreakpoints.lg + this.largeSize);
+            this._debounceBodySize();
+            return this.gtlg;
         };
         return AuxPanelDirectiveController;
     }());
