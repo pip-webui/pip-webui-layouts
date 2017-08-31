@@ -15,7 +15,7 @@ var MediaService_1 = require("../media/MediaService");
                 var bodySize = Number($('body').width());
                 _this.gtxs = bodySize > MediaService_1.MainBreakpoints.xs && _this.pipAuxPanel.isOpen();
                 _this.gtlg = bodySize > (MediaService_1.MainBreakpoints.lg + _this.largeSize);
-            }, 50);
+            }, 10);
             this._debounceBodySize();
         }
         AuxPanelDirectiveController.prototype.isGtxs = function () {

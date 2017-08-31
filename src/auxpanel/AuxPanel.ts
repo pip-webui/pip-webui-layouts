@@ -16,7 +16,7 @@ import { IAuxPanelService } from './IAuxPanelService';
                 let bodySize: number = Number($('body').width());
                 this.gtxs = bodySize > MainBreakpoints.xs && this.pipAuxPanel.isOpen();
                 this.gtlg = bodySize > (MainBreakpoints.lg + this.largeSize);
-            }, 50);
+            }, 10);
 
             this._debounceBodySize();
         }
