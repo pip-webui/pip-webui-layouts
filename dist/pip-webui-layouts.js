@@ -11,20 +11,26 @@ var MediaService_1 = require("../media/MediaService");
             this.pipAuxPanel = pipAuxPanel;
             this.normalSize = 320;
             this.largeSize = 480;
+            this.gtxs = null;
+            this.gtlg = null;
             this._debounceBodySize = _.debounce(function () {
                 var bodySize = Number($('body').width());
                 _this.gtxs = bodySize > MediaService_1.MainBreakpoints.xs && _this.pipAuxPanel.isOpen();
-                _this.gtlg = bodySize > (MediaService_1.MainBreakpoints.lg + _this.largeSize);
+                _this.gtlg = bodySize > (MediaService_1.MainBreakpoints.lg + _this.largeSize) && _this.pipAuxPanel.isOpen();
             }, 10);
             this._debounceBodySize();
         }
         AuxPanelDirectiveController.prototype.isGtxs = function () {
-            this._debounceBodySize();
-            return this.gtxs;
+            if (!this.pipAuxPanel.isOpen())
+                return false;
+            var bodySize = Number($('body').width());
+            return bodySize > MediaService_1.MainBreakpoints.xs;
         };
         AuxPanelDirectiveController.prototype.isGtlg = function () {
-            this._debounceBodySize();
-            return this.gtlg;
+            if (!this.pipAuxPanel.isOpen())
+                return false;
+            var bodySize = Number($('body').width());
+            return bodySize > (MediaService_1.MainBreakpoints.lg + this.largeSize);
         };
         return AuxPanelDirectiveController;
     }());

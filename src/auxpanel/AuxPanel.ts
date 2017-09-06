@@ -6,8 +6,8 @@ import { IAuxPanelService } from './IAuxPanelService';
         private normalSize: number = 320;
         private largeSize: number = 480;
         private _debounceBodySize: Function;
-        private gtxs: boolean;
-        private gtlg: boolean;
+        private gtxs: boolean = null;
+        private gtlg: boolean = null;
 
         public constructor(private pipAuxPanel: IAuxPanelService) {
             "ngInject";
@@ -15,20 +15,44 @@ import { IAuxPanelService } from './IAuxPanelService';
             this._debounceBodySize = _.debounce(() => {
                 let bodySize: number = Number($('body').width());
                 this.gtxs = bodySize > MainBreakpoints.xs && this.pipAuxPanel.isOpen();
-                this.gtlg = bodySize > (MainBreakpoints.lg + this.largeSize);
+                this.gtlg = bodySize > (MainBreakpoints.lg + this.largeSize)  && this.pipAuxPanel.isOpen();
             }, 10);
 
             this._debounceBodySize();
         }
 
         public isGtxs(): boolean {
-            this._debounceBodySize();
-            return this.gtxs;
+            // if (this.gtxs != null) {
+            //     this._debounceBodySize();
+            //     return this.gtxs;
+            // } else {
+            //     let bodySize: number = Number($('body').width());
+            //     this.gtxs = bodySize > MainBreakpoints.xs && this.pipAuxPanel.isOpen();
+
+            //     return this.gtxs;
+            // }
+            if (!this.pipAuxPanel.isOpen()) return false;
+
+            let bodySize: number = Number($('body').width());
+
+            return bodySize > MainBreakpoints.xs;
         }
 
         public isGtlg(): boolean {
-            this._debounceBodySize();
-            return this.gtlg;
+            // if (this.gtxs != null) {
+            //     this._debounceBodySize();
+            //     return this.gtlg;
+            // } else {
+            //     let bodySize: number = Number($('body').width());
+            //     this.gtlg = bodySize > (MainBreakpoints.lg + this.largeSize)  && this.pipAuxPanel.isOpen();
+                
+            //     return this.gtlg;
+            // }            
+            if (!this.pipAuxPanel.isOpen()) return false;
+
+            let bodySize: number = Number($('body').width());
+            
+            return bodySize > (MainBreakpoints.lg + this.largeSize);
         }
     }
 
