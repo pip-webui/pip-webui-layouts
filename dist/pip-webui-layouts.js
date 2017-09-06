@@ -2,35 +2,34 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var MediaService_1 = require("../media/MediaService");
+var IMediaService_1 = require("../media/IMediaService");
 {
     var AuxPanelDirectiveController = (function () {
-        AuxPanelDirectiveController.$inject = ['pipAuxPanel'];
-        function AuxPanelDirectiveController(pipAuxPanel) {
+        AuxPanelDirectiveController.$inject = ['$rootScope', 'pipAuxPanel'];
+        function AuxPanelDirectiveController($rootScope, pipAuxPanel) {
             "ngInject";
             var _this = this;
+            this.$rootScope = $rootScope;
             this.pipAuxPanel = pipAuxPanel;
             this.normalSize = 320;
             this.largeSize = 480;
             this.gtxs = null;
             this.gtlg = null;
-            this._debounceBodySize = _.debounce(function () {
-                var bodySize = Number($('body').width());
-                _this.gtxs = bodySize > MediaService_1.MainBreakpoints.xs && _this.pipAuxPanel.isOpen();
-                _this.gtlg = bodySize > (MediaService_1.MainBreakpoints.lg + _this.largeSize) && _this.pipAuxPanel.isOpen();
-            }, 10);
-            this._debounceBodySize();
+            this.bodyElement = $('body');
+            this.bodyWidth = this.bodyElement.width();
+            $rootScope.$on(IMediaService_1.LayoutResizedEvent, function () {
+                _this.bodyWidth = _this.bodyElement.width();
+            });
         }
         AuxPanelDirectiveController.prototype.isGtxs = function () {
             if (!this.pipAuxPanel.isOpen())
                 return false;
-            var bodySize = Number($('body').width());
-            return bodySize > MediaService_1.MainBreakpoints.xs;
+            return this.bodyWidth > MediaService_1.MainBreakpoints.xs;
         };
         AuxPanelDirectiveController.prototype.isGtlg = function () {
             if (!this.pipAuxPanel.isOpen())
                 return false;
-            var bodySize = Number($('body').width());
-            return bodySize > (MediaService_1.MainBreakpoints.lg + this.largeSize);
+            return this.bodyWidth > (MediaService_1.MainBreakpoints.lg + this.largeSize);
         };
         return AuxPanelDirectiveController;
     }());
@@ -45,7 +44,7 @@ var MediaService_1 = require("../media/MediaService");
         .module('pipAuxPanel')
         .component('pipAuxPanel', AuxPanel);
 }
-},{"../media/MediaService":14}],2:[function(require,module,exports){
+},{"../media/IMediaService":13,"../media/MediaService":14}],2:[function(require,module,exports){
 {
     AuxPanelPartDirective.$inject = ['ngIfDirective'];
     var AuxPanelPartController_1 = (function () {
