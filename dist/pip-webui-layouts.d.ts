@@ -1,5 +1,49 @@
 declare module pip.layouts {
 
+export const MainResizedEvent = "pipMainResized";
+export const LayoutResizedEvent = "pipLayoutResized";
+export class MediaBreakpoints {
+    constructor(xs: number, sm: number, md: number, lg: number);
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+}
+export class MediaBreakpointStatuses {
+    width: number;
+    'xs': boolean;
+    'gt-xs': boolean;
+    'sm': boolean;
+    'gt-sm': boolean;
+    'md': boolean;
+    'gt-md': boolean;
+    'lg': boolean;
+    'gt-lg': boolean;
+    'xl': boolean;
+    update(breakpoints: MediaBreakpoints, width: number): void;
+}
+export interface IMediaService {
+    (breakpoint: string): boolean;
+    breakpoints: MediaBreakpoints;
+    width: number;
+}
+export interface IMediaProvider extends ng.IServiceProvider {
+    breakpoints: MediaBreakpoints;
+}
+
+
+export let MainBreakpoints: MediaBreakpoints;
+export const MainBreakpointStatuses: MediaBreakpointStatuses;
+
+export function addResizeListener(element: any, listener: any): void;
+export function removeResizeListener(element: any, listener: any): void;
+
+
+
+
+
+
+
 
 
 
@@ -39,50 +83,6 @@ export interface IAuxPanelProvider extends ng.IServiceProvider {
     part(part: string, value: any): void;
 }
 
-
-
-
-
-
-
-
-export const MainResizedEvent = "pipMainResized";
-export const LayoutResizedEvent = "pipLayoutResized";
-export class MediaBreakpoints {
-    constructor(xs: number, sm: number, md: number, lg: number);
-    xs: number;
-    sm: number;
-    md: number;
-    lg: number;
-}
-export class MediaBreakpointStatuses {
-    width: number;
-    'xs': boolean;
-    'gt-xs': boolean;
-    'sm': boolean;
-    'gt-sm': boolean;
-    'md': boolean;
-    'gt-md': boolean;
-    'lg': boolean;
-    'gt-lg': boolean;
-    'xl': boolean;
-    update(breakpoints: MediaBreakpoints, width: number): void;
-}
-export interface IMediaService {
-    (breakpoint: string): boolean;
-    breakpoints: MediaBreakpoints;
-    width: number;
-}
-export interface IMediaProvider extends ng.IServiceProvider {
-    breakpoints: MediaBreakpoints;
-}
-
-
-export let MainBreakpoints: MediaBreakpoints;
-export const MainBreakpointStatuses: MediaBreakpointStatuses;
-
-export function addResizeListener(element: any, listener: any): void;
-export function removeResizeListener(element: any, listener: any): void;
 
 }
 
