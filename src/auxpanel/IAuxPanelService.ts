@@ -2,6 +2,8 @@ export const AuxPanelChangedEvent = 'pipAuxPanelChanged';
 export const AuxPanelStateChangedEvent = 'pipAuxPanelStateChanged';
 export const OpenAuxPanelEvent = 'pipOpenAuxPanel';
 export const CloseAuxPanelEvent = 'pipCloseAuxPanel';
+export const AuxPanelOpenedEvent = 'pipAuxPanelOpened';
+export const AuxPanelClosedEvent = 'pipAuxPanelClosed';
 
 export class AuxPanelConfig {
     parts: any;

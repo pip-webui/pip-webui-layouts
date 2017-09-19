@@ -1,4 +1,4 @@
-import { AuxPanelStateChangedEvent, AuxPanelChangedEvent, OpenAuxPanelEvent, CloseAuxPanelEvent } from './IAuxPanelService';
+import { AuxPanelStateChangedEvent, AuxPanelChangedEvent, OpenAuxPanelEvent, CloseAuxPanelEvent, AuxPanelOpenedEvent, AuxPanelClosedEvent } from './IAuxPanelService';
 import { AuxPanelConfig, IAuxPanelService, IAuxPanelProvider } from './IAuxPanelService';
 
 class AuxPanelService implements IAuxPanelService {
@@ -48,10 +48,12 @@ class AuxPanelService implements IAuxPanelService {
 
     public open() {
         this._sidenav(this.id).open();
+        this._rootScope.$emit(AuxPanelOpenedEvent, this._config);
     }
 
     public close() {
         this._sidenav(this.id).close();
+        this._rootScope.$emit(AuxPanelClosedEvent, this._config);
     }
 
     public toggle() {
