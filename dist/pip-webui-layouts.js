@@ -147,9 +147,11 @@ var AuxPanelService = (function () {
     };
     AuxPanelService.prototype.open = function () {
         this._sidenav(this.id).open();
+        this._rootScope.$emit(IAuxPanelService_1.AuxPanelOpenedEvent, this._config);
     };
     AuxPanelService.prototype.close = function () {
         this._sidenav(this.id).close();
+        this._rootScope.$emit(IAuxPanelService_1.AuxPanelClosedEvent, this._config);
     };
     AuxPanelService.prototype.toggle = function () {
         this._sidenav(this.id).toggle();
@@ -290,6 +292,8 @@ exports.AuxPanelChangedEvent = 'pipAuxPanelChanged';
 exports.AuxPanelStateChangedEvent = 'pipAuxPanelStateChanged';
 exports.OpenAuxPanelEvent = 'pipOpenAuxPanel';
 exports.CloseAuxPanelEvent = 'pipCloseAuxPanel';
+exports.AuxPanelOpenedEvent = 'pipAuxPanelOpened';
+exports.AuxPanelClosedEvent = 'pipAuxPanelClosed';
 var AuxPanelConfig = (function () {
     function AuxPanelConfig() {
     }
