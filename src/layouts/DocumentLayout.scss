@@ -105,7 +105,7 @@
     }
 }
 
-.pip-lg, .pip-xl {
+.pip-lg {
     @media (max-width: 1500px) {
         .pip-document {
             @include position-absolute(0, 0, 0, 0);
