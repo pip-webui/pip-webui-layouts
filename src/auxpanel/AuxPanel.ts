@@ -45,7 +45,7 @@ import { MainResizedEvent, LayoutResizedEvent } from '../media/IMediaService';
 
             if (!this.pipAuxPanel.isOpen()) return false;
 
-            // let bodySize: number = Number($('body').width());
+            this.bodyWidth = this.bodyElement.width();
 
             return this.bodyWidth > MainBreakpoints.xs;
         }
@@ -63,7 +63,7 @@ import { MainResizedEvent, LayoutResizedEvent } from '../media/IMediaService';
 
             if (!this.pipAuxPanel.isOpen()) return false;
 
-            // let bodySize: number = Number($('body').width());
+            this.bodyWidth = this.bodyElement.width();
             
             return this.bodyWidth > (MainBreakpoints.lg + this.largeSize);
         }
