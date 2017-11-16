@@ -24,11 +24,13 @@ var IMediaService_1 = require("../media/IMediaService");
         AuxPanelDirectiveController.prototype.isGtxs = function () {
             if (!this.pipAuxPanel.isOpen())
                 return false;
+            this.bodyWidth = this.bodyElement.width();
             return this.bodyWidth > MediaService_1.MainBreakpoints.xs;
         };
         AuxPanelDirectiveController.prototype.isGtlg = function () {
             if (!this.pipAuxPanel.isOpen())
                 return false;
+            this.bodyWidth = this.bodyElement.width();
             return this.bodyWidth > (MediaService_1.MainBreakpoints.lg + this.largeSize);
         };
         return AuxPanelDirectiveController;
