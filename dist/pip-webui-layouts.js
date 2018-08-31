@@ -559,9 +559,6 @@ var TilesDirectiveLink = (function () {
         this._heading = $($element.children('.pip-tiles-heading')[0]);
         this._prevContainerWidth = null;
         this._masonry = Masonry.data(this._container[0]);
-        if ($attrs.gutter && $scope.tilesOptions) {
-            $scope.tilesOptions.gutter = Number($attrs.gutter);
-        }
         $element.addClass('pip-tiles');
         var listener = function () { _this.resize(false); };
         ResizeFunctions_1.addResizeListener($element[0], listener);
@@ -626,7 +623,9 @@ function tilesDirective($rootScope) {
     }
     return {
         restrict: 'EA',
-        scope: false,
+        scope: {
+            gutter: '='
+        },
         transclude: {
             'heading': '?pipTilesHeading'
         },
@@ -651,7 +650,7 @@ function tilesDirective($rootScope) {
         },
         controller: ['$scope', function ($scope) {
             $scope.tilesOptions = {
-                gutter: 8,
+                gutter: $scope.gutter || 8,
                 isFitWidth: false,
                 isResizeBound: false,
                 transitionDuration: 0

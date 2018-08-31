@@ -39,9 +39,6 @@ class TilesDirectiveLink {
         this._container = $element.children('.pip-tiles-container');
 		this._heading = $($element.children('.pip-tiles-heading')[0]);
         this._prevContainerWidth = null;
-		if ($attrs.gutter && $scope.tilesOptions) {
-            $scope.tilesOptions.gutter = Number($attrs.gutter);
-        }
         this._masonry = Masonry.data(this._container[0]);
 
         // Add class to the element
@@ -132,7 +129,9 @@ function tilesDirective($rootScope: ng.IRootScopeService): ng.IDirective {
 
     return {
         restrict: 'EA',
-        scope: false,
+        scope: {
+			gutter: '='
+		},
         transclude: {
             'heading': '?pipTilesHeading'
         },
@@ -157,7 +156,7 @@ function tilesDirective($rootScope: ng.IRootScopeService): ng.IDirective {
         },
         controller: ($scope: ITilesControllerScope) => {
             $scope.tilesOptions = {
-                gutter: 8,//16
+                gutter: $scope.gutter || 8,//16
                 isFitWidth: false,
                 isResizeBound: false,
                 transitionDuration: 0 // '0.2s'
