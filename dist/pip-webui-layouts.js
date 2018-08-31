@@ -556,8 +556,12 @@ var TilesDirectiveLink = (function () {
         this.$rootScope = $rootScope;
         this._columnWidth = $attrs.columnWidth ? Math.floor(Number($attrs.columnWidth)) : 440;
         this._container = $element.children('.pip-tiles-container');
+        this._heading = $($element.children('.pip-tiles-heading')[0]);
         this._prevContainerWidth = null;
         this._masonry = Masonry.data(this._container[0]);
+        if ($attrs.gutter && $scope.tilesOptions) {
+            $scope.tilesOptions.gutter = Number($attrs.gutter);
+        }
         $element.addClass('pip-tiles');
         var listener = function () { _this.resize(false); };
         ResizeFunctions_1.addResizeListener($element[0], listener);
@@ -587,6 +591,9 @@ var TilesDirectiveLink = (function () {
                 this._sizer.css('width', this._columnWidth + 'px');
             }
             this._container.css('width', (containerWidth + 10) + 'px');
+            if (this._heading) {
+                this._heading.css('width', (containerWidth + 10) + 'px');
+            }
             this._container.removeClass('pip-mobile');
         }
         else {
@@ -594,12 +601,15 @@ var TilesDirectiveLink = (function () {
             containerWidth = width;
             this._sizer.css('width', containerWidth + 'px');
             this._container.css('width', (containerWidth + 10) + 'px');
+            if (this._heading) {
+                this._heading.css('width', (containerWidth + 10) + 'px');
+            }
             this._container.addClass('pip-mobile');
         }
         if (this._prevContainerWidth != containerWidth || force) {
             this._prevContainerWidth = containerWidth;
             this._masonry.layout();
-            this.$rootScope.$emit(IMediaService_1.LayoutResizedEvent);
+            this.$rootScope.$emit(IMediaService_1.LayoutResizedEvent, containerWidth);
         }
     };
     return TilesDirectiveLink;
@@ -617,10 +627,13 @@ function tilesDirective($rootScope) {
     return {
         restrict: 'EA',
         scope: false,
-        transclude: true,
+        transclude: {
+            'heading': '?pipTilesHeading'
+        },
         template: function ($element, $attrs) {
             if (convertToBoolean($attrs.pipInfinite)) {
                 return String()
+                    + '<div class="pip-tiles-heading" ng-transclude="heading"></div>'
                     + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
                     + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
                     + ' masonry-options="tilesOptions"  pip-scroll-container="\'.pip-tiles\'"'
@@ -629,6 +642,7 @@ function tilesDirective($rootScope) {
             }
             else {
                 return String()
+                    + '<div class="pip-tiles-heading" ng-transclude="heading"></div>'
                     + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
                     + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
                     + ' masonry-options="tilesOptions">'

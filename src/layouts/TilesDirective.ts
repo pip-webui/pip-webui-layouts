@@ -23,6 +23,7 @@ interface ITilesControllerScope extends ng.IScope {
 class TilesDirectiveLink {
     private _columnWidth: number;
     private _container: any;
+	private _heading: any;
     private _prevContainerWidth: number;
     private _masonry: any;
     private _sizer: any;
@@ -36,7 +37,11 @@ class TilesDirectiveLink {
         "ngInject";
         this._columnWidth = $attrs.columnWidth ? Math.floor(Number($attrs.columnWidth)) : 440;
         this._container = $element.children('.pip-tiles-container');
+		this._heading = $($element.children('.pip-tiles-heading')[0]);
         this._prevContainerWidth = null;
+		if ($attrs.gutter && $scope.tilesOptions) {
+            $scope.tilesOptions.gutter = Number($attrs.gutter);
+        }
         this._masonry = Masonry.data(this._container[0]);
 
         // Add class to the element
@@ -86,6 +91,9 @@ class TilesDirectiveLink {
 
             // +10 to avoid precision related error
             this._container.css('width', (containerWidth + 10) + 'px');
+			if (this._heading) {
+				this._heading.css('width', (containerWidth + 10) + 'px');
+			}
             this._container.removeClass('pip-mobile');
         } else {
             width = width - 16 * 2;
@@ -94,6 +102,9 @@ class TilesDirectiveLink {
             this._sizer.css('width', containerWidth + 'px');
             // +10 to avoid precision related error
             this._container.css('width', (containerWidth + 10) + 'px');
+			if (this._heading) {
+				this._heading.css('width', (containerWidth + 10) + 'px');
+			}
             this._container.addClass('pip-mobile');
         }
 
@@ -103,7 +114,7 @@ class TilesDirectiveLink {
             this._masonry.layout();
 
             // Notify child controls that layout was resized
-            this.$rootScope.$emit(LayoutResizedEvent);
+            this.$rootScope.$emit(LayoutResizedEvent, containerWidth);
         }
     }
 }
@@ -122,11 +133,14 @@ function tilesDirective($rootScope: ng.IRootScopeService): ng.IDirective {
     return {
         restrict: 'EA',
         scope: false,
-        transclude: true,
+        transclude: {
+            'heading': '?pipTilesHeading'
+        },
         template:
         ($element: JQuery, $attrs: ITilesDirectiveAttributes) => {
             if (convertToBoolean($attrs.pipInfinite)) {
                 return String()
+                    + '<div class="pip-tiles-heading" ng-transclude="heading"></div>'
                     + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
                     + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
                     + ' masonry-options="tilesOptions"  pip-scroll-container="\'.pip-tiles\'"'
@@ -134,6 +148,7 @@ function tilesDirective($rootScope: ng.IRootScopeService): ng.IDirective {
                     + '</div>';
             } else {
                 return String()
+					+ '<div class="pip-tiles-heading" ng-transclude="heading"></div>'
                     + '<div masonry class="pip-tiles-container" load-images="false" preserve-order  '
                     + ' ng-transclude column-width=".pip-tile-sizer" item-selector=".pip-tile"'
                     + ' masonry-options="tilesOptions">'

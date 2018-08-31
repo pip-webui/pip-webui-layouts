@@ -33,6 +33,11 @@
   color: $color-primary;
   letter-spacing: $font-letter-spacing-title;
 
+  .pip-tiles-heading {
+	margin: 0 auto;
+	max-width: 100%;
+  }
+  
   .pip-tiles-container {
     margin: 0 auto;
     max-width: 100%;
